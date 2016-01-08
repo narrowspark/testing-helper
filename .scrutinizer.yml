@@ -99,4 +99,4 @@ build:
 
 tools:
     external_code_coverage:
-      timeout: 800
+        runs: 3
