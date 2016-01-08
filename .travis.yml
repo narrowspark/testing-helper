@@ -41,5 +41,5 @@ script:
   - vendor/bin/phpunit -c phpunit.xml.dist --verbose
 
 after_script:
-  - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover build/logs/coverage.clover
+  - if [[ $setup = 'basic' ]]; then wget https://scrutinizer-ci.com/ocular.phar; fi
+  - if [[ $setup = 'basic' ]]; then php ocular.phar code-coverage:upload --format=php-clover build/logs/coverage.clover; fi
