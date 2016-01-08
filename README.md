@@ -28,7 +28,20 @@ $ composer require narrowspark/testing-helper
 ## Usage
 
 ``` php
-echo "test";
+use Narrowspark\TestingHelper\Traits\TestHelperTrait;
+
+class ModelTest extends \PHPUnit_Framework_TestCase
+{
+    use TestHelperTrait;
+
+    // Now you can do something like this.
+    public function testIfArrayContainIrix()
+    {
+        $haystack = ['Mac', 'NT', 'Irix', 'Linux'];
+
+        $this->assertInArray('Irix', $haystack);
+    }
+}
 ```
 
 ## Change log
@@ -38,7 +51,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 ## Testing
 
 ``` bash
-$ composer test
+$ phpunit
 ```
 
 ## Contributing

@@ -5,44 +5,6 @@ use InvalidArgumentException;
 
 trait TestHelperTrait
 {
-    use MockeryTrait;
-
-    /**
-     * Setup the test case.
-     */
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->start();
-    }
-
-    /**
-     * Run extra setup code.
-     */
-    protected function start()
-    {
-        // call more setup methods
-    }
-
-    /**
-     * Tear down the test case.
-     */
-    public function tearDown()
-    {
-        $this->finish();
-
-        parent::tearDown();
-    }
-
-    /**
-     * Run extra tear down code.
-     */
-    protected function finish()
-    {
-        // call more tear down methods
-    }
-
     /**
      * Assert that the element exists in the array.
      *
