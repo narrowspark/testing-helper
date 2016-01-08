@@ -6,9 +6,9 @@ trait TimingTrait
     /**
      * Assert run time of a callable.
      *
-     * @param  integer  $maxDurationInMs
-     * @param  callable $callable
-     * @param  integer  $iterations
+     * @param int      $maxDurationInMs
+     * @param callable $callable
+     * @param int      $iterations
      */
     protected function assertTiming($maxDurationInMs, callable $callable, $iterations = 20)
     {

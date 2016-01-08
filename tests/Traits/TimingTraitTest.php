@@ -1,9 +1,9 @@
 <?php
 namespace Narrowspark\TestingHelper\Tests\Traits;
 
-use DateTime;
 use DateInterval;
 use DatePeriod;
+use DateTime;
 use Narrowspark\TestingHelper\Traits\TimingTrait;
 
 class TimingTraitTest extends \PHPUnit_Framework_TestCase

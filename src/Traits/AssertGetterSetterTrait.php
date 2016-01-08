@@ -14,17 +14,16 @@ trait AssertGetterSetterTrait
      * and the third arg will be the name of the getter method.
      * The default function is responsible for calling the appropriate assert___() method.
      *
-     * @param object  $object    The entity to test the setter and getter for
-     * @param string  $getter    The getter function to call
-     * @param string  $default   The expected default value of the getter after initialization,
-     *                           or an anonymous function that will do test for default values
-     *                           that are not null or scalar
-     * @param string  $setter    The setter function to call
-     * @param mixed   $value     Value to send to the setter function
-     * @param boolean $chainable Sets whether the method should be chainable
-     * @param string  $return    The expected result of the getter after setting
-     *                           (Used when the set value has been manipulated in some way)
-     *
+     * @param object $object    The entity to test the setter and getter for
+     * @param string $getter    The getter function to call
+     * @param string $default   The expected default value of the getter after initialization,
+     *                          or an anonymous function that will do test for default values
+     *                          that are not null or scalar
+     * @param string $setter    The setter function to call
+     * @param mixed  $value     Value to send to the setter function
+     * @param bool   $chainable Sets whether the method should be chainable
+     * @param string $return    The expected result of the getter after setting
+     *                          (Used when the set value has been manipulated in some way)
      */
     public function assertGetterSetter(
         $object,
@@ -45,7 +44,7 @@ trait AssertGetterSetterTrait
 
         //Assert getter is callable
         $this->assertTrue(
-            is_callable(array($object, $getter)),
+            is_callable([$object, $getter]),
             'Specified getter method "' . $getter . '" is not callable.'
         );
 
@@ -53,7 +52,7 @@ trait AssertGetterSetterTrait
         $this->assertSame(
             $default,
             $object->$getter(),
-            'Object getter ('.$getter.') did not return the correct default value.'
+            'Object getter (' . $getter . ') did not return the correct default value.'
         );
 
         if (isset($args[3])) {
@@ -65,16 +64,16 @@ trait AssertGetterSetterTrait
 
             //Assert setter is callable
             $this->assertTrue(
-                is_callable(array($object, $setter)),
+                is_callable([$object, $setter]),
                 'Specified setter method "' . $setter . '" is not callable.'
             );
 
             if (isset($args[5]) && $args[5] !== true) {
                 //Assert setter returns null (not chainable)
-                $this->assertNull($object->$setter($value), 'Object setter ('.$setter.') should not have a return.');
+                $this->assertNull($object->$setter($value), 'Object setter (' . $setter . ') should not have a return.');
             } else {
                 //Assert setter is chainable
-                $this->assertSame($object, $object->$setter($value), 'Object setter ('.$setter.') is not chainable.');
+                $this->assertSame($object, $object->$setter($value), 'Object setter (' . $setter . ') is not chainable.');
             }
         }
 

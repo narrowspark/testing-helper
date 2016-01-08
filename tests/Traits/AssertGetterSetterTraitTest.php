@@ -2,8 +2,8 @@
 namespace Narrowspark\TestingHelper\Tests\Traits;
 
 use DateTime;
-use Narrowspark\TestingHelper\Traits\AssertGetterSetterTrait;
 use Narrowspark\TestingHelper\Tests\Fixture\MockObject;
+use Narrowspark\TestingHelper\Traits\AssertGetterSetterTrait;
 
 class AssertGetterSetterTraitTest extends \PHPUnit_Framework_TestCase
 {
@@ -84,7 +84,7 @@ class AssertGetterSetterTraitTest extends \PHPUnit_Framework_TestCase
                 ['getId'],
                 ['getChainable', null, 'setChainable', 'value'],
                 ['getNonChainable', null, 'setNonChainable', 'value', false],
-                ['getManipulated', null, 'setManipulated', 'testing', true, 'TESTING']
+                ['getManipulated', null, 'setManipulated', 'testing', true, 'TESTING'],
             ],
             [$this, 'assertGetterSetter']
         );

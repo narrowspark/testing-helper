@@ -1,8 +1,8 @@
 <?php
 namespace Narrowspark\TestingHelper\Tests\Traits;
 
-use Narrowspark\TestingHelper\Traits\AccessTrait;
 use Narrowspark\TestingHelper\Tests\Fixture\FooObject;
+use Narrowspark\TestingHelper\Traits\AccessTrait;
 
 class AccessTraitTest extends \PHPUnit_Framework_TestCase
 {

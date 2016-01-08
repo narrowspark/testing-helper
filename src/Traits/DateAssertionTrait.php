@@ -10,7 +10,7 @@ trait DateAssertionTrait
      *
      * @param DateTime|string $expected
      * @param DateTime        $actual
-     * @param boolean         $notSame
+     * @param bool            $notSame
      */
     public function assertSameDate($expected, DateTime $actual)
     {

@@ -2,8 +2,8 @@
 namespace Narrowspark\TestingHelper\Tests\Traits;
 
 use Mockery as Mock;
-use Narrowspark\TestingHelper\Traits\MockeryTrait;
 use Narrowspark\TestingHelper\Tests\Fixture\FooObject;
+use Narrowspark\TestingHelper\Traits\MockeryTrait;
 
 class MockeryTraitTest extends \PHPUnit_Framework_TestCase
 {
