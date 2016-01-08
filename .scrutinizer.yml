@@ -96,7 +96,3 @@ build:
     dependencies:
         override:
             - 'composer install'
-
-tools:
-    external_code_coverage:
-        runs: 3
