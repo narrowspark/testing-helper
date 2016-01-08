@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Test Suite" tests="27" assertions="109" failures="0" errors="0" time="0.226433">
+    <testsuite name="Narrowspark\TestingHelper\Tests\Traits\AccessTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\AccessTraitTest.php" tests="4" assertions="10" failures="0" errors="0" time="0.020566">
+      <testcase name="testGetProperty" class="Narrowspark\TestingHelper\Tests\Traits\AccessTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\AccessTraitTest.php" line="12" assertions="3" time="0.006590"/>
+      <testcase name="testGetPropertyThrowReflectionException" class="Narrowspark\TestingHelper\Tests\Traits\AccessTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\AccessTraitTest.php" line="22" assertions="1" time="0.004314"/>
+      <testcase name="testSetProperty" class="Narrowspark\TestingHelper\Tests\Traits\AccessTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\AccessTraitTest.php" line="27" assertions="3" time="0.005107"/>
+      <testcase name="testCallMethod" class="Narrowspark\TestingHelper\Tests\Traits\AccessTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\AccessTraitTest.php" line="40" assertions="3" time="0.004555"/>
+    </testsuite>
+    <testsuite name="Narrowspark\TestingHelper\Tests\Traits\AssertGetterSetterTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\AssertGetterSetterTraitTest.php" tests="10" assertions="76" failures="0" errors="0" time="0.071012">
+      <testcase name="testGetterOnly" class="Narrowspark\TestingHelper\Tests\Traits\AssertGetterSetterTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\AssertGetterSetterTraitTest.php" line="19" assertions="3" time="0.006311"/>
+      <testcase name="testGetterAndSetterChainable" class="Narrowspark\TestingHelper\Tests\Traits\AssertGetterSetterTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\AssertGetterSetterTraitTest.php" line="27" assertions="7" time="0.005537"/>
+      <testcase name="testGetterAndSetterNonChainableAsNonChainable" class="Narrowspark\TestingHelper\Tests\Traits\AssertGetterSetterTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\AssertGetterSetterTraitTest.php" line="38" assertions="7" time="0.006216"/>
+      <testcase name="testGetterAndSetterManipulated" class="Narrowspark\TestingHelper\Tests\Traits\AssertGetterSetterTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\AssertGetterSetterTraitTest.php" line="50" assertions="7" time="0.005802"/>
+      <testcase name="testGetterAndSetterDefaultDateDefaultSet" class="Narrowspark\TestingHelper\Tests\Traits\AssertGetterSetterTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\AssertGetterSetterTraitTest.php" line="63" assertions="7" time="0.006044"/>
+      <testcase name="testGetterSetterArray" class="Narrowspark\TestingHelper\Tests\Traits\AssertGetterSetterTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\AssertGetterSetterTraitTest.php" line="79" assertions="24" time="0.012130"/>
+      <testcase name="testGetterAndSetterDefaultDate" class="Narrowspark\TestingHelper\Tests\Traits\AssertGetterSetterTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\AssertGetterSetterTraitTest.php" line="98" assertions="4" time="0.009681"/>
+      <testcase name="testNonExistentGetter" class="Narrowspark\TestingHelper\Tests\Traits\AssertGetterSetterTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\AssertGetterSetterTraitTest.php" line="116" assertions="3" time="0.005634"/>
+      <testcase name="testGetterAndNonExistentSetter" class="Narrowspark\TestingHelper\Tests\Traits\AssertGetterSetterTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\AssertGetterSetterTraitTest.php" line="128" assertions="6" time="0.006118"/>
+      <testcase name="testGetterAndSetterNonChainableAsChainable" class="Narrowspark\TestingHelper\Tests\Traits\AssertGetterSetterTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\AssertGetterSetterTraitTest.php" line="142" assertions="8" time="0.007539"/>
+    </testsuite>
+    <testsuite name="Narrowspark\TestingHelper\Tests\Traits\DateAssertionTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\DateAssertionTraitTest.php" tests="2" assertions="5" failures="0" errors="0" time="0.008934">
+      <testcase name="testAssertSameDate" class="Narrowspark\TestingHelper\Tests\Traits\DateAssertionTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\DateAssertionTraitTest.php" line="11" assertions="3" time="0.004487"/>
+      <testcase name="testAssertNotSameDate" class="Narrowspark\TestingHelper\Tests\Traits\DateAssertionTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\DateAssertionTraitTest.php" line="21" assertions="2" time="0.004447"/>
+    </testsuite>
+    <testsuite name="Narrowspark\TestingHelper\Tests\Traits\MockeryTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\MockeryTraitTest.php" tests="3" assertions="4" failures="0" errors="0" time="0.060670">
+      <testcase name="testSetUp" class="Narrowspark\TestingHelper\Tests\Traits\MockeryTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\MockeryTraitTest.php" line="12" assertions="2" time="0.025009"/>
+      <testcase name="testTearDown" class="Narrowspark\TestingHelper\Tests\Traits\MockeryTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\MockeryTraitTest.php" line="18" assertions="1" time="0.003889"/>
+      <testcase name="testMock" class="Narrowspark\TestingHelper\Tests\Traits\MockeryTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\MockeryTraitTest.php" line="25" assertions="1" time="0.031772"/>
+    </testsuite>
+    <testsuite name="Narrowspark\TestingHelper\Tests\Traits\TestHelperTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\TestHelperTraitTest.php" tests="7" assertions="10" failures="0" errors="0" time="0.035837">
+      <testcase name="testAssertInArray" class="Narrowspark\TestingHelper\Tests\Traits\TestHelperTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\TestHelperTraitTest.php" line="12" assertions="1" time="0.003829"/>
+      <testcase name="testAssertInArrayToThrowException" class="Narrowspark\TestingHelper\Tests\Traits\TestHelperTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\TestHelperTraitTest.php" line="22" assertions="2" time="0.005084"/>
+      <testcase name="testAssertMethodExists" class="Narrowspark\TestingHelper\Tests\Traits\TestHelperTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\TestHelperTraitTest.php" line="29" assertions="1" time="0.003718"/>
+      <testcase name="testAssertMethodExistsToThrowException" class="Narrowspark\TestingHelper\Tests\Traits\TestHelperTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\TestHelperTraitTest.php" line="37" assertions="2" time="0.007739"/>
+      <testcase name="testAssertInJson" class="Narrowspark\TestingHelper\Tests\Traits\TestHelperTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\TestHelperTraitTest.php" line="42" assertions="1" time="0.005023"/>
+      <testcase name="testAssertInJsonToThrowException" class="Narrowspark\TestingHelper\Tests\Traits\TestHelperTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\TestHelperTraitTest.php" line="50" assertions="2" time="0.006295"/>
+      <testcase name="testAssertInJsonToThrowExceptionOnInvalidJson" class="Narrowspark\TestingHelper\Tests\Traits\TestHelperTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\TestHelperTraitTest.php" line="58" assertions="1" time="0.004149"/>
+    </testsuite>
+    <testsuite name="Narrowspark\TestingHelper\Tests\Traits\TimingTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\TimingTraitTest.php" tests="1" assertions="4" failures="0" errors="0" time="0.029414">
+      <testcase name="testAssertTiming" class="Narrowspark\TestingHelper\Tests\Traits\TimingTraitTest" file="D:\Anolilab\Github\Php\testing-helper\tests\Traits\TimingTraitTest.php" line="13" assertions="4" time="0.029414"/>
+    </testsuite>
+  </testsuite>
+</testsuites>
