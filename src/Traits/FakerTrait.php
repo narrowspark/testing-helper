@@ -8,7 +8,7 @@ trait FakerTrait
     /**
      * You get always the same generated data.
      *
-     * @return \Faker\Factory
+     * @return \Faker\Generator
      */
     public function getFaker()
     {
