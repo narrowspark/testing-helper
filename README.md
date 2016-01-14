@@ -8,12 +8,14 @@
 ## Master
 
 [![Build Status](https://img.shields.io/travis/narrowspark/testing-helper/master.svg?style=flat-square)](https://travis-ci.org/narrowspark/testing-helper)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/narrowspark/testing-helper/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/narrowspark/testing-helper/code-structure)
 [![Quality Score](https://img.shields.io/scrutinizer/g/narrowspark/testing-helper.svg?style=flat-square)](https://scrutinizer-ci.com/g/narrowspark/testing-helper)
 
 ## Develop
 
-[![Build Status](https://img.shields.io/travis/narrowspark/testing-helper/master.svg?style=flat-square)](https://travis-ci.org/narrowspark/testing-helper)
-[![Quality Score](https://img.shields.io/scrutinizer/g/narrowspark/testing-helper.svg?style=flat-square)](https://scrutinizer-ci.com/g/narrowspark/testing-helper)
+[![Build Status](https://img.shields.io/travis/narrowspark/testing-helper/develop.svg?style=flat-square)](https://travis-ci.org/narrowspark/testing-helper)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/narrowspark/testing-helper/develop.svg?style=flat-square)](https://scrutinizer-ci.com/g/narrowspark/testing-helper/code-structure)
+[![Quality Score](https://img.shields.io/scrutinizer/g/narrowspark/testing-helper/develop.svg?style=flat-square)](https://scrutinizer-ci.com/g/narrowspark/testing-helper)
 
 ## Install
 
