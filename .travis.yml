@@ -5,7 +5,16 @@ php:
   - 7.0
   - hhvm
 
+env:
+  global:
+    - setup=basic
+
 matrix:
+  include:
+    - php: 5.6
+      env: setup=lowest
+    - php: 5.6
+      env: setup=stable
   fast_finish: true
 
 sudo: false
@@ -13,16 +22,23 @@ sudo: false
 cache:
   directories:
     - $HOME/.composer/cache
+    - $HOME/.php-cs-fixer
 
 before_install:
   - composer self-update
   - travis_retry composer self-update
   - travis_retry composer install --prefer-source --no-interaction
 
+install:
+  - if [[ $setup = 'basic' ]]; then travis_retry composer install --no-interaction --prefer-source; fi
+  - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-source --no-interaction --prefer-stable; fi
+  - if [[ $setup = 'lowest' ]]; then travis_retry composer update --prefer-source --no-interaction --prefer-lowest --prefer-stable; fi
+
 script:
   - mkdir -p build/logs
+  - vendor/bin/php-cs-fixer fix --config-file=.php_cs --verbose --diff --dry-run
   - vendor/bin/phpunit -c phpunit.xml.dist --verbose
 
 after_script:
-  - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover build/logs/coverage.clover
+  - if [ $TRAVIS_PHP_VERSION = "5.6" && $setup = 'basic' ]; then wget https://scrutinizer-ci.com/ocular.phar; fi
+  - if [ $TRAVIS_PHP_VERSION = "5.6" && $setup = 'basic' ]; then php ocular.phar code-coverage:upload --format=php-clover build/logs/coverage.clover; fi
