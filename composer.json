@@ -32,7 +32,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Narrowspark\\TestingHelper\\"        : "src/"
+            "Narrowspark\\TestingHelper\\"        : "src/TestingHelper/"
         }
     },
     "autoload-dev": {
