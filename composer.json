@@ -3,7 +3,7 @@
     "type"       : "library",
     "description": "Provides test helpers.",
     "keywords"   : [
-        "phpunit", "mockery", "mock"
+        "phpunit", "mockery", "mock", "faker", "setter", "getter", "timing", "test"
     ],
     "license"    : "MIT",
     "homepage"   : "https://github.com/narrowspark/testing-helper",
