@@ -34,8 +34,6 @@ trait AssertGetterSetterTrait
         $chainable = true,
         $return = null
     ) {
-        $args = func_get_args();
-
         //Assert getter exists
         $this->assertTrue(
             method_exists($object, $getter),
@@ -55,7 +53,7 @@ trait AssertGetterSetterTrait
             'Object getter (' . $getter . ') did not return the correct default value.'
         );
 
-        if (isset($args[3])) {
+        if ($setter !== null) {
             //Assert setter exists
             $this->assertTrue(
                 method_exists($object, $setter),
@@ -68,18 +66,25 @@ trait AssertGetterSetterTrait
                 'Specified setter method "' . $setter . '" is not callable.'
             );
 
-            if (isset($args[5]) && $args[5] !== true) {
+            if ($chainable !== true) {
                 //Assert setter returns null (not chainable)
-                $this->assertNull($object->$setter($value), 'Object setter (' . $setter . ') should not have a return.');
+                $this->assertNull(
+                    $object->$setter($value),
+                    'Object setter (' . $setter . ') should not have a return.'
+                );
             } else {
                 //Assert setter is chainable
-                $this->assertSame($object, $object->$setter($value), 'Object setter (' . $setter . ') is not chainable.');
+                $this->assertSame(
+                    $object,
+                    $object->$setter($value),
+                    'Object setter (' . $setter . ') is not chainable.'
+                );
             }
         }
 
-        if (isset($args[3])) {
+        if ($default !== null) {
             //Assert that getter returns the value or the manipulated return value
-            $this->assertSame(7 == count($args) ? $return : $value, $object->$getter());
+            $this->assertSame(7 == count(func_get_args()) ? $return : $value, $object->$getter());
         }
     }
 
