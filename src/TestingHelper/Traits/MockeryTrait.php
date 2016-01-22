@@ -5,21 +5,24 @@ use Mockery as Mock;
 
 trait MockeryTrait
 {
-    protected $allowMockingNonExistentMethods = false;
-
-    public function setUp()
+    /**
+     * Call allowMockingNonExistentMethods() on setUp().
+     *
+     * @param bool $allow Enable/Disable to mock non existent methods.
+     */
+    public function allowMockingNonExistentMethods($allow = false)
     {
-        parent::setUp();
-
+        //Disable mocking of non existent methods.
         $config = Mock::getConfiguration();
 
-        //Disable mocking of non existent methods.
-        $config->allowMockingNonExistentMethods($this->allowMockingNonExistentMethods);
+        $config->allowMockingNonExistentMethods($allow);
     }
 
     public function tearDown()
     {
         parent::tearDown();
+
+        $this->allowMockingNonExistentMethods(true);
 
         // Verify Mockery expectations.
         Mock::close();
