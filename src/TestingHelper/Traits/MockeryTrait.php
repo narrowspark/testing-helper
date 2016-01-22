@@ -5,6 +5,8 @@ use Mockery as Mock;
 
 trait MockeryTrait
 {
+    protected $allowMockingNonExistentMethods = false;
+
     public function setUp()
     {
         parent::setUp();
@@ -12,15 +14,7 @@ trait MockeryTrait
         $config = Mock::getConfiguration();
 
         //Disable mocking of non existent methods.
-        $config->allowMockingNonExistentMethods($this->allowMockingNonExistentMethods());
-    }
-
-    /**
-     * @return bool
-     */
-    public function allowMockingNonExistentMethods()
-    {
-        return false;
+        $config->allowMockingNonExistentMethods($this->allowMockingNonExistentMethods);
     }
 
     public function tearDown()
