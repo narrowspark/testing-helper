@@ -11,15 +11,16 @@ class MockeryTraitTest extends \PHPUnit_Framework_TestCase
 
     public function testSetUp()
     {
+        $this->allowMockingNonExistentMethods();
+
         $this->assertFalse(Mock::getConfiguration()->mockingNonExistentMethodsAllowed());
-        $this->assertFalse($this->allowMockingNonExistentMethods);
     }
 
     public function testTearDown()
     {
-        $this->assertFalse(Mock::getConfiguration()->mockingNonExistentMethodsAllowed());
-
         parent::tearDown();
+
+        $this->assertTrue(Mock::getConfiguration()->mockingNonExistentMethodsAllowed());
     }
 
     public function testMock()
