@@ -8,7 +8,7 @@ trait MockeryTrait
     /**
      * Call allowMockingNonExistentMethods() on setUp().
      *
-     * @param  boolean $allow Enable/Disable to mock non existent methods.
+     * @param bool $allow Enable/Disable to mock non existent methods.
      */
     public function allowMockingNonExistentMethods($allow = false)
     {
