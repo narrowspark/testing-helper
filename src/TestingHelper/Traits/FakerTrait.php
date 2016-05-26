@@ -5,16 +5,31 @@ use Faker\Factory;
 
 trait FakerTrait
 {
+    private $fakers = [];
+
     /**
      * You get always the same generated data.
      *
      * @return \Faker\Generator
      */
-    public function getFaker()
+    public function getFaker($locale = 'en_US', array $providers = [])
     {
-        $faker = Factory::create();
-        $faker->seed(1234);
+        if (!array_key_exists($locale, $this->fakers)) {
+            $faker = Factory::create();
 
-        return $faker;
+            $providers = array_filter($providers);
+
+            if (!empty($providers)) {
+                foreach ($providers as $provider) {
+                    $faker->addProvider($provider);
+                }
+            }
+
+            $faker->seed(9000);
+
+            $this->fakers[$locale] = $faker;
+        }
+
+        return $this->fakers[$locale];
     }
 }
