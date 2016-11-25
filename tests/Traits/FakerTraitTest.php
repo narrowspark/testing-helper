@@ -1,7 +1,7 @@
 <?php
+declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Tests\Traits;
 
-use DateTime;
 use Narrowspark\TestingHelper\Traits\FakerTrait;
 
 class FakerTraitTest extends \PHPUnit_Framework_TestCase

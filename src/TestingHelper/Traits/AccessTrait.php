@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Traits;
 
 use ReflectionClass;
@@ -13,7 +14,7 @@ trait AccessTrait
      *
      * @return mixed
      */
-    public function getProperty($object, $propertyName)
+    public function getProperty($object, string $propertyName)
     {
         $reflected = new ReflectionClass($object);
 
@@ -32,7 +33,7 @@ trait AccessTrait
      * @param string        $propertyName
      * @param mixed         $value
      */
-    protected function setProperty($object, $propertyName, $value)
+    protected function setProperty($object, string $propertyName, $value)
     {
         $reflected = new ReflectionClass($object);
 
@@ -53,7 +54,7 @@ trait AccessTrait
      *
      * @return mixed
      */
-    protected function callMethod($object, $methodName, array $args = [])
+    protected function callMethod($object, string $methodName, array $args = [])
     {
         $class = new ReflectionClass($object);
 

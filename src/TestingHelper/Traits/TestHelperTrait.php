@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Traits;
 
 use InvalidArgumentException;
@@ -12,7 +13,7 @@ trait TestHelperTrait
      * @param array  $haystack
      * @param string $message
      */
-    public function assertInArray($needle, $haystack, $message = '')
+    public function assertInArray($needle, array $haystack, string $message = '')
     {
         if ($message === '') {
             $message = "Expected the array to contain the element '$needle'.";
@@ -28,7 +29,7 @@ trait TestHelperTrait
      * @param string $method
      * @param string $message
      */
-    public function assertMethodExists($class, $method, $message = '')
+    public function assertMethodExists(string $class, string $method, string $message = '')
     {
         if ($message === '') {
             $message = "Expected the class '$class' to have method '$method'.";
@@ -46,7 +47,7 @@ trait TestHelperTrait
      *
      * @throws \InvalidArgumentException
      */
-    public function assertInJson($needle, array $haystack, $message = '')
+    public function assertInJson(string $needle, array $haystack, string $message = '')
     {
         if ($message === '') {
             $message = "Expected the array to contain the element '$needle'.";
