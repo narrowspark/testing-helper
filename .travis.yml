@@ -9,9 +9,6 @@ env:
     - setup=basic
 
 matrix:
-  include:
-    - php: 7.0
-      env: setup=lowest
   fast_finish: true
 
 sudo: false
@@ -28,7 +25,6 @@ before_install:
 
 install:
   - if [[ $setup = 'basic' ]]; then travis_retry composer install --no-interaction --prefer-source; fi
-  - if [[ $setup = 'lowest' ]]; then travis_retry composer update --prefer-source --no-interaction --prefer-lowest --prefer-stable; fi
 
 script:
   - mkdir -p build/logs
