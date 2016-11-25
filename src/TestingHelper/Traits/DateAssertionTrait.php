@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Traits;
 
 use DateTime;
@@ -13,7 +14,7 @@ trait DateAssertionTrait
      */
     public function assertSameDate($expected, DateTime $actual)
     {
-        if (!$expected instanceof DateTime) {
+        if (! $expected instanceof DateTime) {
             $expected = new DateTime($expected, $actual->getTimezone());
         }
 
@@ -31,7 +32,7 @@ trait DateAssertionTrait
      */
     public function assertNotSameDate($expected, DateTime $actual)
     {
-        if (!$expected instanceof DateTime) {
+        if (! $expected instanceof DateTime) {
             $expected = new DateTime($expected, $actual->getTimezone());
         }
 

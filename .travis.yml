@@ -1,18 +1,14 @@
 language: php
 
 php:
-  - 5.6
   - 7.0
-  - hhvm
+  - 7.1
 
 env:
   global:
     - setup=basic
 
 matrix:
-  include:
-    - php: 5.6
-      env: setup=lowest
   fast_finish: true
 
 sudo: false
@@ -29,11 +25,10 @@ before_install:
 
 install:
   - if [[ $setup = 'basic' ]]; then travis_retry composer install --no-interaction --prefer-source; fi
-  - if [[ $setup = 'lowest' ]]; then travis_retry composer update --prefer-source --no-interaction --prefer-lowest --prefer-stable; fi
 
 script:
   - mkdir -p build/logs
-  - vendor/bin/php-cs-fixer fix --config-file=.php_cs --verbose --diff --dry-run
+  - vendor/bin/php-cs-fixer fix --verbose --diff --dry-run
   - vendor/bin/phpunit -c phpunit.xml.dist --verbose
 
 after_script:

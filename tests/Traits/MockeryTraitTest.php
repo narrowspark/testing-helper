@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Tests\Traits;
 
 use Mockery as Mock;
@@ -27,6 +28,6 @@ class MockeryTraitTest extends \PHPUnit_Framework_TestCase
     {
         $mocked = $this->mock(FooObject::class);
 
-        $this->assertInstanceOf('\Mockery_0_Narrowspark_TestingHelper_Tests_Fixture_FooObject', $mocked);
+        $this->assertInstanceOf(get_class($mocked), $mocked);
     }
 }

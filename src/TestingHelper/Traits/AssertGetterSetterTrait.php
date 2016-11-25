@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Traits;
 
 use ReflectionProperty;
@@ -14,25 +15,25 @@ trait AssertGetterSetterTrait
      * and the third arg will be the name of the getter method.
      * The default function is responsible for calling the appropriate assert___() method.
      *
-     * @param object $object    The entity to test the setter and getter for
-     * @param string $getter    The getter function to call
-     * @param string $default   The expected default value of the getter after initialization,
-     *                          or an anonymous function that will do test for default values
-     *                          that are not null or scalar
-     * @param string $setter    The setter function to call
-     * @param mixed  $value     Value to send to the setter function
-     * @param bool   $chainable Sets whether the method should be chainable
-     * @param string $return    The expected result of the getter after setting
-     *                          (Used when the set value has been manipulated in some way)
+     * @param object      $object    The entity to test the setter and getter for
+     * @param string      $getter    The getter function to call
+     * @param mixed       $default   The expected default value of the getter after initialization,
+     *                               or an anonymous function that will do test for default values
+     *                               that are not null or scalar
+     * @param string|null $setter    The setter function to call
+     * @param mixed       $value     Value to send to the setter function
+     * @param bool        $chainable Sets whether the method should be chainable
+     * @param string|null $return    The expected result of the getter after setting
+     *                               (Used when the set value has been manipulated in some way)
      */
     public function assertGetterSetter(
         $object,
-        $getter,
+        string $getter,
         $default = null,
-        $setter = null,
+        string $setter = null,
         $value = null,
-        $chainable = true,
-        $return = null
+        bool $chainable = true,
+        string $return = null
     ) {
         //Assert getter exists
         $this->assertTrue(
@@ -95,7 +96,7 @@ trait AssertGetterSetterTrait
      * @param string $property The property of the entity on which to set the default value
      * @param mixed  $default  The value to set the property to
      */
-    public function setPropertyDefaultValue($object, $property, $default = null)
+    public function setPropertyDefaultValue($object, string $property, $default = null)
     {
         $property = new ReflectionProperty($object, $property);
 

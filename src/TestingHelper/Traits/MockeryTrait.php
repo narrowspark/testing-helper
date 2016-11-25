@@ -1,10 +1,22 @@
 <?php
+declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Traits;
 
 use Mockery as Mock;
+use Mockery\MockInterface;
 
 trait MockeryTrait
 {
+    public function tearDown()
+    {
+        parent::tearDown();
+
+        $this->allowMockingNonExistentMethods(true);
+
+        // Verify Mockery expectations.
+        Mock::close();
+    }
+
     /**
      * Call allowMockingNonExistentMethods() on setUp().
      *
@@ -18,20 +30,12 @@ trait MockeryTrait
         $config->allowMockingNonExistentMethods($allow);
     }
 
-    public function tearDown()
-    {
-        parent::tearDown();
-
-        $this->allowMockingNonExistentMethods(true);
-
-        // Verify Mockery expectations.
-        Mock::close();
-    }
-
     /**
+     * Get a mocked object.
+     *
      * @return \Mockery\MockInterface
      */
-    protected function mock()
+    protected function mock(): MockInterface
     {
         $args = func_get_args();
 

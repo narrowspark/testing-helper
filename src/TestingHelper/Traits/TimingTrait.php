@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Traits;
 
 trait TimingTrait
@@ -10,7 +11,7 @@ trait TimingTrait
      * @param callable $callable
      * @param int      $iterations
      */
-    protected function assertTiming($maxDurationInMs, callable $callable, $iterations = 20)
+    protected function assertTiming(int $maxDurationInMs, callable $callable, int $iterations = 20)
     {
         $duration = 0;
 

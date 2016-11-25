@@ -1,7 +1,7 @@
 <?php
+declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Tests\Traits;
 
-use Mockery as Mock;
 use Narrowspark\TestingHelper\Tests\Fixture\FooObject;
 use Narrowspark\TestingHelper\Traits\TestHelperTrait;
 
