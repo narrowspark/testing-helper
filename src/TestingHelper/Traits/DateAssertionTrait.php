@@ -7,7 +7,7 @@ use DateTime;
 trait DateAssertionTrait
 {
     /**
-     * Compares two dates for equality
+     * Compares two dates for equality.
      *
      * @param DateTime|string $expected
      * @param DateTime        $actual
@@ -25,7 +25,7 @@ trait DateAssertionTrait
     }
 
     /**
-     * Compares two dates for equality
+     * Compares two dates for equality.
      *
      * @param DateTime|string $expected
      * @param DateTime        $actual

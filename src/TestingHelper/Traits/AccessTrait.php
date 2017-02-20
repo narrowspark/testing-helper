@@ -27,7 +27,7 @@ trait AccessTrait
     }
 
     /**
-     * Set a non-public member of an object or class
+     * Set a non-public member of an object or class.
      *
      * @param object|string $object
      * @param string        $propertyName
@@ -46,7 +46,7 @@ trait AccessTrait
     }
 
     /**
-     * Call private and protected methods on an object
+     * Call private and protected methods on an object.
      *
      * @param object|string $object
      * @param string        $methodName

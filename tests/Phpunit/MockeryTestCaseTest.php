@@ -1,15 +1,13 @@
 <?php
 declare(strict_types=1);
-namespace Narrowspark\TestingHelper\Tests\Traits;
+namespace Narrowspark\TestingHelper\Tests\Phpunit;
 
 use Mockery as Mock;
+use Narrowspark\TestingHelper\Phpunit\MockeryTestCase;
 use Narrowspark\TestingHelper\Tests\Fixture\FooObject;
-use Narrowspark\TestingHelper\Traits\MockeryTrait;
 
-class MockeryTraitTest extends \PHPUnit_Framework_TestCase
+class MockeryTestCaseTest extends MockeryTestCase
 {
-    use MockeryTrait;
-
     public function testSetUp()
     {
         $this->allowMockingNonExistentMethods();

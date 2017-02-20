@@ -4,8 +4,9 @@ namespace Narrowspark\TestingHelper\Tests\Traits;
 
 use Narrowspark\TestingHelper\Tests\Fixture\FooObject;
 use Narrowspark\TestingHelper\Traits\TestHelperTrait;
+use PHPUnit\Framework\TestCase;
 
-class TestHelperTraitTest extends \PHPUnit_Framework_TestCase
+class TestHelperTraitTest extends TestCase
 {
     use TestHelperTrait;
 
@@ -17,7 +18,7 @@ class TestHelperTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedException \PHPUnit\Framework\ExpectationFailedException
      */
     public function testAssertInArrayToThrowException()
     {
@@ -32,7 +33,7 @@ class TestHelperTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedException \PHPUnit\Framework\ExpectationFailedException
      */
     public function testAssertMethodExistsToThrowException()
     {
@@ -45,7 +46,7 @@ class TestHelperTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedException \PHPUnit\Framework\ExpectationFailedException
      */
     public function testAssertInJsonToThrowException()
     {

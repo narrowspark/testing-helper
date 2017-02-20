@@ -5,8 +5,9 @@ namespace Narrowspark\TestingHelper\Tests\Traits;
 use DateTime;
 use Narrowspark\TestingHelper\Tests\Fixture\MockObject;
 use Narrowspark\TestingHelper\Traits\AssertGetterSetterTrait;
+use PHPUnit\Framework\TestCase;
 
-class AssertGetterSetterTraitTest extends \PHPUnit_Framework_TestCase
+class AssertGetterSetterTraitTest extends TestCase
 {
     use AssertGetterSetterTrait;
 
@@ -92,9 +93,9 @@ class AssertGetterSetterTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Failure because we can not check the default on properties set during instantiation
+     * Failure because we can not check the default on properties set during instantiation.
      *
-     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedException \PHPUnit\Framework\ExpectationFailedException
      */
     public function testGetterAndSetterDefaultDate()
     {
@@ -111,7 +112,7 @@ class AssertGetterSetterTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException        \PHPUnit_Framework_ExpectationFailedException
+     * @expectedException        \PHPUnit\Framework\ExpectationFailedException
      * @expectedExceptionMessage Object does not contain the specified getter method "getNonExistent".
      */
     public function testNonExistentGetter()
@@ -123,7 +124,7 @@ class AssertGetterSetterTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException        \PHPUnit_Framework_ExpectationFailedException
+     * @expectedException        \PHPUnit\Framework\ExpectationFailedException
      * @expectedExceptionMessage Object does not contain the specified setter method "setId".
      */
     public function testGetterAndNonExistentSetter()
@@ -137,7 +138,7 @@ class AssertGetterSetterTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException        \PHPUnit_Framework_ExpectationFailedException
+     * @expectedException        \PHPUnit\Framework\ExpectationFailedException
      * @expectedExceptionMessage Object setter (setNonChainable) is not chainable.
      */
     public function testGetterAndSetterNonChainableAsChainable()

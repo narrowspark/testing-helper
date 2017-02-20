@@ -2,13 +2,13 @@
 declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Middleware;
 
-use Interop\Http\Middleware\DelegateInterface;
-use Interop\Http\Middleware\ServerMiddlewareInterface;
+use Interop\Http\ServerMiddleware\DelegateInterface;
+use Interop\Http\ServerMiddleware\MiddlewareInterface;
 use LogicException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class Dispatcher implements ServerMiddlewareInterface
+class Dispatcher implements MiddlewareInterface
 {
     /**
      * @var array
@@ -59,7 +59,7 @@ class Dispatcher implements ServerMiddlewareInterface
     /**
      * @param int $index middleware stack index
      *
-     * @return \Interop\Http\Middleware\DelegateInterface
+     * @return \Interop\Http\ServerMiddleware\DelegateInterface
      */
     private function resolve(int $index): DelegateInterface
     {
