@@ -3,8 +3,9 @@ declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Tests\Traits;
 
 use Narrowspark\TestingHelper\Traits\FakerTrait;
+use PHPUnit\Framework\TestCase;
 
-class FakerTraitTest extends \PHPUnit_Framework_TestCase
+class FakerTraitTest extends TestCase
 {
     use FakerTrait;
 

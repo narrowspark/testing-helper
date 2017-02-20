@@ -3,8 +3,9 @@ declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Tests;
 
 use Narrowspark\TestingHelper\ArrayContainer;
+use PHPUnit\Framework\TestCase;
 
-class ArrayContainerTest extends \PHPUnit_Framework_TestCase
+class ArrayContainerTest extends TestCase
 {
     public function testSetGetAndHas()
     {

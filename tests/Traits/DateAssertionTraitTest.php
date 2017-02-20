@@ -4,8 +4,9 @@ namespace Narrowspark\TestingHelper\Tests\Traits;
 
 use DateTime;
 use Narrowspark\TestingHelper\Traits\DateAssertionTrait;
+use PHPUnit\Framework\TestCase;
 
-class DateAssertionTraitTest extends \PHPUnit_Framework_TestCase
+class DateAssertionTraitTest extends TestCase
 {
     use DateAssertionTrait;
 

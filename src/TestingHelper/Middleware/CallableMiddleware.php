@@ -3,14 +3,14 @@ declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Middleware;
 
 use GuzzleHttp\Psr7\Response;
-use Interop\Http\Middleware\DelegateInterface;
-use Interop\Http\Middleware\ServerMiddlewareInterface;
+use Interop\Http\ServerMiddleware\DelegateInterface;
+use Interop\Http\ServerMiddleware\MiddlewareInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Throwable;
 use Viserio\HttpFactory\ResponseFactory;
 
-class CallableMiddleware implements ServerMiddlewareInterface
+class CallableMiddleware implements MiddlewareInterface
 {
     /**
      * @var callable

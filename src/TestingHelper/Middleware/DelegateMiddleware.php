@@ -2,8 +2,8 @@
 declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Middleware;
 
-use Interop\Http\Middleware\DelegateInterface;
-use Psr\Http\Message\RequestInterface;
+use Interop\Http\ServerMiddleware\DelegateInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 class DelegateMiddleware implements DelegateInterface
@@ -16,7 +16,7 @@ class DelegateMiddleware implements DelegateInterface
     /**
      * Create a new delegate callable middleware instance.
      *
-     * @param callable $callback function (RequestInterface $request) : ResponseInterface
+     * @param callable $callback function (ServerRequestInterface $request) : ResponseInterface
      */
     public function __construct(callable $callback)
     {
@@ -24,11 +24,11 @@ class DelegateMiddleware implements DelegateInterface
     }
 
     /**
-     * @param \Psr\Http\Message\RequestInterface $request
+     * @param \Psr\Http\Message\ServerRequestInterface $request
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function process(RequestInterface $request): ResponseInterface
+    public function process(ServerRequestInterface $request): ResponseInterface
     {
         return call_user_func($this->callback, $request);
     }

@@ -4,13 +4,12 @@ namespace Narrowspark\TestingHelper\Tests\Middleware;
 
 use Narrowspark\TestingHelper\Middleware\DelegateMiddleware;
 use Narrowspark\TestingHelper\Traits\MockeryTrait;
-use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Narrowspark\TestingHelper\Phpunit\MockeryTestCase;
 
-class DelegateMiddlewareTest extends \PHPUnit_Framework_TestCase
+class DelegateMiddlewareTest extends MockeryTestCase
 {
-    use MockeryTrait;
-
     public function testCallCallableWithProcess()
     {
         $middleware = new DelegateMiddleware(function () {
@@ -19,7 +18,7 @@ class DelegateMiddlewareTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(
             ResponseInterface::class,
-            $middleware->process($this->mock(RequestInterface::class))
+            $middleware->process($this->mock(ServerRequestInterface::class))
         );
     }
 }

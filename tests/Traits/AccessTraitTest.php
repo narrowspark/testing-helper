@@ -4,8 +4,9 @@ namespace Narrowspark\TestingHelper\Tests\Traits;
 
 use Narrowspark\TestingHelper\Tests\Fixture\FooObject;
 use Narrowspark\TestingHelper\Traits\AccessTrait;
+use PHPUnit\Framework\TestCase;
 
-class AccessTraitTest extends \PHPUnit_Framework_TestCase
+class AccessTraitTest extends TestCase
 {
     use AccessTrait;
 
