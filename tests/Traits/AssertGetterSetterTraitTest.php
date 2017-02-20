@@ -93,7 +93,7 @@ class AssertGetterSetterTraitTest extends TestCase
     }
 
     /**
-     * Failure because we can not check the default on properties set during instantiation
+     * Failure because we can not check the default on properties set during instantiation.
      *
      * @expectedException \PHPUnit\Framework\ExpectationFailedException
      */

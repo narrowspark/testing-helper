@@ -3,10 +3,8 @@ declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Tests\Phpunit;
 
 use Mockery as Mock;
-use Narrowspark\TestingHelper\Tests\Fixture\FooObject;
-use Narrowspark\TestingHelper\Traits\MockeryTrait;
-use PHPUnit\Framework\TestCase;
 use Narrowspark\TestingHelper\Phpunit\MockeryTestCase;
+use Narrowspark\TestingHelper\Tests\Fixture\FooObject;
 
 class MockeryTestCaseTest extends MockeryTestCase
 {

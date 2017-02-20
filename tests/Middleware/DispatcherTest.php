@@ -5,8 +5,8 @@ namespace Narrowspark\TestingHelper\Tests\Middleware;
 use GuzzleHttp\Psr7\ServerRequest;
 use Narrowspark\TestingHelper\Middleware\CallableMiddleware;
 use Narrowspark\TestingHelper\Middleware\Dispatcher;
-use Psr\Http\Message\ResponseInterface;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ResponseInterface;
 
 class DispatcherTest extends TestCase
 {

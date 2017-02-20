@@ -2,10 +2,10 @@
 declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Phpunit;
 
-use PHPUnit\Framework\TestCase;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery as Mock;
 use Mockery\MockInterface;
-use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
+use PHPUnit\Framework\TestCase;
 
 abstract class MockeryTestCase extends TestCase
 {
@@ -21,7 +21,7 @@ abstract class MockeryTestCase extends TestCase
     /**
      * Call allowMockingNonExistentMethods() on setUp().
      *
-     * @param bool $allow Enable/Disable to mock non existent methods.
+     * @param bool $allow enable/Disable to mock non existent methods
      */
     public function allowMockingNonExistentMethods($allow = false)
     {

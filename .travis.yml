@@ -19,8 +19,6 @@ cache:
     - $HOME/.php-cs-fixer
 
 before_install:
-  - composer self-update
-  - travis_retry composer self-update
   - travis_retry composer install --prefer-source --no-interaction
 
 install:

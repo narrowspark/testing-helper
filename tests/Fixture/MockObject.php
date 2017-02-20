@@ -17,7 +17,7 @@ class MockObject
     protected $manipulated;
 
     /**
-     * Assigns defaults to certain properties
+     * Assigns defaults to certain properties.
      */
     public function __construct()
     {
@@ -95,7 +95,7 @@ class MockObject
      */
     public function setManipulated($manipulated)
     {
-        $this->manipulated = strtoupper($manipulated);
+        $this->manipulated = mb_strtoupper($manipulated);
 
         return $this;
     }

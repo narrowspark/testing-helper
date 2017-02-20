@@ -53,7 +53,7 @@ class CallableMiddleware implements MiddlewareInterface
 
             if ($return instanceof ResponseInterface) {
                 $response = $return;
-                $return = '';
+                $return   = '';
             } else {
                 if (class_exists(ResponseFactory::class)) {
                     $response = (new ResponseFactory())->createResponse();

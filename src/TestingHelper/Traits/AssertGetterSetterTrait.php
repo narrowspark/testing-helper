@@ -42,8 +42,8 @@ trait AssertGetterSetterTrait
         );
 
         //Assert getter is callable
-        $this->assertTrue(
-            is_callable([$object, $getter]),
+        $this->assertInternalType(
+            'callable', [$object, $getter],
             'Specified getter method "' . $getter . '" is not callable.'
         );
 
@@ -62,8 +62,8 @@ trait AssertGetterSetterTrait
             );
 
             //Assert setter is callable
-            $this->assertTrue(
-                is_callable([$object, $setter]),
+            $this->assertInternalType(
+                'callable', [$object, $setter],
                 'Specified setter method "' . $setter . '" is not callable.'
             );
 
@@ -90,7 +90,7 @@ trait AssertGetterSetterTrait
     }
 
     /**
-     * Provides ability to set a value on a property without using a setter or a getter
+     * Provides ability to set a value on a property without using a setter or a getter.
      *
      * @param object $object   The entity on which to set the default value
      * @param string $property The property of the entity on which to set the default value
@@ -112,7 +112,7 @@ trait AssertGetterSetterTrait
      * Runs the calls against the provided method.
      *
      * @param object $object    The entity to execute the tests against
-     * @param array  $calls     Array of calls to execute on the entity.
+     * @param array  $calls     array of calls to execute on the entity
      * @param mixed  $assertion Function or Method that the calls should be made against
      */
     public function arrayAssertionRunner($object, array $calls, $assertion)
