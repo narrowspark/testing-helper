@@ -11,19 +11,12 @@ abstract class MockeryTestCase extends TestCase
 {
     use MockeryPHPUnitIntegration;
 
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->allowMockingNonExistentMethods(true);
-    }
-
     /**
      * Call allowMockingNonExistentMethods() on setUp().
      *
-     * @param bool $allow enable/Disable to mock non existent methods
+     * @param bool $allow enable/disable to mock non existent methods
      */
-    public function allowMockingNonExistentMethods($allow = false)
+    protected function allowMockingNonExistentMethods($allow = false)
     {
         //Disable mocking of non existent methods.
         $config = Mock::getConfiguration();
