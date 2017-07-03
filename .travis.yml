@@ -1,7 +1,6 @@
 language: php
 
 php:
-  - 7.0
   - 7.1
 
 env:
@@ -30,5 +29,5 @@ script:
   - vendor/bin/phpunit -c phpunit.xml.dist --verbose
 
 after_script:
-  - if [ $TRAVIS_PHP_VERSION = "7.0" ] && [ $setup = 'basic' ]; then wget https://scrutinizer-ci.com/ocular.phar; fi
-  - if [ $TRAVIS_PHP_VERSION = "7.0" ] && [ $setup = 'basic' ]; then php ocular.phar code-coverage:upload --format=php-clover build/logs/coverage.clover; fi
+  - if [ $TRAVIS_PHP_VERSION = "7.1" ] && [ $setup = 'basic' ]; then wget https://scrutinizer-ci.com/ocular.phar; fi
+  - if [ $TRAVIS_PHP_VERSION = "7.1" ] && [ $setup = 'basic' ]; then php ocular.phar code-coverage:upload --format=php-clover build/logs/coverage.clover; fi

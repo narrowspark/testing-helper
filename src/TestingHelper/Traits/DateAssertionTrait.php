@@ -11,17 +11,19 @@ trait DateAssertionTrait
      *
      * @param DateTime|string $expected
      * @param DateTime        $actual
+     *
+     * @return void
      */
-    public function assertSameDate($expected, DateTime $actual)
+    public static function assertSameDate($expected, DateTime $actual): void
     {
         if (! $expected instanceof DateTime) {
             $expected = new DateTime($expected, $actual->getTimezone());
         }
 
-        $this->assertInstanceOf(get_class($expected), $actual);
+        self::assertInstanceOf(get_class($expected), $actual);
 
-        $this->assertSame($expected->getTimezone()->getName(), $actual->getTimezone()->getName());
-        $this->assertSame($expected->format('Y-m-d H:i:s'), $actual->format('Y-m-d H:i:s'));
+        self::assertSame($expected->getTimezone()->getName(), $actual->getTimezone()->getName());
+        self::assertSame($expected->format('Y-m-d H:i:s'), $actual->format('Y-m-d H:i:s'));
     }
 
     /**
@@ -29,15 +31,17 @@ trait DateAssertionTrait
      *
      * @param DateTime|string $expected
      * @param DateTime        $actual
+     *
+     * @return void
      */
-    public function assertNotSameDate($expected, DateTime $actual)
+    public static function assertNotSameDate($expected, DateTime $actual): void
     {
         if (! $expected instanceof DateTime) {
             $expected = new DateTime($expected, $actual->getTimezone());
         }
 
-        $this->assertInstanceOf(get_class($expected), $actual);
+        self::assertInstanceOf(get_class($expected), $actual);
 
-        $this->assertNotSame($expected, $actual);
+        self::assertNotSame($expected, $actual);
     }
 }

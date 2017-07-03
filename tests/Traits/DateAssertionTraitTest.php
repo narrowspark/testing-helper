@@ -14,7 +14,7 @@ class DateAssertionTraitTest extends TestCase
     {
         $actual = new DateTime('Wed, 13 Jan 2021 22:23:01 GMT');
 
-        $this->assertSameDate(
+        self::assertSameDate(
             'Wed, 13 Jan 2021 22:23:01 GMT',
             $actual
         );
@@ -24,7 +24,7 @@ class DateAssertionTraitTest extends TestCase
     {
         $actual = new DateTime('Wed, 13 Jan 2021 22:23:01 GMT');
 
-        $this->assertNotSameDate(
+        self::assertNotSameDate(
             'Wed, 13 Jan 2001 22:23:01 GMT',
             $actual
         );

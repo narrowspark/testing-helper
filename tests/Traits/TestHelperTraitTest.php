@@ -14,7 +14,7 @@ class TestHelperTraitTest extends TestCase
     {
         $haystack = ['Mac', 'NT', 'Irix', 'Linux'];
 
-        $this->assertInArray('Irix', $haystack);
+        self::assertInArray('Irix', $haystack);
     }
 
     /**
@@ -24,12 +24,12 @@ class TestHelperTraitTest extends TestCase
     {
         $haystack = ['Mac', 'NT', 'Irix', 'Linux'];
 
-        $this->assertInArray('mac', $haystack);
+        self::assertInArray('mac', $haystack);
     }
 
     public function testAssertMethodExists()
     {
-        $this->assertMethodExists(FooObject::class, 'getPrivateProperty');
+        self::assertMethodExists(FooObject::class, 'getPrivateProperty');
     }
 
     /**
@@ -37,12 +37,12 @@ class TestHelperTraitTest extends TestCase
      */
     public function testAssertMethodExistsToThrowException()
     {
-        $this->assertMethodExists(FooObject::class, 'setPrivateProperty');
+        self::assertMethodExists(FooObject::class, 'setPrivateProperty');
     }
 
     public function testAssertInJson()
     {
-        $this->assertInJson('{"test": "true"}', ['test' => 'true']);
+        self::assertInJson('{"test": "true"}', ['test' => 'true']);
     }
 
     /**
@@ -50,7 +50,7 @@ class TestHelperTraitTest extends TestCase
      */
     public function testAssertInJsonToThrowException()
     {
-        $this->assertInJson('{"test": "false"}', ['test' => 'true']);
+        self::assertInJson('{"test": "false"}', ['test' => 'true']);
     }
 
     /**
@@ -58,6 +58,6 @@ class TestHelperTraitTest extends TestCase
      */
     public function testAssertInJsonToThrowExceptionOnInvalidJson()
     {
-        $this->assertInJson('{test: false}', ['test' => 'true']);
+        self::assertInJson('{test: false}', ['test' => 'true']);
     }
 }
