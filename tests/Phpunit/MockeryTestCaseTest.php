@@ -10,9 +10,11 @@ class MockeryTestCaseTest extends MockeryTestCase
 {
     public function testAllowMockingNonExistentMethods()
     {
-        $this->allowMockingNonExistentMethods();
-
         self::assertFalse(Mock::getConfiguration()->mockingNonExistentMethodsAllowed());
+
+        $this->allowMockingNonExistentMethods(true);
+
+        self::assertTrue(Mock::getConfiguration()->mockingNonExistentMethodsAllowed());
     }
 
     public function testMock()
