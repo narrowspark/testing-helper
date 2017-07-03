@@ -9,8 +9,8 @@ trait DateAssertionTrait
     /**
      * Compares two dates for equality.
      *
-     * @param DateTime|string $expected
-     * @param DateTime        $actual
+     * @param \DateTime|string $expected
+     * @param \DateTime        $actual
      *
      * @return void
      */
@@ -29,8 +29,8 @@ trait DateAssertionTrait
     /**
      * Compares two dates for equality.
      *
-     * @param DateTime|string $expected
-     * @param DateTime        $actual
+     * @param \DateTime|string $expected
+     * @param \DateTime        $actual
      *
      * @return void
      */
