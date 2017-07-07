@@ -16,7 +16,7 @@ class Dispatcher implements MiddlewareInterface
     private $stack;
 
     /**
-     * @var DeletageInterface|null
+     * @var \Interop\Http\ServerMiddleware\DelegateInterface|null
      */
     private $delegate;
 
