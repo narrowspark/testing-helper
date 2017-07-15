@@ -11,19 +11,25 @@ abstract class MockeryTestCase extends TestCase
 {
     use MockeryPHPUnitIntegration;
 
-    public function setUp()
+    /**
+     * Performs assertions shared by all tests of a test case.
+     *
+     * This method is called before the execution of a test starts
+     * and after setUp() is called.
+     */
+    protected function assertPreConditions()
     {
-        parent::setUp();
+        parent::assertPreConditions();
 
-        $this->allowMockingNonExistentMethods(true);
+        $this->allowMockingNonExistentMethods();
     }
 
     /**
      * Call allowMockingNonExistentMethods() on setUp().
      *
-     * @param bool $allow enable/Disable to mock non existent methods
+     * @param bool $allow enable/disable to mock non existent methods
      */
-    public function allowMockingNonExistentMethods($allow = false)
+    protected function allowMockingNonExistentMethods($allow = false)
     {
         //Disable mocking of non existent methods.
         $config = Mock::getConfiguration();

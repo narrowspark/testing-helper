@@ -12,14 +12,16 @@ trait TestHelperTrait
      * @param mixed  $needle
      * @param array  $haystack
      * @param string $message
+     *
+     * @return void
      */
-    public function assertInArray($needle, array $haystack, string $message = '')
+    public static function assertInArray($needle, array $haystack, string $message = ''): void
     {
         if ($message === '') {
             $message = "Expected the array to contain the element '$needle'.";
         }
 
-        $this->assertTrue(in_array($needle, $haystack, true), $message);
+        self::assertTrue(in_array($needle, $haystack, true), $message);
     }
 
     /**
@@ -28,14 +30,16 @@ trait TestHelperTrait
      * @param string $class
      * @param string $method
      * @param string $message
+     *
+     * @return void
      */
-    public function assertMethodExists(string $class, string $method, string $message = '')
+    public static function assertMethodExists(string $class, string $method, string $message = ''): void
     {
         if ($message === '') {
             $message = "Expected the class '$class' to have method '$method'.";
         }
 
-        $this->assertTrue(method_exists($class, $method), $message);
+        self::assertTrue(method_exists($class, $method), $message);
     }
 
     /**
@@ -46,8 +50,10 @@ trait TestHelperTrait
      * @param string $message
      *
      * @throws \InvalidArgumentException
+     *
+     * @return void
      */
-    public function assertInJson(string $needle, array $haystack, string $message = '')
+    public static function assertInJson(string $needle, array $haystack, string $message = ''): void
     {
         if ($message === '') {
             $message = "Expected the array to contain the element '$needle'.";
@@ -59,6 +65,6 @@ trait TestHelperTrait
             throw new InvalidArgumentException("Invalid json provided: '$needle'.");
         }
 
-        $this->assertArraySubset($haystack, $array, false, $message);
+        self::assertArraySubset($haystack, $array, false, $message);
     }
 }

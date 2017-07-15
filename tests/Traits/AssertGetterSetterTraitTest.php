@@ -20,7 +20,7 @@ class AssertGetterSetterTraitTest extends TestCase
 
     public function testGetterOnly()
     {
-        $this->assertGetterSetter(
+        self::assertGetterSetter(
             $this->object,
             'getId'
         );
@@ -28,7 +28,7 @@ class AssertGetterSetterTraitTest extends TestCase
 
     public function testGetterAndSetterChainable()
     {
-        $this->assertGetterSetter(
+        self::assertGetterSetter(
             $this->object,
             'getChainable',
             null,
@@ -39,7 +39,7 @@ class AssertGetterSetterTraitTest extends TestCase
 
     public function testGetterAndSetterNonChainableAsNonChainable()
     {
-        $this->assertGetterSetter(
+        self::assertGetterSetter(
             $this->object,
             'getNonChainable',
             null,
@@ -51,7 +51,7 @@ class AssertGetterSetterTraitTest extends TestCase
 
     public function testGetterAndSetterManipulated()
     {
-        $this->assertGetterSetter(
+        self::assertGetterSetter(
             $this->object,
             'getManipulated',
             null,
@@ -68,7 +68,7 @@ class AssertGetterSetterTraitTest extends TestCase
 
         $this->setPropertyDefaultValue($this->object, 'created', $dateTime);
 
-        $this->assertGetterSetter(
+        self::assertGetterSetter(
             $this->object,
             'getCreated',
             $dateTime,
@@ -101,7 +101,7 @@ class AssertGetterSetterTraitTest extends TestCase
     {
         $dateTime = new DateTime();
 
-        $this->assertGetterSetter(
+        self::assertGetterSetter(
             $this->object,
             'getCreated',
             null,
@@ -117,7 +117,7 @@ class AssertGetterSetterTraitTest extends TestCase
      */
     public function testNonExistentGetter()
     {
-        $this->assertGetterSetter(
+        self::assertGetterSetter(
             $this->object,
             'getNonExistent'
         );
@@ -129,7 +129,7 @@ class AssertGetterSetterTraitTest extends TestCase
      */
     public function testGetterAndNonExistentSetter()
     {
-        $this->assertGetterSetter(
+        self::assertGetterSetter(
             $this->object,
             'getId',
             null,
@@ -143,7 +143,7 @@ class AssertGetterSetterTraitTest extends TestCase
      */
     public function testGetterAndSetterNonChainableAsChainable()
     {
-        $this->assertGetterSetter(
+        self::assertGetterSetter(
             $this->object,
             'getNonChainable',
             null,

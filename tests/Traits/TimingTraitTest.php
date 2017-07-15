@@ -11,11 +11,11 @@ class TimingTraitTest extends TestCase
 
     public function testAssertTiming()
     {
-        $this->assertTiming(45, function () {
+        self::assertTiming(45, function () {
             return 'yes!';
         });
 
-        $this->assertTiming(
+        self::assertTiming(
             45,
             function () {
                 return 'yes!';

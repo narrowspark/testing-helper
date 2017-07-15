@@ -1,4 +1,6 @@
 /vendor
+/build
+
 composer.phar
 .php_cs.cache
 .DS_Store

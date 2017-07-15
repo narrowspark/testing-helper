@@ -15,7 +15,7 @@ class DelegateMiddlewareTest extends MockeryTestCase
             return $this->mock(ResponseInterface::class);
         });
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResponseInterface::class,
             $middleware->process($this->mock(ServerRequestInterface::class))
         );

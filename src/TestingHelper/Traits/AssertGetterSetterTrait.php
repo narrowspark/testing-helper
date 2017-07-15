@@ -25,8 +25,10 @@ trait AssertGetterSetterTrait
      * @param bool        $chainable Sets whether the method should be chainable
      * @param string|null $return    The expected result of the getter after setting
      *                               (Used when the set value has been manipulated in some way)
+     *
+     * @return void
      */
-    public function assertGetterSetter(
+    public static function assertGetterSetter(
         $object,
         string $getter,
         $default = null,
@@ -34,21 +36,21 @@ trait AssertGetterSetterTrait
         $value = null,
         bool $chainable = true,
         string $return = null
-    ) {
+    ): void {
         //Assert getter exists
-        $this->assertTrue(
+        self::assertTrue(
             method_exists($object, $getter),
             'Object does not contain the specified getter method "' . $getter . '".'
         );
 
         //Assert getter is callable
-        $this->assertInternalType(
+        self::assertInternalType(
             'callable', [$object, $getter],
             'Specified getter method "' . $getter . '" is not callable.'
         );
 
         //Assert default values are correct
-        $this->assertSame(
+        self::assertSame(
             $default,
             $object->$getter(),
             'Object getter (' . $getter . ') did not return the correct default value.'
@@ -56,26 +58,26 @@ trait AssertGetterSetterTrait
 
         if ($setter !== null) {
             //Assert setter exists
-            $this->assertTrue(
+            self::assertTrue(
                 method_exists($object, $setter),
                 'Object does not contain the specified setter method "' . $setter . '".'
             );
 
             //Assert setter is callable
-            $this->assertInternalType(
+            self::assertInternalType(
                 'callable', [$object, $setter],
                 'Specified setter method "' . $setter . '" is not callable.'
             );
 
             if ($chainable !== true) {
                 //Assert setter returns null (not chainable)
-                $this->assertNull(
+                self::assertNull(
                     $object->$setter($value),
                     'Object setter (' . $setter . ') should not have a return.'
                 );
             } else {
                 //Assert setter is chainable
-                $this->assertSame(
+                self::assertSame(
                     $object,
                     $object->$setter($value),
                     'Object setter (' . $setter . ') is not chainable.'
@@ -85,7 +87,7 @@ trait AssertGetterSetterTrait
 
         if ($default !== null) {
             //Assert that getter returns the value or the manipulated return value
-            $this->assertSame(7 == count(func_get_args()) ? $return : $value, $object->$getter());
+            self::assertSame(7 == count(func_get_args()) ? $return : $value, $object->$getter());
         }
     }
 
@@ -95,8 +97,10 @@ trait AssertGetterSetterTrait
      * @param object $object   The entity on which to set the default value
      * @param string $property The property of the entity on which to set the default value
      * @param mixed  $default  The value to set the property to
+     *
+     * @return void
      */
-    public function setPropertyDefaultValue($object, string $property, $default = null)
+    public static function setPropertyDefaultValue($object, string $property, $default = null): void
     {
         $property = new ReflectionProperty($object, $property);
 
@@ -114,8 +118,10 @@ trait AssertGetterSetterTrait
      * @param object $object    The entity to execute the tests against
      * @param array  $calls     array of calls to execute on the entity
      * @param mixed  $assertion Function or Method that the calls should be made against
+     *
+     * @return void
      */
-    public function arrayAssertionRunner($object, array $calls, $assertion)
+    public static function arrayAssertionRunner($object, array $calls, $assertion): void
     {
         foreach ($calls as $call) {
             array_unshift($call, $object);

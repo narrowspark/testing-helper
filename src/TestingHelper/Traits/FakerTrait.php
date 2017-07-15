@@ -7,7 +7,7 @@ use Faker\Generator;
 
 trait FakerTrait
 {
-    private $fakers = [];
+    private static $fakers = [];
 
     /**
      * You get always the same generated data.
@@ -17,9 +17,9 @@ trait FakerTrait
      *
      * @return \Faker\Generator
      */
-    public function getFaker(string $locale = 'en_US', array $providers = []): Generator
+    public static function getFaker(string $locale = 'en_US', array $providers = []): Generator
     {
-        if (! array_key_exists($locale, $this->fakers)) {
+        if (! array_key_exists($locale, self::$fakers)) {
             $faker = Factory::create();
 
             $providers = array_filter($providers);
@@ -32,9 +32,9 @@ trait FakerTrait
 
             $faker->seed(9000);
 
-            $this->fakers[$locale] = $faker;
+            self::$fakers[$locale] = $faker;
         }
 
-        return $this->fakers[$locale];
+        return self::$fakers[$locale];
     }
 }

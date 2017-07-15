@@ -10,8 +10,10 @@ trait TimingTrait
      * @param int      $maxDurationInMs
      * @param callable $callable
      * @param int      $iterations
+     *
+     * @return void
      */
-    protected function assertTiming(int $maxDurationInMs, callable $callable, int $iterations = 20)
+    public static function assertTiming(int $maxDurationInMs, callable $callable, int $iterations = 20): void
     {
         $duration = 0;
 
@@ -25,6 +27,6 @@ trait TimingTrait
             $duration += ($end - $start);
         }
 
-        $this->assertLessThanOrEqual($maxDurationInMs, ($duration / $iterations) * 1000);
+        self::assertLessThanOrEqual($maxDurationInMs, ($duration / $iterations) * 1000);
     }
 }

@@ -32,8 +32,8 @@ class DispatcherTest extends TestCase
 
         $response = $dispatcher->dispatch(new ServerRequest('GET', '/'));
 
-        $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertEquals('123', (string) $response->getBody());
+        self::assertInstanceOf(ResponseInterface::class, $response);
+        self::assertEquals('123', (string) $response->getBody());
     }
 
     public function testNestedDispatcher()
@@ -82,17 +82,17 @@ class DispatcherTest extends TestCase
 
         $response = $dispatcher3->dispatch(new ServerRequest('GET', '/'));
 
-        $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertEquals('1234567', (string) $response->getBody());
+        self::assertInstanceOf(ResponseInterface::class, $response);
+        self::assertEquals('1234567', (string) $response->getBody());
 
         $response = $dispatcher2->dispatch(new ServerRequest('GET', '/'));
 
-        $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertEquals('12345', (string) $response->getBody());
+        self::assertInstanceOf(ResponseInterface::class, $response);
+        self::assertEquals('12345', (string) $response->getBody());
 
         $response = $dispatcher1->dispatch(new ServerRequest('GET', '/'));
 
-        $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertEquals('123', (string) $response->getBody());
+        self::assertInstanceOf(ResponseInterface::class, $response);
+        self::assertEquals('123', (string) $response->getBody());
     }
 }

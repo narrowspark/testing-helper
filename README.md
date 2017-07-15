@@ -1,23 +1,14 @@
-# testing-helper
+<h1 align="center">Narrowspark Testing Helper</h1>
+<p align="center">
+    <a href="https://github.com/narrowspark/testing-helper/releases"><img src="https://img.shields.io/packagist/v/narrowspark/testing-helper.svg?style=flat-square"></a>
+    <a href="https://php.net/"><img src="https://img.shields.io/badge/php-%5E7.1.0-8892BF.svg?style=flat-square"></a>
+    <a href="https://codecov.io/gh/narrowspark/testing-helper"><img src="https://img.shields.io/codecov/c/github/narrowspark/testing-helper/master.svg?style=flat-square"></a>
+    <a href="https://gitter.im/narrowspark/framework"><img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square"></a>
+    <a href="http://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"></a>
+</p>
 
-[![Author](http://img.shields.io/badge/author-@anolilab-blue.svg?style=flat-square)](https://twitter.com/@anolilab)
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/narrowspark/testing-helper.svg?style=flat-square)](https://packagist.org/packages/narrowspark/testing-helper)
-[![Total Downloads](https://img.shields.io/packagist/dt/narrowspark/testing-helper.svg?style=flat-square)](https://packagist.org/packages/narrowspark/testing-helper)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
-
-## Master
-
-[![Build Status](https://img.shields.io/travis/narrowspark/testing-helper/master.svg?style=flat-square)](https://travis-ci.org/narrowspark/testing-helper)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/narrowspark/testing-helper/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/narrowspark/testing-helper/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/narrowspark/testing-helper.svg?style=flat-square)](https://scrutinizer-ci.com/g/narrowspark/testing-helper)
-
-## Develop
-
-[![Build Status](https://img.shields.io/travis/narrowspark/testing-helper/develop.svg?style=flat-square)](https://travis-ci.org/narrowspark/testing-helper)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/narrowspark/testing-helper/develop.svg?style=flat-square)](https://scrutinizer-ci.com/g/narrowspark/testing-helper/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/narrowspark/testing-helper/develop.svg?style=flat-square)](https://scrutinizer-ci.com/g/narrowspark/testing-helper)
-
-## Install
+Installation
+-------------
 
 Via Composer
 
@@ -25,7 +16,8 @@ Via Composer
 $ composer require narrowspark/testing-helper
 ```
 
-## Usage
+Usage
+-------------
 
 ``` php
 use Narrowspark\TestingHelper\Traits\TestHelperTrait;
@@ -44,25 +36,23 @@ class ModelTest extends \PHPUnit_Framework_TestCase
 }
 ```
 
-## Change log
+Testing
+-------------
 
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
-
-## Testing
-
+You need to run:
 ``` bash
 $ phpunit
 ```
 
-## Contributing
+Contributing
+------------
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+If you would like to help take a look at the [list of issues](http://github.com/narrowspark/testing-helper/issues) and check our [Contributing](CONTRIBUTING.md) guild.
 
-## Security
+> **Note:** Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms.
 
-If you discover any security related issues, please email d.bannert@anolilab.de instead of using the issue tracker.
-
-## Credits
+Credits
+-------------
 
 - [Daniel Bannert](https://github.com/prisis)
 - [All Contributors](../../contributors)

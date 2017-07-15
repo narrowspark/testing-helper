@@ -18,12 +18,12 @@ class ArrayContainer implements ContainerInterface
         return $this->entries[$id];
     }
 
-    public function has($id)
+    public function has($id): bool
     {
         return array_key_exists($id, $this->entries);
     }
 
-    public function set($id, $value)
+    public function set($id, $value): void
     {
         $this->entries[$id] = $value;
     }

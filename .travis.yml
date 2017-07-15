@@ -1,15 +1,21 @@
 language: php
 
 php:
-  - 7.0
   - 7.1
 
 env:
   global:
-    - setup=basic
+    - SEND_COVERAGE=false
+    - PHPSTAN=false
 
 matrix:
   fast_finish: true
+  include:
+    - php: 7.1
+      env: SEND_COVERAGE=true
+    # phpstan
+    - php: 7.1
+      env: PHPSTAN=true
 
 sudo: false
 
@@ -26,9 +32,9 @@ install:
 
 script:
   - mkdir -p build/logs
-  - vendor/bin/php-cs-fixer fix --verbose --diff --dry-run
-  - vendor/bin/phpunit -c phpunit.xml.dist --verbose
+  - if [[ "$PHPSTAN" = false && "$SEND_COVERAGE" = true ]]; then vendor/bin/php-cs-fixer fix --verbose --diff --dry-run; fi
+  - if [[ "$PHPSTAN" = false && "$SEND_COVERAGE" = true ]]; then vendor/bin/phpunit -c phpunit.xml.dist --verbose --coverage-clover=coverage.xml; fi
+  - if [[ "$PHPSTAN" = true && "$SEND_COVERAGE" = false ]]; then ./vendor/bin/phpstan analyse -c phpstan.neon -l 6 src/TestingHelper; fi
 
-after_script:
-  - if [ $TRAVIS_PHP_VERSION = "7.0" ] && [ $setup = 'basic' ]; then wget https://scrutinizer-ci.com/ocular.phar; fi
-  - if [ $TRAVIS_PHP_VERSION = "7.0" ] && [ $setup = 'basic' ]; then php ocular.phar code-coverage:upload --format=php-clover build/logs/coverage.clover; fi
+after_success:
+  - if [[ "$PHPSTAN" = false && "$SEND_COVERAGE" = true ]]; then bash <(curl -s https://codecov.io/bash); fi
