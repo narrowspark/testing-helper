@@ -31,7 +31,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
     {
         $haystack = ['Mac', 'NT', 'Irix', 'Linux'];
 
-        $this->assertInArray('Irix', $haystack);
+        self::assertInArray('Irix', $haystack);
     }
 }
 ```
