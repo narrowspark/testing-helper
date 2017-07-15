@@ -37,3 +37,6 @@ script:
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover build/logs/coverage.clover
+
+after_success:
+  - if [[ "$PHPSTAN" = false ]]; then bash <(curl -s https://codecov.io/bash); fi
