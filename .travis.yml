@@ -5,12 +5,14 @@ php:
 
 env:
   global:
+    - SEND_COVERAGE=false
     - PHPSTAN=false
 
 matrix:
   fast_finish: true
   include:
     - php: 7.1
+      env: SEND_COVERAGE=true
     # phpstan
     - php: 7.1
       env: PHPSTAN=true
@@ -30,13 +32,9 @@ install:
 
 script:
   - mkdir -p build/logs
-  - if [[ "$PHPSTAN" = false ]]; then vendor/bin/php-cs-fixer fix --verbose --diff --dry-run; fi
-  - if [[ "$PHPSTAN" = false ]]; then vendor/bin/phpunit -c phpunit.xml.dist --verbose; fi
-  - if [[ "$PHPSTAN" = true ]]; then ./vendor/bin/phpstan analyse -c phpstan.neon -l 6 src/TestingHelper; fi
-
-after_script:
-  - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover build/logs/coverage.clover
+  - if [[ "$PHPSTAN" = false && "SEND_COVERAGE" = true ]]; then vendor/bin/php-cs-fixer fix --verbose --diff --dry-run; fi
+  - if [[ "$PHPSTAN" = false && "SEND_COVERAGE" = true ]]; then vendor/bin/phpunit -c phpunit.xml.dist --verbose --coverage-clover=coverage.xml; fi
+  - if [[ "$PHPSTAN" = true && "SEND_COVERAGE" = false ]]; then ./vendor/bin/phpstan analyse -c phpstan.neon -l 6 src/TestingHelper; fi
 
 after_success:
   - if [[ "$PHPSTAN" = false ]]; then bash <(curl -s https://codecov.io/bash); fi
