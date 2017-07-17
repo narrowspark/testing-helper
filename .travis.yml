@@ -25,15 +25,15 @@ cache:
     - $HOME/.php-cs-fixer
 
 before_install:
-  - travis_retry composer install --prefer-source --no-interaction
+  - composer validate
 
 install:
-  - if [[ $setup = 'basic' ]]; then travis_retry composer install --no-interaction --prefer-source; fi
+  - travis_retry composer install --no-interaction --prefer-source
 
 script:
   - mkdir -p build/logs
-  - if [[ "$PHPSTAN" = false && "$SEND_COVERAGE" = true ]]; then vendor/bin/php-cs-fixer fix --verbose --diff --dry-run; fi
-  - if [[ "$PHPSTAN" = false && "$SEND_COVERAGE" = true ]]; then vendor/bin/phpunit -c phpunit.xml.dist --verbose --coverage-clover=coverage.xml; fi
+  - if [[ "$PHPSTAN" = false && "$SEND_COVERAGE" = true ]]; then ./vendor/bin/php-cs-fixer fix --verbose --diff --dry-run; fi
+  - if [[ "$PHPSTAN" = false && "$SEND_COVERAGE" = true ]]; then ./vendor/bin/phpunit -c phpunit.xml.dist --verbose --coverage-clover=coverage.xml; fi
   - if [[ "$PHPSTAN" = true && "$SEND_COVERAGE" = false ]]; then ./vendor/bin/phpstan analyse -c phpstan.neon -l 6 src/TestingHelper; fi
 
 after_success:

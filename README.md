@@ -57,6 +57,7 @@ Credits
 - [Daniel Bannert](https://github.com/prisis)
 - [All Contributors](../../contributors)
 
-## License
+License
+-------------
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
