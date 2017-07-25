@@ -44,11 +44,6 @@
             "Narrowspark\\TestingHelper\\Tests\\" : "tests/"
         }
     },
-    "extra": {
-        "branch-alias": {
-            "dev-master"                          : "1.5-dev"
-        }
-    },
     "suggest": {
         "fzaninotto/faker"                        : "Required to use the FakerTrait (^1.6)",
         "mockery/mockery"                         : "Required to use the MockeryTestCase (^0.9)",
