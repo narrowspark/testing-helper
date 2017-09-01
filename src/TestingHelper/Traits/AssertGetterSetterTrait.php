@@ -45,7 +45,8 @@ trait AssertGetterSetterTrait
 
         //Assert getter is callable
         self::assertInternalType(
-            'callable', [$object, $getter],
+            'callable',
+            [$object, $getter],
             'Specified getter method "' . $getter . '" is not callable.'
         );
 
@@ -65,7 +66,8 @@ trait AssertGetterSetterTrait
 
             //Assert setter is callable
             self::assertInternalType(
-                'callable', [$object, $setter],
+                'callable',
+                [$object, $setter],
                 'Specified setter method "' . $setter . '" is not callable.'
             );
 
