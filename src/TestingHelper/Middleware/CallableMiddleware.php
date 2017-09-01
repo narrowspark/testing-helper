@@ -77,6 +77,7 @@ class CallableMiddleware implements MiddlewareInterface
             while (ob_get_level() >= $level) {
                 ob_end_clean();
             }
+
             throw $exception;
         }
     }
