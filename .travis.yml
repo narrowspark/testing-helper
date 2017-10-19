@@ -1,25 +1,18 @@
 language: php
 
-php:
-  - 7.1
-
-env:
-  global:
-    - SEND_COVERAGE=false
-    - PHPSTAN=false
+sudo: false
 
 matrix:
-  fast_finish: true
   include:
     - php: 7.1
-      env: PHPUNIT=true CS=true
-    # phpstan
+      env: CS=true
+    - php: 7.1
+      env: PHPUNIT=true
     - php: 7.1
       env: PHPSTAN=true
     - php: 7.2
-      env: SEND_COVERAGE=true
-
-sudo: false
+      env: PHPUNIT=true SEND_COVERAGE=true
+  fast_finish: true
 
 cache:
   directories:
@@ -29,15 +22,20 @@ cache:
 before_install:
   - composer validate
 
+before_script:
+  - chmod a+x ./build/travis/script.sh && chmod a+x ./build/travis/after_success.sh
+
 install:
-  - travis_retry composer install --no-interaction --prefer-source
+  - travis_retry composer install --no-interaction --prefer-dist --no-progress --profile --no-suggest
 
 script:
-  - mkdir -p build/logs
-  - if [[ "$CS" = true ]]; then ./vendor/bin/php-cs-fixer fix --verbose --diff --dry-run; fi
-  - if [[ "$PHPUNIT" = true ]]; then ./vendor/bin/phpunit -c phpunit.xml.dist --verbose; fi
-  - if [[ "$SEND_COVERAGE" = true ]]; then ./vendor/bin/phpunit -c phpunit.xml.dist --verbose --coverage-clover=coverage.xml; fi
-  - if [[ "$PHPSTAN" = true ]]; then ./vendor/bin/phpstan analyse -c phpstan.neon -l 6 src/TestingHelper; fi
+  - ./build/travis/script.sh
 
 after_success:
-  - if [[ "$SEND_COVERAGE" = true ]]; then bash <(curl -s https://codecov.io/bash); fi
+  - ./build/travis/after_success.sh
+
+notifications:
+  email: false
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/5886ad33ac123a7c06b0

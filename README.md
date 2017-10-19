@@ -2,6 +2,7 @@
 <p align="center">
     <a href="https://github.com/narrowspark/testing-helper/releases"><img src="https://img.shields.io/packagist/v/narrowspark/testing-helper.svg?style=flat-square"></a>
     <a href="https://php.net/"><img src="https://img.shields.io/badge/php-%5E7.1.0-8892BF.svg?style=flat-square"></a>
+    <a href="https://travis-ci.org/narrowspark/testing-helper"><img src="https://img.shields.io/travis/narrowspark/testing-helper/master.svg?style=flat-square"></a>
     <a href="https://codecov.io/gh/narrowspark/testing-helper"><img src="https://img.shields.io/codecov/c/github/narrowspark/testing-helper/master.svg?style=flat-square"></a>
     <a href="https://gitter.im/narrowspark/framework"><img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square"></a>
     <a href="http://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"></a>
