@@ -1,5 +1,5 @@
-/vendor
-/build
+build/logs/
+vendor/
 
 composer.phar
 .php_cs.cache
