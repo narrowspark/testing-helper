@@ -2,11 +2,11 @@
 declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Middleware;
 
-use Interop\Http\ServerMiddleware\DelegateInterface;
+use Interop\Http\Server\RequestHandlerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class DelegateMiddleware implements DelegateInterface
+class RequestHandlerMiddleware implements RequestHandlerInterface
 {
     /**
      * @var callable
@@ -28,7 +28,7 @@ class DelegateMiddleware implements DelegateInterface
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function process(ServerRequestInterface $request): ResponseInterface
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
         return call_user_func($this->callback, $request);
     }

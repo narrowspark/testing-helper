@@ -2,8 +2,8 @@
 declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Middleware;
 
-use Interop\Http\ServerMiddleware\DelegateInterface;
-use Interop\Http\ServerMiddleware\MiddlewareInterface;
+use Interop\Http\Server\MiddlewareInterface;
+use Interop\Http\Server\RequestHandlerInterface;
 use LogicException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -16,7 +16,7 @@ class Dispatcher implements MiddlewareInterface
     private $stack;
 
     /**
-     * @var \Interop\Http\ServerMiddleware\DelegateInterface|null
+     * @var \Interop\Http\Server\RequestHandlerInterface|null
      */
     private $delegate;
 
@@ -39,13 +39,13 @@ class Dispatcher implements MiddlewareInterface
     {
         $resolved = $this->resolve(0);
 
-        return $resolved->process($request);
+        return $resolved->handle($request);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function process(ServerRequestInterface $request, DelegateInterface $delegate)
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $delegate): ResponseInterface
     {
         $this->delegate = $delegate;
 
@@ -59,17 +59,17 @@ class Dispatcher implements MiddlewareInterface
     /**
      * @param int $index middleware stack index
      *
-     * @return \Interop\Http\ServerMiddleware\DelegateInterface
+     * @throws \LogicException
+     *
+     * @return \Interop\Http\Server\RequestHandlerInterface
      */
-    private function resolve(int $index): DelegateInterface
+    private function resolve(int $index): RequestHandlerInterface
     {
         if (isset($this->stack[$index])) {
-            return new DelegateMiddleware(function (ServerRequestInterface $request) use ($index) {
+            return new RequestHandlerMiddleware(function (ServerRequestInterface $request) use ($index) {
                 $middleware = $this->stack[$index];
 
-                $result = $middleware->process($request, $this->resolve($index + 1));
-
-                return $result;
+                return $middleware->process($request, $this->resolve($index + 1));
             });
         }
 
@@ -77,7 +77,7 @@ class Dispatcher implements MiddlewareInterface
             return $this->delegate;
         }
 
-        return new DelegateMiddleware(function () {
+        return new RequestHandlerMiddleware(function () {
             throw new LogicException('unresolved request: middleware stack exhausted with no result');
         });
     }

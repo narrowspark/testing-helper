@@ -3,8 +3,8 @@ declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Middleware;
 
 use GuzzleHttp\Psr7\Response;
-use Interop\Http\ServerMiddleware\DelegateInterface;
-use Interop\Http\ServerMiddleware\MiddlewareInterface;
+use Interop\Http\Server\MiddlewareInterface;
+use Interop\Http\Server\RequestHandlerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Throwable;
@@ -30,9 +30,9 @@ class CallableMiddleware implements MiddlewareInterface
     /**
      * {@inheritdoc}
      */
-    public function process(ServerRequestInterface $request, DelegateInterface $delegate)
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler)
     {
-        return $this->execute($this->handler, [$request, $delegate]);
+        return $this->execute($this->handler, [$request, $handler]);
     }
 
     /**
@@ -41,9 +41,11 @@ class CallableMiddleware implements MiddlewareInterface
      * @param callable $callable
      * @param array    $arguments
      *
-     * @return ResponseInterface
+     * @throws Throwable
+     *
+     * @return \Psr\Http\Message\ResponseInterface
      */
-    private function execute($callable, array $arguments = [])
+    private function execute($callable, array $arguments = []): ResponseInterface
     {
         ob_start();
         $level = ob_get_level();

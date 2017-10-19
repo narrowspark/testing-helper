@@ -23,7 +23,7 @@
         "php"                                     : "^7.1",
         "container-interop/container-interop"     : "^1.1",
         "psr/http-message"                        : "^1.0",
-        "http-interop/http-middleware"            : "^0.4"
+        "http-interop/http-middleware"            : "^0.5"
     },
     "require-dev": {
         "guzzlehttp/psr7"                         : "^1.3",

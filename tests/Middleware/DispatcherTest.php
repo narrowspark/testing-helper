@@ -13,19 +13,19 @@ class DispatcherTest extends TestCase
     public function testDispatcher()
     {
         $dispatcher = new Dispatcher([
-            new CallableMiddleware(function ($request, $delegate) {
-                $response = $delegate->process($request);
+            new CallableMiddleware(function ($request, $handler) {
+                $response = $handler->handle($request);
                 $response->getBody()->write('3');
 
                 return $response;
             }),
-            new CallableMiddleware(function ($request, $delegate) {
-                $response = $delegate->process($request);
+            new CallableMiddleware(function ($request, $handler) {
+                $response = $handler->handle($request);
                 $response->getBody()->write('2');
 
                 return $response;
             }),
-            new CallableMiddleware(function ($request, $delegate) {
+            new CallableMiddleware(function ($request, $handler) {
                 echo '1';
             }),
         ]);
@@ -39,43 +39,43 @@ class DispatcherTest extends TestCase
     public function testNestedDispatcher()
     {
         $dispatcher1 = new Dispatcher([
-            new CallableMiddleware(function ($request, $delegate) {
+            new CallableMiddleware(function ($request, $handler) {
                 echo 3;
 
-                return $delegate->process($request);
+                return $handler->handle($request);
             }),
-            new CallableMiddleware(function ($request, $delegate) {
+            new CallableMiddleware(function ($request, $handler) {
                 echo 2;
 
-                return $delegate->process($request);
+                return $handler->handle($request);
             }),
-            new CallableMiddleware(function ($request, $delegate) {
+            new CallableMiddleware(function ($request, $handler) {
                 echo 1;
             }),
         ]);
         $dispatcher2 = new Dispatcher([
-            new CallableMiddleware(function ($request, $delegate) {
+            new CallableMiddleware(function ($request, $handler) {
                 echo 5;
 
-                return $delegate->process($request);
+                return $handler->handle($request);
             }),
-            new CallableMiddleware(function ($request, $delegate) {
+            new CallableMiddleware(function ($request, $handler) {
                 echo 4;
 
-                return $delegate->process($request);
+                return $handler->handle($request);
             }),
             $dispatcher1,
         ]);
         $dispatcher3 = new Dispatcher([
-            new CallableMiddleware(function ($request, $delegate) {
+            new CallableMiddleware(function ($request, $handler) {
                 echo 7;
 
-                return $delegate->process($request);
+                return $handler->handle($request);
             }),
-            new CallableMiddleware(function ($request, $delegate) {
+            new CallableMiddleware(function ($request, $handler) {
                 echo 6;
 
-                return $delegate->process($request);
+                return $handler->handle($request);
             }),
             $dispatcher2,
         ]);
