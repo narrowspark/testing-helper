@@ -13,12 +13,12 @@ class AssertGetterSetterTraitTest extends TestCase
 
     protected $object;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->object = new MockObject();
     }
 
-    public function testGetterOnly()
+    public function testGetterOnly(): void
     {
         self::assertGetterSetter(
             $this->object,
@@ -26,7 +26,7 @@ class AssertGetterSetterTraitTest extends TestCase
         );
     }
 
-    public function testGetterAndSetterChainable()
+    public function testGetterAndSetterChainable(): void
     {
         self::assertGetterSetter(
             $this->object,
@@ -37,7 +37,7 @@ class AssertGetterSetterTraitTest extends TestCase
         );
     }
 
-    public function testGetterAndSetterNonChainableAsNonChainable()
+    public function testGetterAndSetterNonChainableAsNonChainable(): void
     {
         self::assertGetterSetter(
             $this->object,
@@ -49,7 +49,7 @@ class AssertGetterSetterTraitTest extends TestCase
         );
     }
 
-    public function testGetterAndSetterManipulated()
+    public function testGetterAndSetterManipulated(): void
     {
         self::assertGetterSetter(
             $this->object,
@@ -62,7 +62,7 @@ class AssertGetterSetterTraitTest extends TestCase
         );
     }
 
-    public function testGetterAndSetterDefaultDateDefaultSet()
+    public function testGetterAndSetterDefaultDateDefaultSet(): void
     {
         $dateTime = new DateTime();
 
@@ -78,7 +78,7 @@ class AssertGetterSetterTraitTest extends TestCase
         );
     }
 
-    public function testGetterSetterArray()
+    public function testGetterSetterArray(): void
     {
         $this->arrayAssertionRunner(
             $this->object,
@@ -97,7 +97,7 @@ class AssertGetterSetterTraitTest extends TestCase
      *
      * @expectedException \PHPUnit\Framework\ExpectationFailedException
      */
-    public function testGetterAndSetterDefaultDate()
+    public function testGetterAndSetterDefaultDate(): void
     {
         $dateTime = new DateTime();
 
@@ -115,7 +115,7 @@ class AssertGetterSetterTraitTest extends TestCase
      * @expectedException        \PHPUnit\Framework\ExpectationFailedException
      * @expectedExceptionMessage Object does not contain the specified getter method "getNonExistent".
      */
-    public function testNonExistentGetter()
+    public function testNonExistentGetter(): void
     {
         self::assertGetterSetter(
             $this->object,
@@ -127,7 +127,7 @@ class AssertGetterSetterTraitTest extends TestCase
      * @expectedException        \PHPUnit\Framework\ExpectationFailedException
      * @expectedExceptionMessage Object does not contain the specified setter method "setId".
      */
-    public function testGetterAndNonExistentSetter()
+    public function testGetterAndNonExistentSetter(): void
     {
         self::assertGetterSetter(
             $this->object,
@@ -141,7 +141,7 @@ class AssertGetterSetterTraitTest extends TestCase
      * @expectedException        \PHPUnit\Framework\ExpectationFailedException
      * @expectedExceptionMessage Object setter (setNonChainable) is not chainable.
      */
-    public function testGetterAndSetterNonChainableAsChainable()
+    public function testGetterAndSetterNonChainableAsChainable(): void
     {
         self::assertGetterSetter(
             $this->object,

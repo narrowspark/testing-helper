@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class ArrayContainerTest extends TestCase
 {
-    public function testSetGetAndHas()
+    public function testSetGetAndHas(): void
     {
         $container = new ArrayContainer(['bar' => 'foo']);
 
@@ -20,10 +20,10 @@ class ArrayContainerTest extends TestCase
         self::assertTrue($container->has('baz'));
     }
 
-    public function testCheckIfContainerHasAInterface()
+    public function testCheckIfContainerHasAInterface(): void
     {
         $container = new ArrayContainer(['bar' => 'foo']);
 
-        self::assertInstanceOf('\Interop\Container\ContainerInterface', $container);
+        self::assertInstanceOf('\Psr\Container\ContainerInterface', $container);
     }
 }

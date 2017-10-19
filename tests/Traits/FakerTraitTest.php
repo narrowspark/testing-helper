@@ -9,21 +9,21 @@ class FakerTraitTest extends TestCase
 {
     use FakerTrait;
 
-    public function testGetFaker()
+    public function testGetFaker(): void
     {
         $faker = $this->getFaker();
 
         self::assertInstanceOf('\Faker\Generator', $faker);
     }
 
-    public function testGetFakerReturnsFakerWithDefaultLocale()
+    public function testGetFakerReturnsFakerWithDefaultLocale(): void
     {
         $faker = $this->getFaker('en_US');
         self::assertInstanceOf('\Faker\Generator', $faker);
         self::assertSame($faker, $this->getFaker());
     }
 
-    public function testGetFakerReturnsDifferentFakerForDifferentLocale()
+    public function testGetFakerReturnsDifferentFakerForDifferentLocale(): void
     {
         $faker = $this->getFaker('en_US');
         self::assertInstanceOf('Faker\Generator', $faker);
@@ -35,7 +35,7 @@ class FakerTraitTest extends TestCase
      *
      * @param string $locale
      */
-    public function testGetFakerReturnsTheSameInstanceForALocale($locale)
+    public function testGetFakerReturnsTheSameInstanceForALocale($locale): void
     {
         $faker = $this->getFaker($locale);
 

@@ -12,11 +12,12 @@ matrix:
   fast_finish: true
   include:
     - php: 7.1
-    - php: 7.2
-      env: SEND_COVERAGE=true
+      env: PHPUNIT=true CS=true
     # phpstan
     - php: 7.1
       env: PHPSTAN=true
+    - php: 7.2
+      env: SEND_COVERAGE=true
 
 sudo: false
 
@@ -33,9 +34,10 @@ install:
 
 script:
   - mkdir -p build/logs
-  - if [[ "$PHPSTAN" = false && "$SEND_COVERAGE" = true ]]; then ./vendor/bin/php-cs-fixer fix --verbose --diff --dry-run; fi
-  - if [[ "$PHPSTAN" = false && "$SEND_COVERAGE" = true ]]; then ./vendor/bin/phpunit -c phpunit.xml.dist --verbose --coverage-clover=coverage.xml; fi
-  - if [[ "$PHPSTAN" = true && "$SEND_COVERAGE" = false ]]; then ./vendor/bin/phpstan analyse -c phpstan.neon -l 6 src/TestingHelper; fi
+  - if [[ "$CS" = true ]]; then ./vendor/bin/php-cs-fixer fix --verbose --diff --dry-run; fi
+  - if [[ "$PHPUNIT" = true ]]; then ./vendor/bin/phpunit -c phpunit.xml.dist --verbose; fi
+  - if [[ "$SEND_COVERAGE" = true ]]; then ./vendor/bin/phpunit -c phpunit.xml.dist --verbose --coverage-clover=coverage.xml; fi
+  - if [[ "$PHPSTAN" = true ]]; then ./vendor/bin/phpstan analyse -c phpstan.neon -l 6 src/TestingHelper; fi
 
 after_success:
-  - if [[ "$PHPSTAN" = false && "$SEND_COVERAGE" = true ]]; then bash <(curl -s https://codecov.io/bash); fi
+  - if [[ "$SEND_COVERAGE" = true ]]; then bash <(curl -s https://codecov.io/bash); fi

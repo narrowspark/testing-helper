@@ -10,7 +10,7 @@ use Psr\Http\Message\ResponseInterface;
 
 class DispatcherTest extends TestCase
 {
-    public function testDispatcher()
+    public function testDispatcher(): void
     {
         $dispatcher = new Dispatcher([
             new CallableMiddleware(function ($request, $handler) {
@@ -25,7 +25,7 @@ class DispatcherTest extends TestCase
 
                 return $response;
             }),
-            new CallableMiddleware(function ($request, $handler) {
+            new CallableMiddleware(function ($request, $handler): void {
                 echo '1';
             }),
         ]);
@@ -36,7 +36,7 @@ class DispatcherTest extends TestCase
         self::assertEquals('123', (string) $response->getBody());
     }
 
-    public function testNestedDispatcher()
+    public function testNestedDispatcher(): void
     {
         $dispatcher1 = new Dispatcher([
             new CallableMiddleware(function ($request, $handler) {
@@ -49,7 +49,7 @@ class DispatcherTest extends TestCase
 
                 return $handler->handle($request);
             }),
-            new CallableMiddleware(function ($request, $handler) {
+            new CallableMiddleware(function ($request, $handler): void {
                 echo 1;
             }),
         ]);

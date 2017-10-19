@@ -16,7 +16,7 @@ class Dispatcher implements MiddlewareInterface
     private $stack;
 
     /**
-     * @var \Interop\Http\Server\RequestHandlerInterface|null
+     * @var null|\Interop\Http\Server\RequestHandlerInterface
      */
     private $delegate;
 
@@ -77,7 +77,7 @@ class Dispatcher implements MiddlewareInterface
             return $this->delegate;
         }
 
-        return new RequestHandlerMiddleware(function () {
+        return new RequestHandlerMiddleware(function (): void {
             throw new LogicException('unresolved request: middleware stack exhausted with no result');
         });
     }

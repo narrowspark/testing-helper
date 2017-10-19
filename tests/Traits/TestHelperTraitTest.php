@@ -10,7 +10,7 @@ class TestHelperTraitTest extends TestCase
 {
     use TestHelperTrait;
 
-    public function testAssertInArray()
+    public function testAssertInArray(): void
     {
         $haystack = ['Mac', 'NT', 'Irix', 'Linux'];
 
@@ -20,14 +20,14 @@ class TestHelperTraitTest extends TestCase
     /**
      * @expectedException \PHPUnit\Framework\ExpectationFailedException
      */
-    public function testAssertInArrayToThrowException()
+    public function testAssertInArrayToThrowException(): void
     {
         $haystack = ['Mac', 'NT', 'Irix', 'Linux'];
 
         self::assertInArray('mac', $haystack);
     }
 
-    public function testAssertMethodExists()
+    public function testAssertMethodExists(): void
     {
         self::assertMethodExists(FooObject::class, 'getPrivateProperty');
     }
@@ -35,12 +35,12 @@ class TestHelperTraitTest extends TestCase
     /**
      * @expectedException \PHPUnit\Framework\ExpectationFailedException
      */
-    public function testAssertMethodExistsToThrowException()
+    public function testAssertMethodExistsToThrowException(): void
     {
         self::assertMethodExists(FooObject::class, 'setPrivateProperty');
     }
 
-    public function testAssertInJson()
+    public function testAssertInJson(): void
     {
         self::assertInJson('{"test": "true"}', ['test' => 'true']);
     }
@@ -48,7 +48,7 @@ class TestHelperTraitTest extends TestCase
     /**
      * @expectedException \PHPUnit\Framework\ExpectationFailedException
      */
-    public function testAssertInJsonToThrowException()
+    public function testAssertInJsonToThrowException(): void
     {
         self::assertInJson('{"test": "false"}', ['test' => 'true']);
     }
@@ -56,7 +56,7 @@ class TestHelperTraitTest extends TestCase
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testAssertInJsonToThrowExceptionOnInvalidJson()
+    public function testAssertInJsonToThrowExceptionOnInvalidJson(): void
     {
         self::assertInJson('{test: false}', ['test' => 'true']);
     }

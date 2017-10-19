@@ -10,7 +10,7 @@ class DateAssertionTraitTest extends TestCase
 {
     use DateAssertionTrait;
 
-    public function testAssertSameDate()
+    public function testAssertSameDate(): void
     {
         $actual = new DateTime('Wed, 13 Jan 2021 22:23:01 GMT');
 
@@ -20,7 +20,7 @@ class DateAssertionTraitTest extends TestCase
         );
     }
 
-    public function testAssertNotSameDate()
+    public function testAssertNotSameDate(): void
     {
         $actual = new DateTime('Wed, 13 Jan 2021 22:23:01 GMT');
 

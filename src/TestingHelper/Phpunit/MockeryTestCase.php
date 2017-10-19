@@ -17,7 +17,7 @@ abstract class MockeryTestCase extends TestCase
      * This method is called before the execution of a test starts
      * and after setUp() is called.
      */
-    protected function assertPreConditions()
+    protected function assertPreConditions(): void
     {
         parent::assertPreConditions();
 
@@ -29,7 +29,7 @@ abstract class MockeryTestCase extends TestCase
      *
      * @param bool $allow enable/disable to mock non existent methods
      */
-    protected function allowMockingNonExistentMethods($allow = false)
+    protected function allowMockingNonExistentMethods($allow = false): void
     {
         //Disable mocking of non existent methods.
         $config = Mock::getConfiguration();

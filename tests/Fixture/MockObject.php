@@ -75,7 +75,7 @@ class MockObject
     /**
      * @param mixed $nonChainable
      */
-    public function setNonChainable($nonChainable)
+    public function setNonChainable($nonChainable): void
     {
         $this->nonChainable = $nonChainable;
     }

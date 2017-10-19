@@ -8,7 +8,7 @@ use Narrowspark\TestingHelper\Tests\Fixture\FooObject;
 
 class MockeryTestCaseTest extends MockeryTestCase
 {
-    public function testAllowMockingNonExistentMethods()
+    public function testAllowMockingNonExistentMethods(): void
     {
         self::assertFalse(Mock::getConfiguration()->mockingNonExistentMethodsAllowed());
 
@@ -17,7 +17,7 @@ class MockeryTestCaseTest extends MockeryTestCase
         self::assertTrue(Mock::getConfiguration()->mockingNonExistentMethodsAllowed());
     }
 
-    public function testMock()
+    public function testMock(): void
     {
         $mocked = $this->mock(FooObject::class);
 

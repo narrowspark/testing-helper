@@ -9,7 +9,7 @@ class TimingTraitTest extends TestCase
 {
     use TimingTrait;
 
-    public function testAssertTiming()
+    public function testAssertTiming(): void
     {
         self::assertTiming(45, function () {
             return 'yes!';

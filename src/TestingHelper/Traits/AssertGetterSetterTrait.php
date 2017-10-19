@@ -20,10 +20,10 @@ trait AssertGetterSetterTrait
      * @param mixed       $default   The expected default value of the getter after initialization,
      *                               or an anonymous function that will do test for default values
      *                               that are not null or scalar
-     * @param string|null $setter    The setter function to call
+     * @param null|string $setter    The setter function to call
      * @param mixed       $value     Value to send to the setter function
      * @param bool        $chainable Sets whether the method should be chainable
-     * @param string|null $return    The expected result of the getter after setting
+     * @param null|string $return    The expected result of the getter after setting
      *                               (Used when the set value has been manipulated in some way)
      *
      * @return void

@@ -9,7 +9,7 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class DelegateMiddlewareTest extends MockeryTestCase
 {
-    public function testCallCallableWithProcess()
+    public function testCallCallableWithProcess(): void
     {
         $middleware = new RequestHandlerMiddleware(function () {
             return $this->mock(ResponseInterface::class);
