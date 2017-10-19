@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace Narrowspark\TestingHelper;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 class ArrayContainer implements ContainerInterface
 {
