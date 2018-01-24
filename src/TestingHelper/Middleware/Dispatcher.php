@@ -2,11 +2,11 @@
 declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Middleware;
 
-use Interop\Http\Server\MiddlewareInterface;
-use Interop\Http\Server\RequestHandlerInterface;
 use LogicException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 class Dispatcher implements MiddlewareInterface
 {
@@ -16,7 +16,7 @@ class Dispatcher implements MiddlewareInterface
     private $stack;
 
     /**
-     * @var null|\Interop\Http\Server\RequestHandlerInterface
+     * @var null|\Psr\Http\Server\RequestHandlerInterface
      */
     private $delegate;
 
@@ -61,7 +61,7 @@ class Dispatcher implements MiddlewareInterface
      *
      * @throws \LogicException
      *
-     * @return \Interop\Http\Server\RequestHandlerInterface
+     * @return \Psr\Http\Server\RequestHandlerInterface
      */
     private function resolve(int $index): RequestHandlerInterface
     {
@@ -78,7 +78,7 @@ class Dispatcher implements MiddlewareInterface
         }
 
         return new RequestHandlerMiddleware(function (): void {
-            throw new LogicException('unresolved request: middleware stack exhausted with no result');
+            throw new LogicException('Unresolved request: middleware stack exhausted with no result.');
         });
     }
 }
