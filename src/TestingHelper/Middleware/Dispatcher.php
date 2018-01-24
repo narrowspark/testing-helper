@@ -78,7 +78,7 @@ class Dispatcher implements MiddlewareInterface
         }
 
         return new RequestHandlerMiddleware(function (): void {
-            throw new LogicException('unresolved request: middleware stack exhausted with no result');
+            throw new LogicException('Unresolved request: middleware stack exhausted with no result.');
         });
     }
 }
