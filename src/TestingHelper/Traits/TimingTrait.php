@@ -17,7 +17,7 @@ trait TimingTrait
     {
         $duration = 0;
 
-        for ($a = 0; $a < $iterations; ++$a) {
+        for ($a = 0; $a < $iterations; $a++) {
             $start = microtime(true);
 
             $callable();

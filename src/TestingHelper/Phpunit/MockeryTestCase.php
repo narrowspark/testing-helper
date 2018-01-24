@@ -40,7 +40,7 @@ abstract class MockeryTestCase extends TestCase
     /**
      * Get a mocked object.
      *
-     * @param array $argv
+     * @param array<int, mixed> $argv
      *
      * @return \Mockery\MockInterface
      */
