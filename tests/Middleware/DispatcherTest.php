@@ -27,6 +27,16 @@ class DispatcherTest extends TestCase
         $this->serverRequest = (new ServerRequestFactory())->createServerRequest('GET', '/');
     }
 
+    /**
+     * @expectedException \LogicException
+     * @expectedExceptionMessage Unresolved request: middleware stack exhausted with no result.
+     */
+    public function testDispatcherWithEmptyStack(): void
+    {
+        $dispatcher = new Dispatcher([]);
+        $dispatcher->dispatch($this->serverRequest);
+    }
+
     public function testDispatcher(): void
     {
         $dispatcher = new Dispatcher([

@@ -95,7 +95,7 @@ class CallableMiddleware implements MiddlewareInterface
                 $response = $instance->createResponse();
             } else {
                 throw new UnexpectedValueException(
-                    'The value returned must be scalar or an object with __toString method'
+                    'The value returned must be "scalar" or an object with "__toString" method.'
                 );
             }
 
