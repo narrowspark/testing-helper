@@ -13,22 +13,13 @@ trait FakerTrait
      * You get always the same generated data.
      *
      * @param string $locale
-     * @param array  $providers
      *
      * @return \Faker\Generator
      */
-    public static function getFaker(string $locale = 'en_US', array $providers = []): Generator
+    public static function getFaker(string $locale = 'en_US'): Generator
     {
         if (! \array_key_exists($locale, self::$fakers)) {
             $faker = Factory::create();
-
-            $providers = \array_filter($providers);
-
-            if (! empty($providers)) {
-                foreach ($providers as $provider) {
-                    $faker->addProvider($provider);
-                }
-            }
 
             $faker->seed(9000);
 

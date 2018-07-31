@@ -11,7 +11,10 @@ use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class DispatcherTest extends TestCase
+/**
+ * @internal
+ */
+final class DispatcherTest extends TestCase
 {
     /**
      * @var \GuzzleHttp\Psr7\ServerRequest
@@ -30,15 +33,15 @@ class DispatcherTest extends TestCase
     {
         parent::setUp();
 
-        $this->serverRequest = new ServerRequest('GET', '/');
-        $this->responseFactory = new class () implements ResponseFactoryInterface {
+        $this->serverRequest   = new ServerRequest('GET', '/');
+        $this->responseFactory = new class() implements ResponseFactoryInterface {
             /**
              * Create a new response.
              *
-             * @param int $code HTTP status code; defaults to 200
-             * @param string $reasonPhrase Reason phrase to associate with status code
-             *     in generated response; if none is provided implementations MAY use
-             *     the defaults as suggested in the HTTP specification.
+             * @param int    $code         HTTP status code; defaults to 200
+             * @param string $reasonPhrase reason phrase to associate with status code
+             *                             in generated response; if none is provided implementations MAY use
+             *                             the defaults as suggested in the HTTP specification
              *
              * @return ResponseInterface
              */
@@ -49,12 +52,11 @@ class DispatcherTest extends TestCase
         };
     }
 
-    /**
-     * @expectedException \LogicException
-     * @expectedExceptionMessage Unresolved request: middleware stack exhausted with no result.
-     */
     public function testDispatcherWithEmptyStack(): void
     {
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('Unresolved request: middleware stack exhausted with no result.');
+
         $dispatcher = new Dispatcher([]);
         $dispatcher->dispatch($this->serverRequest);
     }
@@ -84,8 +86,8 @@ class DispatcherTest extends TestCase
 
         $response = $dispatcher->dispatch($this->serverRequest);
 
-        self::assertInstanceOf(ResponseInterface::class, $response);
-        self::assertEquals('123', (string) $response->getBody());
+        static::assertInstanceOf(ResponseInterface::class, $response);
+        static::assertEquals('123', (string) $response->getBody());
     }
 
     public function testNestedDispatcher(): void
@@ -157,17 +159,17 @@ class DispatcherTest extends TestCase
 
         $response = $dispatcher3->dispatch($this->serverRequest);
 
-        self::assertInstanceOf(ResponseInterface::class, $response);
-        self::assertEquals('1234567', (string) $response->getBody());
+        static::assertInstanceOf(ResponseInterface::class, $response);
+        static::assertEquals('1234567', (string) $response->getBody());
 
         $response = $dispatcher2->dispatch($this->serverRequest);
 
-        self::assertInstanceOf(ResponseInterface::class, $response);
-        self::assertEquals('12345', (string) $response->getBody());
+        static::assertInstanceOf(ResponseInterface::class, $response);
+        static::assertEquals('12345', (string) $response->getBody());
 
         $response = $dispatcher1->dispatch($this->serverRequest);
 
-        self::assertInstanceOf(ResponseInterface::class, $response);
-        self::assertEquals('123', (string) $response->getBody());
+        static::assertInstanceOf(ResponseInterface::class, $response);
+        static::assertEquals('123', (string) $response->getBody());
     }
 }

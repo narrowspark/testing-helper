@@ -8,14 +8,16 @@ use Narrowspark\TestingHelper\Middleware\RequestHandlerMiddleware;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseFactoryInterface;
 
-class CallableMiddlewareTest extends TestCase
+/**
+ * @internal
+ */
+final class CallableMiddlewareTest extends TestCase
 {
-    /**
-     * @expectedException \UnexpectedValueException
-     * @expectedExceptionMessage The value returned must be "scalar" or an object with "__toString" method.
-     */
     public function testMiddlewareThrowErrorOnScalarType(): void
     {
+        $this->expectException(\UnexpectedValueException::class);
+        $this->expectExceptionMessage('The value returned must be "scalar" or an object with "__toString" method.');
+
         $middleware = new CallableMiddleware(
             function () {
                 return new class() {
@@ -31,12 +33,11 @@ class CallableMiddlewareTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage No ResponseFactory class found.
-     */
     public function testConstructorThrowErrorOnWrongResponseFactory2(): void
     {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('No ResponseFactory class found.');
+
         $middleware = new CallableMiddleware(
             function () {
                 return '';

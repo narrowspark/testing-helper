@@ -59,7 +59,7 @@ class MockObject
     /**
      * @return \DateTime
      */
-    public function getCreated()
+    public function getCreated(): DateTime
     {
         return $this->created;
     }
@@ -95,7 +95,7 @@ class MockObject
      */
     public function setManipulated($manipulated)
     {
-        $this->manipulated = mb_strtoupper($manipulated);
+        $this->manipulated = \mb_strtoupper($manipulated);
 
         return $this;
     }

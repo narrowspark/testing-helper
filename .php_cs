@@ -6,7 +6,7 @@ use Narrowspark\CS\Config\Config;
 $config = new Config();
 $config->getFinder()
     ->files()
-    ->in(__DIR__ . DIRECTORY_SEPARATOR . 'src')
+    ->in(__DIR__)
     ->exclude('build')
     ->exclude('vendor')
     ->name('*.php')

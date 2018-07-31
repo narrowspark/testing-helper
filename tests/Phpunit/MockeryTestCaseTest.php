@@ -6,21 +6,24 @@ use Mockery as Mock;
 use Narrowspark\TestingHelper\Phpunit\MockeryTestCase;
 use Narrowspark\TestingHelper\Tests\Fixture\FooObject;
 
-class MockeryTestCaseTest extends MockeryTestCase
+/**
+ * @internal
+ */
+final class MockeryTestCaseTest extends MockeryTestCase
 {
     public function testAllowMockingNonExistentMethods(): void
     {
-        self::assertFalse(Mock::getConfiguration()->mockingNonExistentMethodsAllowed());
+        static::assertFalse(Mock::getConfiguration()->mockingNonExistentMethodsAllowed());
 
         $this->allowMockingNonExistentMethods(true);
 
-        self::assertTrue(Mock::getConfiguration()->mockingNonExistentMethodsAllowed());
+        static::assertTrue(Mock::getConfiguration()->mockingNonExistentMethodsAllowed());
     }
 
     public function testMock(): void
     {
         $mocked = $this->mock(FooObject::class);
 
-        self::assertInstanceOf(get_class($mocked), $mocked);
+        static::assertInstanceOf(\get_class($mocked), $mocked);
     }
 }

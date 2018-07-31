@@ -6,7 +6,10 @@ use DateTime;
 use Narrowspark\TestingHelper\Traits\DateAssertionTrait;
 use PHPUnit\Framework\TestCase;
 
-class DateAssertionTraitTest extends TestCase
+/**
+ * @internal
+ */
+final class DateAssertionTraitTest extends TestCase
 {
     use DateAssertionTrait;
 

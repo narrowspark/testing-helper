@@ -5,29 +5,34 @@ namespace Narrowspark\TestingHelper\Tests\Traits;
 use Narrowspark\TestingHelper\Traits\FakerTrait;
 use PHPUnit\Framework\TestCase;
 
-class FakerTraitTest extends TestCase
+/**
+ * @internal
+ */
+final class FakerTraitTest extends TestCase
 {
     use FakerTrait;
 
     public function testGetFaker(): void
     {
-        $faker = $this->getFaker();
+        $faker = self::getFaker();
 
-        self::assertInstanceOf('\Faker\Generator', $faker);
+        static::assertInstanceOf('\Faker\Generator', $faker);
     }
 
     public function testGetFakerReturnsFakerWithDefaultLocale(): void
     {
-        $faker = $this->getFaker('en_US');
-        self::assertInstanceOf('\Faker\Generator', $faker);
-        self::assertSame($faker, $this->getFaker());
+        $faker = self::getFaker('en_US');
+
+        static::assertInstanceOf('\Faker\Generator', $faker);
+        static::assertSame($faker, self::getFaker());
     }
 
     public function testGetFakerReturnsDifferentFakerForDifferentLocale(): void
     {
-        $faker = $this->getFaker('en_US');
-        self::assertInstanceOf('Faker\Generator', $faker);
-        self::assertNotSame($faker, $this->getFaker('de_DE'));
+        $faker = self::getFaker('en_US');
+
+        static::assertInstanceOf('Faker\Generator', $faker);
+        static::assertNotSame($faker, self::getFaker('de_DE'));
     }
 
     /**
@@ -37,16 +42,16 @@ class FakerTraitTest extends TestCase
      */
     public function testGetFakerReturnsTheSameInstanceForALocale($locale): void
     {
-        $faker = $this->getFaker($locale);
+        $faker = self::getFaker($locale);
 
-        self::assertInstanceOf('Faker\Generator', $faker);
-        self::assertSame($faker, $this->getFaker($locale));
+        static::assertInstanceOf('Faker\Generator', $faker);
+        static::assertSame($faker, self::getFaker($locale));
     }
 
     /**
      * @return \Generator
      */
-    public function providerLocale()
+    public function providerLocale(): \Generator
     {
         $values = [
             'de_DE',

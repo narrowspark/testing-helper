@@ -6,7 +6,10 @@ use Narrowspark\TestingHelper\Tests\Fixture\FooObject;
 use Narrowspark\TestingHelper\Traits\TestHelperTrait;
 use PHPUnit\Framework\TestCase;
 
-class TestHelperTraitTest extends TestCase
+/**
+ * @internal
+ */
+final class TestHelperTraitTest extends TestCase
 {
     use TestHelperTrait;
 
@@ -17,11 +20,10 @@ class TestHelperTraitTest extends TestCase
         self::assertInArray('Irix', $haystack);
     }
 
-    /**
-     * @expectedException \PHPUnit\Framework\ExpectationFailedException
-     */
     public function testAssertInArrayToThrowException(): void
     {
+        $this->expectException(\PHPUnit\Framework\ExpectationFailedException::class);
+
         $haystack = ['Mac', 'NT', 'Irix', 'Linux'];
 
         self::assertInArray('mac', $haystack);
@@ -32,11 +34,10 @@ class TestHelperTraitTest extends TestCase
         self::assertMethodExists(FooObject::class, 'getPrivateProperty');
     }
 
-    /**
-     * @expectedException \PHPUnit\Framework\ExpectationFailedException
-     */
     public function testAssertMethodExistsToThrowException(): void
     {
+        $this->expectException(\PHPUnit\Framework\ExpectationFailedException::class);
+
         self::assertMethodExists(FooObject::class, 'setPrivateProperty');
     }
 
@@ -45,19 +46,17 @@ class TestHelperTraitTest extends TestCase
         self::assertInJson('{"test": "true"}', ['test' => 'true']);
     }
 
-    /**
-     * @expectedException \PHPUnit\Framework\ExpectationFailedException
-     */
     public function testAssertInJsonToThrowException(): void
     {
+        $this->expectException(\PHPUnit\Framework\ExpectationFailedException::class);
+
         self::assertInJson('{"test": "false"}', ['test' => 'true']);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testAssertInJsonToThrowExceptionOnInvalidJson(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         self::assertInJson('{test: false}', ['test' => 'true']);
     }
 }

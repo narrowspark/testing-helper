@@ -5,7 +5,10 @@ namespace Narrowspark\TestingHelper\Tests\Traits;
 use Narrowspark\TestingHelper\Traits\TimingTrait;
 use PHPUnit\Framework\TestCase;
 
-class TimingTraitTest extends TestCase
+/**
+ * @internal
+ */
+final class TimingTraitTest extends TestCase
 {
     use TimingTrait;
 

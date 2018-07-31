@@ -7,13 +7,16 @@ use Narrowspark\TestingHelper\Tests\Fixture\MockObject;
 use Narrowspark\TestingHelper\Traits\AssertGetterSetterTrait;
 use PHPUnit\Framework\TestCase;
 
-class AssertGetterSetterTraitTest extends TestCase
+/**
+ * @internal
+ */
+final class AssertGetterSetterTraitTest extends TestCase
 {
     use AssertGetterSetterTrait;
 
     protected $object;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->object = new MockObject();
     }
@@ -94,11 +97,11 @@ class AssertGetterSetterTraitTest extends TestCase
 
     /**
      * Failure because we can not check the default on properties set during instantiation.
-     *
-     * @expectedException \PHPUnit\Framework\ExpectationFailedException
      */
     public function testGetterAndSetterDefaultDate(): void
     {
+        $this->expectException(\PHPUnit\Framework\ExpectationFailedException::class);
+
         $dateTime = new DateTime();
 
         self::assertGetterSetter(
@@ -111,24 +114,22 @@ class AssertGetterSetterTraitTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException        \PHPUnit\Framework\ExpectationFailedException
-     * @expectedExceptionMessage Object does not contain the specified getter method "getNonExistent".
-     */
     public function testNonExistentGetter(): void
     {
+        $this->expectException(\PHPUnit\Framework\ExpectationFailedException::class);
+        $this->expectExceptionMessage('Object does not contain the specified getter method "getNonExistent".');
+
         self::assertGetterSetter(
             $this->object,
             'getNonExistent'
         );
     }
 
-    /**
-     * @expectedException        \PHPUnit\Framework\ExpectationFailedException
-     * @expectedExceptionMessage Object does not contain the specified setter method "setId".
-     */
     public function testGetterAndNonExistentSetter(): void
     {
+        $this->expectException(\PHPUnit\Framework\ExpectationFailedException::class);
+        $this->expectExceptionMessage('Object does not contain the specified setter method "setId".');
+
         self::assertGetterSetter(
             $this->object,
             'getId',
@@ -137,12 +138,11 @@ class AssertGetterSetterTraitTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException        \PHPUnit\Framework\ExpectationFailedException
-     * @expectedExceptionMessage Object setter (setNonChainable) is not chainable.
-     */
     public function testGetterAndSetterNonChainableAsChainable(): void
     {
+        $this->expectException(\PHPUnit\Framework\ExpectationFailedException::class);
+        $this->expectExceptionMessage('Object setter (setNonChainable) is not chainable.');
+
         self::assertGetterSetter(
             $this->object,
             'getNonChainable',
