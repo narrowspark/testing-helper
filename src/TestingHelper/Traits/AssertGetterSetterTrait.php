@@ -39,7 +39,7 @@ trait AssertGetterSetterTrait
     ): void {
         //Assert getter exists
         self::assertTrue(
-            method_exists($object, $getter),
+            \method_exists($object, $getter),
             'Object does not contain the specified getter method "' . $getter . '".'
         );
 
@@ -53,14 +53,14 @@ trait AssertGetterSetterTrait
         //Assert default values are correct
         self::assertSame(
             $default,
-            $object->$getter(),
+            $object->{$getter}(),
             'Object getter (' . $getter . ') did not return the correct default value.'
         );
 
         if ($setter !== null) {
             //Assert setter exists
             self::assertTrue(
-                method_exists($object, $setter),
+                \method_exists($object, $setter),
                 'Object does not contain the specified setter method "' . $setter . '".'
             );
 
@@ -74,14 +74,14 @@ trait AssertGetterSetterTrait
             if ($chainable !== true) {
                 //Assert setter returns null (not chainable)
                 self::assertNull(
-                    $object->$setter($value),
+                    $object->{$setter}($value),
                     'Object setter (' . $setter . ') should not have a return.'
                 );
             } else {
                 //Assert setter is chainable
                 self::assertSame(
                     $object,
-                    $object->$setter($value),
+                    $object->{$setter}($value),
                     'Object setter (' . $setter . ') is not chainable.'
                 );
             }
@@ -89,7 +89,7 @@ trait AssertGetterSetterTrait
 
         if ($default !== null) {
             //Assert that getter returns the value or the manipulated return value
-            self::assertSame(7 == count(func_get_args()) ? $return : $value, $object->$getter());
+            self::assertSame(7 === \count(\func_get_args()) ? $return : $value, $object->{$getter}());
         }
     }
 
@@ -126,8 +126,8 @@ trait AssertGetterSetterTrait
     public static function arrayAssertionRunner($object, array $calls, $assertion): void
     {
         foreach ($calls as $call) {
-            array_unshift($call, $object);
-            call_user_func_array($assertion, $call);
+            \array_unshift($call, $object);
+            \call_user_func_array($assertion, $call);
         }
     }
 }

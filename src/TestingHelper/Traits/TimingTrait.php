@@ -18,11 +18,11 @@ trait TimingTrait
         $duration = 0;
 
         for ($a = 0; $a < $iterations; $a++) {
-            $start = microtime(true);
+            $start = \microtime(true);
 
             $callable();
 
-            $end = microtime(true);
+            $end = \microtime(true);
 
             $duration += ($end - $start);
         }

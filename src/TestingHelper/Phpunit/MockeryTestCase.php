@@ -7,6 +7,9 @@ use Mockery as Mock;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 abstract class MockeryTestCase extends TestCase
 {
     use MockeryPHPUnitIntegration;
@@ -29,7 +32,7 @@ abstract class MockeryTestCase extends TestCase
      *
      * @param bool $allow enable/disable to mock non existent methods
      */
-    protected function allowMockingNonExistentMethods($allow = false): void
+    protected function allowMockingNonExistentMethods(bool $allow = false): void
     {
         //Disable mocking of non existent methods.
         $config = Mock::getConfiguration();
@@ -40,12 +43,12 @@ abstract class MockeryTestCase extends TestCase
     /**
      * Get a mocked object.
      *
-     * @param array<int, mixed> $argv
+     * @param array<int, array> $argv
      *
      * @return \Mockery\MockInterface
      */
     protected function mock(...$argv): MockInterface
     {
-        return call_user_func_array([Mock::getContainer(), 'mock'], $argv);
+        return \call_user_func_array([Mock::getContainer(), 'mock'], $argv);
     }
 }

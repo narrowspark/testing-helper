@@ -2,27 +2,14 @@
 declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Tests\Middleware;
 
-use Http\Factory\Guzzle\ResponseFactory;
-use Http\Factory\Guzzle\ServerRequestFactory;
+use GuzzleHttp\Psr7\ServerRequest;
 use Narrowspark\TestingHelper\Middleware\CallableMiddleware;
 use Narrowspark\TestingHelper\Middleware\RequestHandlerMiddleware;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ResponseFactoryInterface;
 
 class CallableMiddlewareTest extends TestCase
 {
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage Class name don't implements [Interop\Http\Factory\ResponseFactoryInterface] interface; [Narrowspark\TestingHelper\Tests\Middleware\CallableMiddlewareTest] given.
-     */
-    public function testConstructorThrowErrorOnWrongResponseFactory(): void
-    {
-        new CallableMiddleware(
-            function (): void {
-            },
-            CallableMiddlewareTest::class
-        );
-    }
-
     /**
      * @expectedException \UnexpectedValueException
      * @expectedExceptionMessage The value returned must be "scalar" or an object with "__toString" method.
@@ -34,11 +21,11 @@ class CallableMiddlewareTest extends TestCase
                 return new class() {
                 };
             },
-            ResponseFactory::class
+            \Mockery::mock(ResponseFactoryInterface::class)
         );
 
         $middleware->process(
-            (new ServerRequestFactory())->createServerRequest('GET', '/'),
+            new ServerRequest('GET', '/'),
             new RequestHandlerMiddleware(function (): void {
             })
         );
@@ -57,7 +44,7 @@ class CallableMiddlewareTest extends TestCase
         );
 
         $middleware->process(
-            (new ServerRequestFactory())->createServerRequest('GET', '/'),
+            new ServerRequest('GET', '/'),
             new RequestHandlerMiddleware(function (): void {
             })
         );

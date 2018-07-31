@@ -18,10 +18,10 @@ trait TestHelperTrait
     public static function assertInArray($needle, array $haystack, string $message = ''): void
     {
         if ($message === '') {
-            $message = "Expected the array to contain the element '$needle'.";
+            $message = "Expected the array to contain the element '${needle}'.";
         }
 
-        self::assertTrue(in_array($needle, $haystack, true), $message);
+        self::assertTrue(\in_array($needle, $haystack, true), $message);
     }
 
     /**
@@ -36,10 +36,10 @@ trait TestHelperTrait
     public static function assertMethodExists(string $class, string $method, string $message = ''): void
     {
         if ($message === '') {
-            $message = "Expected the class '$class' to have method '$method'.";
+            $message = "Expected the class '${class}' to have method '${method}'.";
         }
 
-        self::assertTrue(method_exists($class, $method), $message);
+        self::assertTrue(\method_exists($class, $method), $message);
     }
 
     /**
@@ -56,13 +56,13 @@ trait TestHelperTrait
     public static function assertInJson(string $needle, array $haystack, string $message = ''): void
     {
         if ($message === '') {
-            $message = "Expected the array to contain the element '$needle'.";
+            $message = "Expected the array to contain the element '${needle}'.";
         }
 
-        $array = json_decode($needle, true);
+        $array = \json_decode($needle, true);
 
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new InvalidArgumentException("Invalid json provided: '$needle'.");
+        if (\json_last_error() !== \JSON_ERROR_NONE) {
+            throw new InvalidArgumentException("Invalid json provided: '${needle}'.");
         }
 
         self::assertArraySubset($haystack, $array, false, $message);

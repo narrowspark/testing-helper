@@ -20,7 +20,7 @@ trait DateAssertionTrait
             $expected = new DateTime($expected, $actual->getTimezone());
         }
 
-        self::assertInstanceOf(get_class($expected), $actual);
+        self::assertInstanceOf(\get_class($expected), $actual);
 
         self::assertSame($expected->getTimezone()->getName(), $actual->getTimezone()->getName());
         self::assertSame($expected->format('Y-m-d H:i:s'), $actual->format('Y-m-d H:i:s'));
@@ -40,7 +40,7 @@ trait DateAssertionTrait
             $expected = new DateTime($expected, $actual->getTimezone());
         }
 
-        self::assertInstanceOf(get_class($expected), $actual);
+        self::assertInstanceOf(\get_class($expected), $actual);
 
         self::assertNotSame($expected, $actual);
     }

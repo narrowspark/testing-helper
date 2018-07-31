@@ -2,11 +2,12 @@
 declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Tests\Middleware;
 
-use Http\Factory\Guzzle\ResponseFactory;
-use Http\Factory\Guzzle\ServerRequestFactory;
+use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\ServerRequest;
 use Narrowspark\TestingHelper\Middleware\CallableMiddleware;
 use Narrowspark\TestingHelper\Middleware\Dispatcher;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
@@ -18,13 +19,34 @@ class DispatcherTest extends TestCase
     private $serverRequest;
 
     /**
+     * @var \Psr\Http\Message\ResponseFactoryInterface
+     */
+    private $responseFactory;
+
+    /**
      * {@inheritdoc}
      */
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->serverRequest = (new ServerRequestFactory())->createServerRequest('GET', '/');
+        $this->serverRequest = new ServerRequest('GET', '/');
+        $this->responseFactory = new class () implements ResponseFactoryInterface {
+            /**
+             * Create a new response.
+             *
+             * @param int $code HTTP status code; defaults to 200
+             * @param string $reasonPhrase Reason phrase to associate with status code
+             *     in generated response; if none is provided implementations MAY use
+             *     the defaults as suggested in the HTTP specification.
+             *
+             * @return ResponseInterface
+             */
+            public function createResponse(int $code = 200, string $reasonPhrase = ''): ResponseInterface
+            {
+                return (new Response($code))->withStatus($code, $reasonPhrase);
+            }
+        };
     }
 
     /**
@@ -56,7 +78,7 @@ class DispatcherTest extends TestCase
                 function (): void {
                     echo '1';
                 },
-                ResponseFactory::class
+                $this->responseFactory
             ),
         ]);
 
@@ -75,7 +97,7 @@ class DispatcherTest extends TestCase
 
                     return $handler->handle($request);
                 },
-                ResponseFactory::class
+                $this->responseFactory
             ),
             new CallableMiddleware(
                 function ($request, RequestHandlerInterface $handler) {
@@ -83,13 +105,13 @@ class DispatcherTest extends TestCase
 
                     return $handler->handle($request);
                 },
-                ResponseFactory::class
+                $this->responseFactory
             ),
             new CallableMiddleware(
                 function (): void {
                     echo 1;
                 },
-                ResponseFactory::class
+                $this->responseFactory
             ),
         ]);
 
@@ -100,7 +122,7 @@ class DispatcherTest extends TestCase
 
                     return $handler->handle($request);
                 },
-                ResponseFactory::class
+                $this->responseFactory
             ),
             new CallableMiddleware(
                 function ($request, RequestHandlerInterface $handler) {
@@ -108,7 +130,7 @@ class DispatcherTest extends TestCase
 
                     return $handler->handle($request);
                 },
-                ResponseFactory::class
+                $this->responseFactory
             ),
             $dispatcher1,
         ]);
@@ -120,7 +142,7 @@ class DispatcherTest extends TestCase
 
                     return $handler->handle($request);
                 },
-                ResponseFactory::class
+                $this->responseFactory
             ),
             new CallableMiddleware(
                 function ($request, RequestHandlerInterface $handler) {
@@ -128,7 +150,7 @@ class DispatcherTest extends TestCase
 
                     return $handler->handle($request);
                 },
-                ResponseFactory::class
+                $this->responseFactory
             ),
             $dispatcher2,
         ]);

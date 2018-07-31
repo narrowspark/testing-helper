@@ -21,7 +21,7 @@ class Dispatcher implements MiddlewareInterface
     private $delegate;
 
     /**
-     * @param array $stack middleware stack (with at least one middleware component)
+     * @param \Psr\Http\Server\MiddlewareInterface[] $stack middleware stack (with at least one middleware component)
      */
     public function __construct(array $stack)
     {

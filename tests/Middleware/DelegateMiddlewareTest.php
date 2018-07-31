@@ -2,10 +2,10 @@
 declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Tests\Middleware;
 
+use GuzzleHttp\Psr7\ServerRequest;
 use Narrowspark\TestingHelper\Middleware\RequestHandlerMiddleware;
 use Narrowspark\TestingHelper\Phpunit\MockeryTestCase;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
 
 class DelegateMiddlewareTest extends MockeryTestCase
 {
@@ -17,7 +17,7 @@ class DelegateMiddlewareTest extends MockeryTestCase
 
         self::assertInstanceOf(
             ResponseInterface::class,
-            $middleware->handle($this->mock(ServerRequestInterface::class))
+            $middleware->handle(new ServerRequest('GET', '/'))
         );
     }
 }

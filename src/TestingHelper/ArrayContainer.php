@@ -6,24 +6,40 @@ use Psr\Container\ContainerInterface;
 
 class ArrayContainer implements ContainerInterface
 {
-    private $entries = [];
+    /**
+     * @var array
+     */
+    private $entries;
 
-    public function __construct(array $entries = [])
+    /**
+     * @param mixed[] $entries
+     */
+    public function __construct(array $entries)
     {
         $this->entries = $entries;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function get($id)
     {
         return $this->entries[$id];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function has($id): bool
     {
-        return array_key_exists($id, $this->entries);
+        return \array_key_exists($id, $this->entries);
     }
 
-    public function set($id, $value): void
+    /**
+     * @param string $id
+     * @param mixed  $value
+     */
+    public function set(string $id, $value): void
     {
         $this->entries[$id] = $value;
     }

@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Middleware;
 
-use Interop\Http\Factory\ResponseFactoryInterface;
+use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -21,35 +21,22 @@ class CallableMiddleware implements MiddlewareInterface
     /**
      * A response factory class name.
      *
-     * @var null|\Interop\Http\Factory\ResponseFactoryInterface
+     * @var null|\Psr\Http\Message\ResponseFactoryInterface
      */
-    private $responseFactoryClassName;
+    private $responseFactory;
 
     /**
      * Create a new CallableMiddleware instance.
      *
-     * @param callable $handler
-     * @param string   $responseFactoryClassName
+     * @param callable                                   $handler
+     * @param \Psr\Http\Message\ResponseFactoryInterface $responseFactory
      *
      * @throws \RuntimeException
      */
-    public function __construct(callable $handler, string $responseFactoryClassName = null)
+    public function __construct(callable $handler, ResponseFactoryInterface $responseFactory = null)
     {
-        $this->handler  = $handler;
-
-        if ($responseFactoryClassName !== null) {
-            $interfaces = \class_implements($responseFactoryClassName);
-
-            if (! \array_key_exists(ResponseFactoryInterface::class, $interfaces)) {
-                throw new RuntimeException(\sprintf(
-                    'Class name don\'t implements [%s] interface; [%s] given.',
-                    ResponseFactoryInterface::class,
-                    $responseFactoryClassName
-                ));
-            }
-
-            $this->responseFactoryClassName = new $responseFactoryClassName();
-        }
+        $this->handler         = $handler;
+        $this->responseFactory = $responseFactory;
     }
 
     /**
@@ -63,17 +50,17 @@ class CallableMiddleware implements MiddlewareInterface
     /**
      * Execute the callable.
      *
-     * @param callable $callable
-     * @param array    $arguments
+     * @param callable|\Closure $callable
+     * @param mixed[]           $arguments
      *
      * @throws \Throwable
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    private function execute($callable, array $arguments = []): ResponseInterface
+    private function execute(callable $callable, array $arguments = []): ResponseInterface
     {
-        ob_start();
-        $level = ob_get_level();
+        \ob_start();
+        $level = \ob_get_level();
 
         try {
             $return = \call_user_func_array($callable, $arguments);
@@ -86,7 +73,7 @@ class CallableMiddleware implements MiddlewareInterface
                 \is_scalar($return) ||
                 (\is_object($return) && \method_exists($return, '__toString'))
             ) {
-                $instance = $this->responseFactoryClassName;
+                $instance = $this->responseFactory;
 
                 if ($instance === null) {
                     throw new RuntimeException('No ResponseFactory class found.');
@@ -106,7 +93,7 @@ class CallableMiddleware implements MiddlewareInterface
             $body = $response->getBody();
 
             if ($return !== '' && $body->isWritable()) {
-                $body->write($return);
+                $body->write((string) $return);
             }
 
             return $response;

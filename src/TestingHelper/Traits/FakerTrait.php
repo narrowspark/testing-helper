@@ -19,10 +19,10 @@ trait FakerTrait
      */
     public static function getFaker(string $locale = 'en_US', array $providers = []): Generator
     {
-        if (! array_key_exists($locale, self::$fakers)) {
+        if (! \array_key_exists($locale, self::$fakers)) {
             $faker = Factory::create();
 
-            $providers = array_filter($providers);
+            $providers = \array_filter($providers);
 
             if (! empty($providers)) {
                 foreach ($providers as $provider) {
