@@ -8,4 +8,5 @@ includes:
 
 parameters:
     ignoreErrors:
-        - '#In method \"Narrowspark\\TestingHelper\\Phpunit\\MockeryTestCase::mock\"\, parameter \$argv can be type-hinted to \"array\"#'
+        - '#In method \"Narrowspark\\TestingHelper\\Phpunit\\MockeryTestCase::mock\"\, parameter \$args can be type-hinted to \"array\"#'
+        - '#In method \"Narrowspark\\TestingHelper\\Phpunit\\MockeryTestCase::spy\"\, parameter \$args can be type-hinted to \"array\"#'

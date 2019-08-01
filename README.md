@@ -21,11 +21,11 @@ Usage
 -------------
 
 ``` php
-use Narrowspark\TestingHelper\Traits\TestHelperTrait;
+use Narrowspark\TestingHelper\Traits\AssertArrayTrait;
 
 class ModelTest extends \PHPUnit_Framework_TestCase
 {
-    use TestHelperTrait;
+    use AssertArrayTrait;
 
     // Now you can do something like this.
     public function testIfArrayContainIrix()
@@ -33,6 +33,14 @@ class ModelTest extends \PHPUnit_Framework_TestCase
         $haystack = ['Mac', 'NT', 'Irix', 'Linux'];
 
         self::assertInArray('Irix', $haystack);
+    }
+
+    // or
+    public function testAssertArraySubsetThrowsExceptionForInvalidSubset(): void
+    {
+        $this->expectException(ExpectationFailedException::class);
+
+        $this->assertArraySubset([6, 7], [1, 2, 3, 4, 5, 6]);
     }
 }
 ```

@@ -16,7 +16,7 @@ trait FakerTrait
      *
      * @return \Faker\Generator
      */
-    public static function getFaker(string $locale = 'en_US'): Generator
+    public function getFaker(string $locale = 'en_US'): Generator
     {
         if (! \array_key_exists($locale, self::$fakers)) {
             $faker = Factory::create();

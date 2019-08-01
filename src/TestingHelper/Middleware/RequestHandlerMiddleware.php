@@ -6,11 +6,9 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class RequestHandlerMiddleware implements RequestHandlerInterface
+final class RequestHandlerMiddleware implements RequestHandlerInterface
 {
-    /**
-     * @var callable
-     */
+    /** @var callable */
     private $callback;
 
     /**

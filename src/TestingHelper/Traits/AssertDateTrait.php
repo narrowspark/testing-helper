@@ -4,7 +4,7 @@ namespace Narrowspark\TestingHelper\Traits;
 
 use DateTime;
 
-trait DateAssertionTrait
+trait AssertDateTrait
 {
     /**
      * Compares two dates for equality.
@@ -21,7 +21,6 @@ trait DateAssertionTrait
         }
 
         self::assertInstanceOf(\get_class($expected), $actual);
-
         self::assertSame($expected->getTimezone()->getName(), $actual->getTimezone()->getName());
         self::assertSame($expected->format('Y-m-d H:i:s'), $actual->format('Y-m-d H:i:s'));
     }
@@ -41,7 +40,6 @@ trait DateAssertionTrait
         }
 
         self::assertInstanceOf(\get_class($expected), $actual);
-
         self::assertNotSame($expected, $actual);
     }
 }

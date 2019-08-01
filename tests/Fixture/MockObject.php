@@ -25,6 +25,22 @@ class MockObject
     }
 
     /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getChainable()
+    {
+        return $this->chainable;
+    }
+
+    /**
      * @param mixed $chainable
      *
      * @return $this
@@ -39,9 +55,25 @@ class MockObject
     /**
      * @return mixed
      */
-    public function getChainable()
+    public function getNonChainable()
     {
-        return $this->chainable;
+        return $this->nonChainable;
+    }
+
+    /**
+     * @param mixed $nonChainable
+     */
+    public function setNonChainable($nonChainable): void
+    {
+        $this->nonChainable = $nonChainable;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreated(): DateTime
+    {
+        return $this->created;
     }
 
     /**
@@ -57,35 +89,11 @@ class MockObject
     }
 
     /**
-     * @return \DateTime
-     */
-    public function getCreated(): DateTime
-    {
-        return $this->created;
-    }
-
-    /**
      * @return mixed
      */
-    public function getId()
+    public function getManipulated()
     {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $nonChainable
-     */
-    public function setNonChainable($nonChainable): void
-    {
-        $this->nonChainable = $nonChainable;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNonChainable()
-    {
-        return $this->nonChainable;
+        return $this->manipulated;
     }
 
     /**
@@ -98,13 +106,5 @@ class MockObject
         $this->manipulated = \mb_strtoupper($manipulated);
 
         return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getManipulated()
-    {
-        return $this->manipulated;
     }
 }

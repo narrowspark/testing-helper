@@ -4,12 +4,10 @@ namespace Narrowspark\TestingHelper\Phpunit;
 
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery as Mock;
+use Mockery\ClosureWrapper;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @internal
- */
 abstract class MockeryTestCase extends TestCase
 {
     use MockeryPHPUnitIntegration;
@@ -43,12 +41,28 @@ abstract class MockeryTestCase extends TestCase
     /**
      * Get a mocked object.
      *
-     * @param array<int, array> $argv
+     * @param array<int, array> $args
      *
      * @return \Mockery\MockInterface
      */
-    protected function mock(...$argv): MockInterface
+    protected function mock(...$args): MockInterface
     {
-        return \call_user_func_array([Mock::getContainer(), 'mock'], $argv);
+        return \call_user_func_array([Mock::getContainer(), 'mock'], $args);
+    }
+
+    /**
+     * Get a spy object.
+     *
+     * @param array<int, array|\Closure> $args
+     *
+     * @return \Mockery\MockInterface
+     */
+    protected function spy(...$args): MockInterface
+    {
+        if (count($args) !== 0 && $args[0] instanceof \Closure) {
+            $args[0] = new ClosureWrapper($args[0]);
+        }
+
+        return \call_user_func_array([Mock::getContainer(), 'mock'], $args)->shouldIgnoreMissing();
     }
 }

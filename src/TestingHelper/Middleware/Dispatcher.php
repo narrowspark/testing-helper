@@ -8,16 +8,12 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class Dispatcher implements MiddlewareInterface
+final class Dispatcher implements MiddlewareInterface
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     private $stack;
 
-    /**
-     * @var null|\Psr\Http\Server\RequestHandlerInterface
-     */
+    /** @var null|\Psr\Http\Server\RequestHandlerInterface */
     private $delegate;
 
     /**
@@ -77,7 +73,7 @@ class Dispatcher implements MiddlewareInterface
             return $this->delegate;
         }
 
-        return new RequestHandlerMiddleware(function (): void {
+        return new RequestHandlerMiddleware(static function (): void {
             throw new LogicException('Unresolved request: middleware stack exhausted with no result.');
         });
     }

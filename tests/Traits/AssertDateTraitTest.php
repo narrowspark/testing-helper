@@ -3,21 +3,21 @@ declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Tests\Traits;
 
 use DateTime;
-use Narrowspark\TestingHelper\Traits\DateAssertionTrait;
+use Narrowspark\TestingHelper\Traits\AssertDateTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
  */
-final class DateAssertionTraitTest extends TestCase
+final class AssertDateTraitTest extends TestCase
 {
-    use DateAssertionTrait;
+    use AssertDateTrait;
 
     public function testAssertSameDate(): void
     {
         $actual = new DateTime('Wed, 13 Jan 2021 22:23:01 GMT');
 
-        self::assertSameDate(
+        $this->assertSameDate(
             'Wed, 13 Jan 2021 22:23:01 GMT',
             $actual
         );
@@ -27,7 +27,7 @@ final class DateAssertionTraitTest extends TestCase
     {
         $actual = new DateTime('Wed, 13 Jan 2021 22:23:01 GMT');
 
-        self::assertNotSameDate(
+        $this->assertNotSameDate(
             'Wed, 13 Jan 2001 22:23:01 GMT',
             $actual
         );
