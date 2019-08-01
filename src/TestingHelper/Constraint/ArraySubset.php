@@ -23,7 +23,7 @@ final class ArraySubset extends Constraint
 {
     use ToArrayTrait;
 
-    /** @var iterable|mixed[] */
+    /** @var mixed[] */
     private $subset;
 
     /** @var bool */
@@ -49,9 +49,9 @@ final class ArraySubset extends Constraint
      * a boolean value instead: true in case of success, false in case of a
      * failure.
      *
-     * @param ArrayAccess|mixed[] $other
-     * @param string              $description
-     * @param bool                $returnResult
+     * @param mixed  $other
+     * @param string $description
+     * @param bool   $returnResult
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException

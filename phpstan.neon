@@ -8,4 +8,8 @@ includes:
 
 parameters:
     ignoreErrors:
-        - '#In method \"Narrowspark\\TestingHelper\\Phpunit\\MockeryTestCase::mock\"\, parameter \$argv can be type-hinted to \"array\"#'
+        - '#In method \"Narrowspark\\TestingHelper\\Phpunit\\MockeryTestCase::mock\"\, parameter \$args can be type-hinted to \"array\"#'
+        - '#In method \"Narrowspark\\TestingHelper\\Phpunit\\MockeryTestCase::spy\"\, parameter \$args can be type-hinted to \"array\"#'
+        - '#In method \"Narrowspark\\TestingHelper\\Constraint\\UsesTraits::toArray\"\, return type is \"array\".#'
+        - '#In method \"Narrowspark\\TestingHelper\\Constraint\\ExtendsOrImplements::toArray\"\, return type is \"array\".#'
+        - '#In method \"Narrowspark\\TestingHelper\\Constraint\\ArraySubset::toArray\"\, return type is \"array\".#'

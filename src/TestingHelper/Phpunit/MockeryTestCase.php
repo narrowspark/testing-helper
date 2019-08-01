@@ -53,13 +53,13 @@ abstract class MockeryTestCase extends TestCase
     /**
      * Get a spy object.
      *
-     * @param array<int, array> $args
+     * @param array<int, array|\Closure> $args
      *
      * @return \Mockery\MockInterface
      */
     protected function spy(...$args): MockInterface
     {
-        if (count($args) && $args[0] instanceof \Closure) {
+        if (count($args) !== 0 && $args[0] instanceof \Closure) {
             $args[0] = new ClosureWrapper($args[0]);
         }
 

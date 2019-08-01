@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Constraint;
 
+use Narrowspark\TestingHelper\Constraint\Traits\AdditionalFailureDescriptionTrait;
 use Narrowspark\TestingHelper\Constraint\Traits\ToArrayTrait;
 use PHPUnit\Framework\Constraint\Constraint;
 
@@ -11,6 +12,7 @@ use PHPUnit\Framework\Constraint\Constraint;
 final class UsesTraits extends Constraint
 {
     use ToArrayTrait;
+    use AdditionalFailureDescriptionTrait;
 
     /**
      * The traits that must be used.
@@ -58,7 +60,7 @@ final class UsesTraits extends Constraint
      * Returns true if and only if all traits specified in {@link $expectedTraits} are used by
      * the tested object or class.
      *
-     * @param object|\ReflectionClass|string $other FQCN or an object
+     * @param mixed $other FQCN or an object
      *
      * @return bool
      *
@@ -78,6 +80,9 @@ final class UsesTraits extends Constraint
         return $success;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function failureDescription($other): string
     {
         if ($other instanceof \ReflectionClass) {
@@ -89,16 +94,5 @@ final class UsesTraits extends Constraint
         }
 
         return $name . ' ' . $this->toString();
-    }
-
-    protected function additionalFailureDescription($other): string
-    {
-        $traits = '';
-
-        foreach ($this->result as $trait => $valid) {
-            $traits .= \sprintf("\n %s %s", $valid ? '+' : '-', $trait);
-        }
-
-        return $traits;
     }
 }

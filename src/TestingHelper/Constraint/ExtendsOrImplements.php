@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Constraint;
 
+use Narrowspark\TestingHelper\Constraint\Traits\AdditionalFailureDescriptionTrait;
 use Narrowspark\TestingHelper\Constraint\Traits\ToArrayTrait;
 use PHPUnit\Framework\Constraint\Constraint;
 
@@ -11,6 +12,7 @@ use PHPUnit\Framework\Constraint\Constraint;
 final class ExtendsOrImplements extends Constraint
 {
     use ToArrayTrait;
+    use AdditionalFailureDescriptionTrait;
 
     /**
      * The FQCN of the classes and interfaces which the tested object
@@ -59,7 +61,9 @@ final class ExtendsOrImplements extends Constraint
      * Returns true, if and only if the object extends or implements ALL the classes and interfaces
      * provided with {@link $parentsAndInterfaces}
      *
-     * @param object|\ReflectionClass|string $other
+     * @param mixed $other
+     *
+     * @throws \ReflectionException
      *
      * @return bool
      */
@@ -82,6 +86,9 @@ final class ExtendsOrImplements extends Constraint
         return $success;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function failureDescription($other): string
     {
         if ($other instanceof \ReflectionClass) {
@@ -93,16 +100,5 @@ final class ExtendsOrImplements extends Constraint
         }
 
         return $name . ' ' . $this->toString();
-    }
-
-    protected function additionalFailureDescription($other): string
-    {
-        $info = '';
-
-        foreach ($this->result as $fqcn => $valid) {
-            $info .= \sprintf("\n %s %s", $valid ? '+' : '-', $fqcn);
-        }
-
-        return $info;
     }
 }

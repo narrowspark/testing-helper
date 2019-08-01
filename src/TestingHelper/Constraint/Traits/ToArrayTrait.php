@@ -3,12 +3,13 @@ declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Constraint\Traits;
 
 use ArrayObject;
-use Traversable;
 
 trait ToArrayTrait
 {
     /**
-     * @param iterable|mixed[] $other
+     * Transform iterables to array.
+     *
+     * @param \ArrayObject|iterable|mixed[]|\Traversable $other
      *
      * @return mixed[]
      */
@@ -22,10 +23,6 @@ trait ToArrayTrait
             return $other->getArrayCopy();
         }
 
-        if ($other instanceof Traversable) {
-            return \iterator_to_array($other);
-        }
-        // Keep BC even if we know that array would not be the expected one
-        return (array) $other;
+        return \iterator_to_array($other);
     }
 }
