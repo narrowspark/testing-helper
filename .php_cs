@@ -11,7 +11,11 @@ $config->getFinder()
     ->exclude('vendor')
     ->name('*.php')
     ->ignoreDotFiles(true)
-    ->ignoreVCS(true);
+    ->ignoreVCS(true)
+    ->notPath('src/TestingHelper/Constraint/ArraySubset.php')
+    ->notPath('src/TestingHelper/Phpunit/MockeryTestCase.php')
+    ->notPath('tests/Fixture/FooObject.php')
+    ->notPath('tests/Fixture/MockObject.php');
 
 $cacheDir = getenv('TRAVIS') ? getenv('HOME') . '/.php-cs-fixer' : __DIR__;
 

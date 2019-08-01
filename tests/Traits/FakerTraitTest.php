@@ -14,25 +14,25 @@ final class FakerTraitTest extends TestCase
 
     public function testGetFaker(): void
     {
-        $faker = self::getFaker();
+        $faker = $this->getFaker();
 
-        static::assertInstanceOf('\Faker\Generator', $faker);
+        $this->assertInstanceOf('\Faker\Generator', $faker);
     }
 
     public function testGetFakerReturnsFakerWithDefaultLocale(): void
     {
-        $faker = self::getFaker('en_US');
+        $faker = $this->getFaker('en_US');
 
-        static::assertInstanceOf('\Faker\Generator', $faker);
-        static::assertSame($faker, self::getFaker());
+        $this->assertInstanceOf('\Faker\Generator', $faker);
+        $this->assertSame($faker, $this->getFaker());
     }
 
     public function testGetFakerReturnsDifferentFakerForDifferentLocale(): void
     {
-        $faker = self::getFaker('en_US');
+        $faker = $this->getFaker('en_US');
 
-        static::assertInstanceOf('Faker\Generator', $faker);
-        static::assertNotSame($faker, self::getFaker('de_DE'));
+        $this->assertInstanceOf('Faker\Generator', $faker);
+        $this->assertNotSame($faker, $this->getFaker('de_DE'));
     }
 
     /**
@@ -42,10 +42,10 @@ final class FakerTraitTest extends TestCase
      */
     public function testGetFakerReturnsTheSameInstanceForALocale($locale): void
     {
-        $faker = self::getFaker($locale);
+        $faker = $this->getFaker($locale);
 
-        static::assertInstanceOf('Faker\Generator', $faker);
-        static::assertSame($faker, self::getFaker($locale));
+        $this->assertInstanceOf('Faker\Generator', $faker);
+        $this->assertSame($faker, $this->getFaker($locale));
     }
 
     /**

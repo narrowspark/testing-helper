@@ -14,19 +14,19 @@ final class ArrayContainerTest extends TestCase
     {
         $container = new ArrayContainer(['bar' => 'foo']);
 
-        static::assertSame('foo', $container->get('bar'));
-        static::assertTrue($container->has('bar'));
+        $this->assertSame('foo', $container->get('bar'));
+        $this->assertTrue($container->has('bar'));
 
         $container->set('baz', 'bar');
 
-        static::assertSame('bar', $container->get('baz'));
-        static::assertTrue($container->has('baz'));
+        $this->assertSame('bar', $container->get('baz'));
+        $this->assertTrue($container->has('baz'));
     }
 
     public function testCheckIfContainerHasAInterface(): void
     {
         $container = new ArrayContainer(['bar' => 'foo']);
 
-        static::assertInstanceOf('\Psr\Container\ContainerInterface', $container);
+        $this->assertInstanceOf('\Psr\Container\ContainerInterface', $container);
     }
 }

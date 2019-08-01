@@ -23,7 +23,7 @@ final class AssertGetterSetterTraitTest extends TestCase
 
     public function testGetterOnly(): void
     {
-        self::assertGetterSetter(
+        $this->assertGetterSetter(
             $this->object,
             'getId'
         );
@@ -31,7 +31,7 @@ final class AssertGetterSetterTraitTest extends TestCase
 
     public function testGetterAndSetterChainable(): void
     {
-        self::assertGetterSetter(
+        $this->assertGetterSetter(
             $this->object,
             'getChainable',
             null,
@@ -42,7 +42,7 @@ final class AssertGetterSetterTraitTest extends TestCase
 
     public function testGetterAndSetterNonChainableAsNonChainable(): void
     {
-        self::assertGetterSetter(
+        $this->assertGetterSetter(
             $this->object,
             'getNonChainable',
             null,
@@ -54,7 +54,7 @@ final class AssertGetterSetterTraitTest extends TestCase
 
     public function testGetterAndSetterManipulated(): void
     {
-        self::assertGetterSetter(
+        $this->assertGetterSetter(
             $this->object,
             'getManipulated',
             null,
@@ -71,7 +71,7 @@ final class AssertGetterSetterTraitTest extends TestCase
 
         $this->setPropertyDefaultValue($this->object, 'created', $dateTime);
 
-        self::assertGetterSetter(
+        $this->assertGetterSetter(
             $this->object,
             'getCreated',
             $dateTime,
@@ -104,7 +104,7 @@ final class AssertGetterSetterTraitTest extends TestCase
 
         $dateTime = new DateTime();
 
-        self::assertGetterSetter(
+        $this->assertGetterSetter(
             $this->object,
             'getCreated',
             null,
@@ -119,7 +119,7 @@ final class AssertGetterSetterTraitTest extends TestCase
         $this->expectException(\PHPUnit\Framework\ExpectationFailedException::class);
         $this->expectExceptionMessage('Object does not contain the specified getter method "getNonExistent".');
 
-        self::assertGetterSetter(
+        $this->assertGetterSetter(
             $this->object,
             'getNonExistent'
         );
@@ -130,7 +130,7 @@ final class AssertGetterSetterTraitTest extends TestCase
         $this->expectException(\PHPUnit\Framework\ExpectationFailedException::class);
         $this->expectExceptionMessage('Object does not contain the specified setter method "setId".');
 
-        self::assertGetterSetter(
+        $this->assertGetterSetter(
             $this->object,
             'getId',
             null,
@@ -143,7 +143,7 @@ final class AssertGetterSetterTraitTest extends TestCase
         $this->expectException(\PHPUnit\Framework\ExpectationFailedException::class);
         $this->expectExceptionMessage('Object setter (setNonChainable) is not chainable.');
 
-        self::assertGetterSetter(
+        $this->assertGetterSetter(
             $this->object,
             'getNonChainable',
             null,

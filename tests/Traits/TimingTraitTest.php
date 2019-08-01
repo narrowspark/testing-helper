@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Tests\Traits;
 
-use Narrowspark\TestingHelper\Traits\TimingTrait;
+use Narrowspark\TestingHelper\Traits\AssertTimingTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -10,17 +10,17 @@ use PHPUnit\Framework\TestCase;
  */
 final class TimingTraitTest extends TestCase
 {
-    use TimingTrait;
+    use AssertTimingTrait;
 
     public function testAssertTiming(): void
     {
-        self::assertTiming(45, function () {
+        $this->assertTiming(45, static function () {
             return 'yes!';
         });
 
-        self::assertTiming(
+        $this->assertTiming(
             45,
-            function () {
+            static function () {
                 return 'yes!';
             },
             10

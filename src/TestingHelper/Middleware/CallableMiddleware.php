@@ -11,11 +11,9 @@ use RuntimeException;
 use Throwable;
 use UnexpectedValueException;
 
-class CallableMiddleware implements MiddlewareInterface
+final class CallableMiddleware implements MiddlewareInterface
 {
-    /**
-     * @var callable
-     */
+    /** @var callable */
     private $handler;
 
     /**
@@ -69,9 +67,9 @@ class CallableMiddleware implements MiddlewareInterface
                 $response = $return;
                 $return   = '';
             } elseif (
-                $return === null ||
-                \is_scalar($return) ||
-                (\is_object($return) && \method_exists($return, '__toString'))
+                $return === null
+                || \is_scalar($return)
+                || (\is_object($return) && \method_exists($return, '__toString'))
             ) {
                 $instance = $this->responseFactory;
 

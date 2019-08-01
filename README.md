@@ -1,7 +1,7 @@
 <h1 align="center">Narrowspark Testing Helper</h1>
 <p align="center">
     <a href="https://github.com/narrowspark/testing-helper/releases"><img src="https://img.shields.io/packagist/v/narrowspark/testing-helper.svg?style=flat-square"></a>
-    <a href="https://php.net/"><img src="https://img.shields.io/badge/php-%5E7.1.0-8892BF.svg?style=flat-square"></a>
+    <a href="https://php.net/"><img src="https://img.shields.io/badge/php-%5E7.2.0-8892BF.svg?style=flat-square"></a>
     <a href="https://travis-ci.org/narrowspark/testing-helper"><img src="https://img.shields.io/travis/narrowspark/testing-helper/master.svg?style=flat-square"></a>
     <a href="https://codecov.io/gh/narrowspark/testing-helper"><img src="https://img.shields.io/codecov/c/github/narrowspark/testing-helper/master.svg?style=flat-square"></a>
     <a href="https://gitter.im/narrowspark/framework"><img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square"></a>
@@ -21,11 +21,11 @@ Usage
 -------------
 
 ``` php
-use Narrowspark\TestingHelper\Traits\TestHelperTrait;
+use Narrowspark\TestingHelper\Traits\AssertArrayTrait;
 
 class ModelTest extends \PHPUnit_Framework_TestCase
 {
-    use TestHelperTrait;
+    use AssertArrayTrait;
 
     // Now you can do something like this.
     public function testIfArrayContainIrix()
@@ -33,6 +33,14 @@ class ModelTest extends \PHPUnit_Framework_TestCase
         $haystack = ['Mac', 'NT', 'Irix', 'Linux'];
 
         self::assertInArray('Irix', $haystack);
+    }
+
+    // or
+    public function testAssertArraySubsetThrowsExceptionForInvalidSubset(): void
+    {
+        $this->expectException(ExpectationFailedException::class);
+
+        $this->assertArraySubset([6, 7], [1, 2, 3, 4, 5, 6]);
     }
 }
 ```

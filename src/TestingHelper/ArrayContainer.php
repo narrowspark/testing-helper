@@ -4,11 +4,9 @@ namespace Narrowspark\TestingHelper;
 
 use Psr\Container\ContainerInterface;
 
-class ArrayContainer implements ContainerInterface
+final class ArrayContainer implements ContainerInterface
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     private $entries;
 
     /**

@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Traits;
 
-trait TimingTrait
+trait AssertTimingTrait
 {
     /**
      * Assert run time of a callable.

@@ -13,17 +13,25 @@ final class MockeryTestCaseTest extends MockeryTestCase
 {
     public function testAllowMockingNonExistentMethods(): void
     {
-        static::assertFalse(Mock::getConfiguration()->mockingNonExistentMethodsAllowed());
+        $this->assertFalse(Mock::getConfiguration()->mockingNonExistentMethodsAllowed());
 
         $this->allowMockingNonExistentMethods(true);
 
-        static::assertTrue(Mock::getConfiguration()->mockingNonExistentMethodsAllowed());
+        $this->assertTrue(Mock::getConfiguration()->mockingNonExistentMethodsAllowed());
     }
 
     public function testMock(): void
     {
         $mocked = $this->mock(FooObject::class);
 
-        static::assertInstanceOf(\get_class($mocked), $mocked);
+        $this->assertInstanceOf(\get_class($mocked), $mocked);
+    }
+
+    public function testSpy(): void
+    {
+        $spy = $this->spy(FooObject::class);
+        $spy->getPrivateProperty();
+
+        $spy->shouldHaveReceived()->getPrivateProperty();
     }
 }

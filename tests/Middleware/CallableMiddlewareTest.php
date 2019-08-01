@@ -19,7 +19,7 @@ final class CallableMiddlewareTest extends TestCase
         $this->expectExceptionMessage('The value returned must be "scalar" or an object with "__toString" method.');
 
         $middleware = new CallableMiddleware(
-            function () {
+            static function () {
                 return new class() {
                 };
             },
@@ -28,7 +28,7 @@ final class CallableMiddlewareTest extends TestCase
 
         $middleware->process(
             new ServerRequest('GET', '/'),
-            new RequestHandlerMiddleware(function (): void {
+            new RequestHandlerMiddleware(static function (): void {
             })
         );
     }
@@ -39,14 +39,14 @@ final class CallableMiddlewareTest extends TestCase
         $this->expectExceptionMessage('No ResponseFactory class found.');
 
         $middleware = new CallableMiddleware(
-            function () {
+            static function () {
                 return '';
             }
         );
 
         $middleware->process(
             new ServerRequest('GET', '/'),
-            new RequestHandlerMiddleware(function (): void {
+            new RequestHandlerMiddleware(static function (): void {
             })
         );
     }
