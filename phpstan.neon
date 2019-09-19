@@ -15,3 +15,4 @@ parameters:
     ignoreErrors:
         # should be ignored
         - '#In method \"Narrowspark\\TestingHelper\\Phpunit\\MockeryTestCase#'
+        - '# Method Narrowspark\\TestingHelper\\Constraint\\ArraySubset::evaluate\(\) should return bool|void|null but return statement is missing#'

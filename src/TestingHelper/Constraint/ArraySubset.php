@@ -53,9 +53,9 @@ final class ArraySubset extends Constraint
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      *
-     * @return bool|null
+     * @return void|bool|null
      */
-    public function evaluate($other, string $description = '', bool $returnResult = false): ?bool
+    public function evaluate($other, string $description = '', bool $returnResult = false)
     {
         //type cast $other & $this->subset as an array to allow
         //support in standard array functions.
@@ -84,8 +84,6 @@ final class ArraySubset extends Constraint
         );
 
         $this->fail($arr, $description, $f);
-
-        return null;
     }
 
     /**

@@ -38,4 +38,16 @@ final class MockeryTestCaseTest extends MockeryTestCase
 
         $spy->shouldHaveReceived()->getPrivateProperty();
     }
+
+    public function testSpyWithClosure(): void
+    {
+        $spy = $this->spy(function($n) { return $n + 1;});
+
+        array_map($spy, [1, 2]); // [2, 3]
+
+        $spy->shouldHaveBeenCalled();
+        $spy->shouldHaveBeenCalled()->twice();
+        $spy->shouldHaveBeenCalled()->with(1)->once();
+        $spy->shouldHaveBeenCalled()->with(2)->once();
+    }
 }
