@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Narrowspark\TestingHelper\Traits;
 
 use ReflectionProperty;
@@ -31,11 +33,11 @@ trait AssertGetterSetterTrait
     public static function assertGetterSetter(
         $object,
         string $getter,
-        $default        = null,
-        string $setter  = null,
-        $value          = null,
+        $default = null,
+        string $setter = null,
+        $value = null,
         bool $chainable = true,
-        string $return  = null
+        string $return = null
     ): void {
         //Assert getter exists
         self::assertTrue(

@@ -41,7 +41,7 @@ abstract class MockeryTestCase extends TestCase
     /**
      * Get a mocked object.
      *
-     * @param array<int, array> $args
+     * @param mixed ...$args
      *
      * @return \Mockery\MockInterface
      */
@@ -53,7 +53,7 @@ abstract class MockeryTestCase extends TestCase
     /**
      * Get a spy object.
      *
-     * @param array<int, array|\Closure> $args
+     * @param mixed ...$args
      *
      * @return \Mockery\MockInterface
      */

@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Narrowspark\TestingHelper\Tests\Traits;
 
 use Narrowspark\TestingHelper\Constraint\ExtendsOrImplements;
@@ -12,6 +14,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
+ *
+ * @small
  */
 final class AssertObjectTraitTest extends TestCase
 {
@@ -55,21 +59,21 @@ final class AssertObjectTraitTest extends TestCase
 
             public static function assertThat($object, $constraint, $message = ''): void
             {
-                static::$object     = $object;
+                static::$object = $object;
                 static::$constraint = $constraint;
-                static::$message    = $message;
+                static::$message = $message;
             }
         };
 
         $usesTraitss = [];
-        $message     = 'test';
-        $object      = new \stdClass();
+        $message = 'test';
+        $object = new \stdClass();
 
         $target::assertUsesTraits($usesTraitss, $object, $message);
 
-        $this->assertSame($object, $target::$object);
-        $this->assertEquals($message, $target::$message);
-        $this->assertInstanceOf(UsesTraits::class, $target::$constraint);
+        self::assertSame($object, $target::$object);
+        self::assertEquals($message, $target::$message);
+        self::assertInstanceOf(UsesTraits::class, $target::$constraint);
     }
 
     public function testAssertMethodPassesCorrectValueOfTraits(): void
@@ -94,7 +98,7 @@ final class AssertObjectTraitTest extends TestCase
         $traits = ['class', 'trait'];
 
         $target->assertUsesTraits($traits, new \stdClass());
-        $this->assertEquals($traits, $target::$traits);
+        self::assertEquals($traits, $target::$traits);
     }
 
     public function testClassAndInterfaceAssertMethodCallsAssertThat(): void
@@ -110,20 +114,20 @@ final class AssertObjectTraitTest extends TestCase
 
             public static function assertThat($object, $constraint, $message = ''): void
             {
-                static::$object     = $object;
+                static::$object = $object;
                 static::$constraint = $constraint;
-                static::$message    = $message;
+                static::$message = $message;
             }
         };
 
         $inheritances = [];
-        $message      = 'test';
-        $object       = new \stdClass();
+        $message = 'test';
+        $object = new \stdClass();
 
         $target::assertInheritance($inheritances, $object, $message);
-        $this->assertSame($object, $target::$object);
-        $this->assertEquals($message, $target::$message);
-        $this->assertInstanceOf(ExtendsOrImplements::class, $target::$constraint);
+        self::assertSame($object, $target::$object);
+        self::assertEquals($message, $target::$message);
+        self::assertInstanceOf(ExtendsOrImplements::class, $target::$constraint);
     }
 
     public function testAssertMethodPassesCorrectValueOfInheritances(): void
@@ -148,6 +152,6 @@ final class AssertObjectTraitTest extends TestCase
         $inheritances = ['class', 'trait'];
 
         $target->assertInheritance($inheritances, new \stdClass());
-        $this->assertEquals($inheritances, $this->toArray($target::$inheritances));
+        self::assertEquals($inheritances, $this->toArray($target::$inheritances));
     }
 }

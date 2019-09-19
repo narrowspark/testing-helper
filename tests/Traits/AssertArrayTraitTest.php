@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Narrowspark\TestingHelper\Tests\Traits;
 
 use Narrowspark\TestingHelper\Traits\AssertArrayTrait;
@@ -9,6 +11,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
+ *
+ * @small
  */
 final class AssertArrayTraitTest extends TestCase
 {
@@ -34,32 +38,32 @@ final class AssertArrayTraitTest extends TestCase
     {
         $this->expectException(ExpectationFailedException::class);
 
-        $this->assertArraySubset(['bar' => 0], ['bar' => '0'], true);
+        self::assertArraySubset(['bar' => 0], ['bar' => '0'], true);
     }
 
     public function testAssertArraySubsetThrowsExceptionForInvalidSubset(): void
     {
         $this->expectException(ExpectationFailedException::class);
 
-        $this->assertArraySubset([6, 7], [1, 2, 3, 4, 5, 6]);
+        self::assertArraySubset([6, 7], [1, 2, 3, 4, 5, 6]);
     }
 
     public function testAssertArraySubsetThrowsExceptionForInvalidSubsetArgument(): void
     {
         $this->expectException(Exception::class);
 
-        $this->assertArraySubset('string', '');
+        self::assertArraySubset('string', '');
     }
 
     public function testAssertArraySubsetThrowsExceptionForInvalidArrayArgument(): void
     {
         $this->expectException(Exception::class);
 
-        $this->assertArraySubset([], '');
+        self::assertArraySubset([], '');
     }
 
     public function testAssertArraySubsetDoesNothingForValidScenario(): void
     {
-        $this->assertArraySubset([1, 2], [1, 2, 3]);
+        self::assertArraySubset([1, 2], [1, 2, 3]);
     }
 }

@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Narrowspark\TestingHelper\Tests\Traits;
 
 use Narrowspark\TestingHelper\Traits\AssertTimingTrait;
@@ -7,6 +9,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
+ *
+ * @small
  */
 final class TimingTraitTest extends TestCase
 {

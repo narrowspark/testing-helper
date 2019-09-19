@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Narrowspark\TestingHelper\Constraint;
 
 use Narrowspark\TestingHelper\Constraint\Traits\AdditionalFailureDescriptionTrait;
@@ -25,7 +27,7 @@ final class ExtendsOrImplements extends Constraint
     /**
      * Stores the result of each tested class|interface for internal use.
      *
-     * @var array
+     * @var bool[]
      */
     private $result = [];
 
@@ -61,7 +63,7 @@ final class ExtendsOrImplements extends Constraint
      * Returns true, if and only if the object extends or implements ALL the classes and interfaces
      * provided with {@link $parentsAndInterfaces}
      *
-     * @param mixed $other
+     * @param mixed|object|\ReflectionClass $other
      *
      * @throws \ReflectionException
      *
@@ -70,7 +72,7 @@ final class ExtendsOrImplements extends Constraint
     protected function matches($other): bool
     {
         $this->result = [];
-        $success      = true;
+        $success = true;
 
         if (\is_string($other)) {
             $other = new \ReflectionClass($other);
@@ -78,9 +80,9 @@ final class ExtendsOrImplements extends Constraint
         $isReflection = $other instanceof \ReflectionClass;
 
         foreach ($this->parentsAndInterfaces as $fqcn) {
-            $check               = $isReflection ? $other->isSubclassOf($fqcn) : $other instanceof $fqcn;
+            $check = $isReflection ? $other->isSubclassOf($fqcn) : $other instanceof $fqcn;
             $this->result[$fqcn] = $check;
-            $success             = $success && $check;
+            $success = $success && $check;
         }
 
         return $success;

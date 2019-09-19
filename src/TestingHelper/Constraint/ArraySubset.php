@@ -2,8 +2,6 @@
 declare(strict_types=1);
 namespace Narrowspark\TestingHelper\Constraint;
 
-use ArrayAccess;
-use ArrayObject;
 use Narrowspark\TestingHelper\Constraint\Traits\ToArrayTrait;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\IsEqual;
@@ -11,7 +9,6 @@ use PHPUnit\Framework\Constraint\IsIdentical;
 use PHPUnit\Framework\ExpectationFailedException;
 use SebastianBergmann\Comparator\ComparisonFailure;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
-use Traversable;
 
 /**
  * Constraint that asserts that the array it is evaluated for has a specified subset.
@@ -49,26 +46,26 @@ final class ArraySubset extends Constraint
      * a boolean value instead: true in case of success, false in case of a
      * failure.
      *
-     * @param mixed  $other
-     * @param string $description
-     * @param bool   $returnResult
+     * @param iterable|mixed[]|mixed $other
+     * @param string                 $description
+     * @param bool                   $returnResult
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
      *
-     * @return void|null|bool|mixed[]
+     * @return bool|null
      */
-    public function evaluate($other, string $description = '', bool $returnResult = false)
+    public function evaluate($other, string $description = '', bool $returnResult = false): ?bool
     {
         //type cast $other & $this->subset as an array to allow
         //support in standard array functions.
-        $other        = $this->toArray($other);
-        $patched      = \array_replace_recursive($other, $this->subset);
+        $arr     = $this->toArray($other);
+        $patched = \array_replace_recursive($arr, $this->subset);
 
         if ($this->strict) {
-            $result = (new IsIdentical($patched))->evaluate($other, '', true);
+            $result = (new IsIdentical($patched))->evaluate($arr, '', true);
         } else {
-            $result = (new IsEqual($patched))->evaluate($other, '', true);
+            $result = (new IsEqual($patched))->evaluate($arr, '', true);
         }
 
         if ($returnResult) {
@@ -81,12 +78,14 @@ final class ArraySubset extends Constraint
 
         $f = new ComparisonFailure(
             $patched,
-            $other,
+            $arr,
             \var_export($patched, true),
-            \var_export($other, true)
+            \var_export($arr, true)
         );
 
-        $this->fail($other, $description, $f);
+        $this->fail($arr, $description, $f);
+
+        return null;
     }
 
     /**

@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Narrowspark\TestingHelper\Tests\Unit\Constraint;
 
 use Narrowspark\TestingHelper\Constraint\UsesTraits;
@@ -8,6 +10,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
+ *
+ * @small
  */
 final class UsesTraitsTest extends TestCase
 {
@@ -15,14 +19,14 @@ final class UsesTraitsTest extends TestCase
     {
         $target = new UsesTraits(['one', 'two', 'three']);
 
-        $this->assertEquals(3, $target->count());
+        self::assertEquals(3, $target->count());
     }
 
     public function testToStringReturnsExpectedValue(): void
     {
         $target = new UsesTraits();
 
-        $this->assertEquals('uses required traits', $target->toString());
+        self::assertEquals('uses required traits', $target->toString());
     }
 
     public function testEvaluateReturnsTrueIfClassesAreImplemented(): void
@@ -33,7 +37,7 @@ final class UsesTraitsTest extends TestCase
 
         $target = new UsesTraits([AssertObjectTrait::class]);
 
-        $this->assertTrue($target->evaluate($subject, '', true));
+        self::assertTrue($target->evaluate($subject, '', true));
     }
 
     public function testEvaluateThrowsExceptionWithCorrectFailureDescription(): void
@@ -47,12 +51,12 @@ final class UsesTraitsTest extends TestCase
 
         try {
             $target->evaluate($subject);
-            $this->fail('Expected exception of type ' . \PHPUnit\Framework\ExpectationFailedException::class . ' but none was thrown.');
+            self::fail('Expected exception of type ' . \PHPUnit\Framework\ExpectationFailedException::class . ' but none was thrown.');
         } catch (\PHPUnit\Framework\ExpectationFailedException $e) {
             $message = $e->getMessage();
 
-            $this->assertStringContainsString('+ ' . AssertObjectTrait::class, $message);
-            $this->assertStringContainsString('- nonExistentTrait', $message);
+            self::assertStringContainsString('+ ' . AssertObjectTrait::class, $message);
+            self::assertStringContainsString('- nonExistentTrait', $message);
         }
     }
 
@@ -60,7 +64,7 @@ final class UsesTraitsTest extends TestCase
     {
         $subject = new class() {
         };
-        $class  = \get_class($subject);
+        $class = \get_class($subject);
         $target = new UsesTraits([AssertObjectTrait::class]);
 
         $this->expectException(\PHPUnit\Framework\Exception::class);
@@ -73,7 +77,7 @@ final class UsesTraitsTest extends TestCase
     {
         $subject = new class() extends \ArrayObject {
         };
-        $class  = \get_class($subject);
+        $class = \get_class($subject);
         $target = new UsesTraits([AssertObjectTrait::class]);
 
         $this->expectException(\PHPUnit\Framework\Exception::class);

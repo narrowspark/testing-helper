@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Narrowspark\TestingHelper\Tests\Unit\Constraint;
 
 use Narrowspark\TestingHelper\Constraint\ExtendsOrImplements;
@@ -8,6 +10,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
+ *
+ * @small
  */
 final class ExtendsOrImplementsTest extends TestCase
 {
@@ -15,14 +19,14 @@ final class ExtendsOrImplementsTest extends TestCase
     {
         $target = new ExtendsOrImplements(['one', 'two', 'three']);
 
-        $this->assertEquals(3, $target->count());
+        self::assertEquals(3, $target->count());
     }
 
     public function testToStringReturnsExpectedValue(): void
     {
         $target = new ExtendsOrImplements();
 
-        $this->assertEquals('extends or implements required classes and interfaces', $target->toString());
+        self::assertEquals('extends or implements required classes and interfaces', $target->toString());
     }
 
     public function testEvaluateReturnsTrueIfClassesAreImplemented(): void
@@ -32,7 +36,7 @@ final class ExtendsOrImplementsTest extends TestCase
 
         $target = new ExtendsOrImplements([\ArrayObject::class]);
 
-        $this->assertTrue($target->evaluate($subject, '', true));
+        self::assertTrue($target->evaluate($subject, '', true));
     }
 
     public function testEvaluateThrowsExceptionWithCorrectFailureDescription(): void
@@ -45,12 +49,12 @@ final class ExtendsOrImplementsTest extends TestCase
 
         try {
             $target->evaluate($subject);
-            $this->fail('Expected exception of type ' . ExpectationFailedException::class . ' but none was thrown.');
+            self::fail('Expected exception of type ' . ExpectationFailedException::class . ' but none was thrown.');
         } catch (ExpectationFailedException $e) {
             $message = $e->getMessage();
 
-            $this->assertStringContainsString('+ ' . \ArrayObject::class, $message);
-            $this->assertStringContainsString('- ' . \Exception::class, $message);
+            self::assertStringContainsString('+ ' . \ArrayObject::class, $message);
+            self::assertStringContainsString('- ' . \Exception::class, $message);
         }
     }
 
@@ -70,7 +74,7 @@ final class ExtendsOrImplementsTest extends TestCase
     {
         $subject = new class() extends \ArrayObject {
         };
-        $class  = \get_class($subject);
+        $class = \get_class($subject);
         $target = new ExtendsOrImplements([\Exception::class]);
 
         $this->expectException(\PHPUnit\Framework\Exception::class);

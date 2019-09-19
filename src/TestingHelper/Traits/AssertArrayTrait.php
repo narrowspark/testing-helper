@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Narrowspark\TestingHelper\Traits;
 
 use ArrayAccess;
@@ -25,7 +27,7 @@ trait AssertArrayTrait
         $subset,
         $array,
         bool $checkForObjectIdentity = false,
-        string $message              = ''
+        string $message = ''
     ): void {
         if (! (\is_array($subset) || $subset instanceof ArrayAccess)) {
             throw InvalidArgumentHelper::factory(
