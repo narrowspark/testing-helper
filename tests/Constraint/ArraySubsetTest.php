@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Narrowspark\TestingHelper\Tests\Unit\Constraint;
 
 use ArrayAccessible;
@@ -15,6 +17,8 @@ use Traversable;
 
 /**
  * @internal
+ *
+ * @small
  */
 final class ArraySubsetTest extends TestCase
 {
@@ -24,29 +28,29 @@ final class ArraySubsetTest extends TestCase
     public static function evaluateDataProvider(): array
     {
         return [
-            'loose array subset and array other'        => [
+            'loose array subset and array other' => [
                 'expected' => true,
-                'subset'   => ['bar' => 0],
-                'other'    => ['foo' => '', 'bar' => '0'],
-                'strict'   => false,
+                'subset' => ['bar' => 0],
+                'other' => ['foo' => '', 'bar' => '0'],
+                'strict' => false,
             ],
-            'strict array subset and array other'       => [
+            'strict array subset and array other' => [
                 'expected' => false,
-                'subset'   => ['bar' => 0],
-                'other'    => ['foo' => '', 'bar' => '0'],
-                'strict'   => true,
+                'subset' => ['bar' => 0],
+                'other' => ['foo' => '', 'bar' => '0'],
+                'strict' => true,
             ],
-            'loose array subset and ArrayObject other'  => [
+            'loose array subset and ArrayObject other' => [
                 'expected' => true,
-                'subset'   => ['bar' => 0],
-                'other'    => new ArrayObject(['foo' => '', 'bar' => '0']),
-                'strict'   => false,
+                'subset' => ['bar' => 0],
+                'other' => new ArrayObject(['foo' => '', 'bar' => '0']),
+                'strict' => false,
             ],
             'strict ArrayObject subset and array other' => [
                 'expected' => true,
-                'subset'   => new ArrayObject(['bar' => 0]),
-                'other'    => ['foo' => '', 'bar' => 0],
-                'strict'   => true,
+                'subset' => new ArrayObject(['bar' => 0]),
+                'other' => ['foo' => '', 'bar' => 0],
+                'strict' => true,
             ],
         ];
     }
@@ -65,7 +69,7 @@ final class ArraySubsetTest extends TestCase
     {
         $constraint = new ArraySubset($subset, $strict);
 
-        $this->assertSame($expected, $constraint->evaluate($other, '', true));
+        self::assertSame($expected, $constraint->evaluate($other, '', true));
     }
 
     public function testEvaluateWithArrayAccess(): void
@@ -74,7 +78,7 @@ final class ArraySubsetTest extends TestCase
 
         $constraint = new ArraySubset(['foo' => 'bar']);
 
-        $this->assertTrue($constraint->evaluate($arrayAccess, '', true));
+        self::assertTrue($constraint->evaluate($arrayAccess, '', true));
     }
 
     public function testEvaluateFailMessage(): void
@@ -83,13 +87,13 @@ final class ArraySubsetTest extends TestCase
 
         try {
             $constraint->evaluate(['baz' => 'bar'], '', false);
-            $this->fail(\sprintf('Expected %s to be thrown.', ExpectationFailedException::class));
+            self::fail(\sprintf('Expected %s to be thrown.', ExpectationFailedException::class));
         } catch (ExpectationFailedException $expectedException) {
             $comparisonFailure = $expectedException->getComparisonFailure();
 
-            $this->assertNotNull($comparisonFailure);
-            $this->assertStringContainsString("'foo' => 'bar'", $comparisonFailure->getExpectedAsString());
-            $this->assertStringContainsString("'baz' => 'bar'", $comparisonFailure->getActualAsString());
+            self::assertNotNull($comparisonFailure);
+            self::assertStringContainsString("'foo' => 'bar'", $comparisonFailure->getExpectedAsString());
+            self::assertStringContainsString("'baz' => 'bar'", $comparisonFailure->getActualAsString());
         }
     }
 
@@ -97,7 +101,7 @@ final class ArraySubsetTest extends TestCase
     {
         $reflection = new ReflectionClass(ArraySubset::class);
 
-        $this->assertTrue(
+        self::assertTrue(
             $reflection->implementsInterface(Countable::class),
             \sprintf(
                 'Failed to assert that ArraySubset implements "%s".',
@@ -110,7 +114,7 @@ final class ArraySubsetTest extends TestCase
     {
         $reflection = new ReflectionClass(ArraySubset::class);
 
-        $this->assertTrue(
+        self::assertTrue(
             $reflection->implementsInterface(SelfDescribing::class),
             \sprintf(
                 'Failed to assert that Array implements "%s".',

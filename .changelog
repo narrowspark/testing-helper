@@ -1,0 +1,13 @@
+<?php
+declare(strict_types=1);
+
+use ChangelogGenerator\ChangelogConfig;
+
+return [
+     new ChangelogConfig(
+        'narrowspark',
+        'testing-helper',
+        'v8.0.1',
+        ['Enhancement', 'Type: Bug', 'Type: BC Break']
+    )
+];

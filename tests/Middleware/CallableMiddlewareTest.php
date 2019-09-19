@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Narrowspark\TestingHelper\Tests\Middleware;
 
 use GuzzleHttp\Psr7\ServerRequest;
@@ -10,6 +12,8 @@ use Psr\Http\Message\ResponseFactoryInterface;
 
 /**
  * @internal
+ *
+ * @small
  */
 final class CallableMiddlewareTest extends TestCase
 {

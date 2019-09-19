@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Narrowspark\TestingHelper\Middleware;
 
 use Psr\Http\Message\ResponseFactoryInterface;
@@ -33,7 +35,7 @@ final class CallableMiddleware implements MiddlewareInterface
      */
     public function __construct(callable $handler, ResponseFactoryInterface $responseFactory = null)
     {
-        $this->handler         = $handler;
+        $this->handler = $handler;
         $this->responseFactory = $responseFactory;
     }
 
@@ -65,7 +67,7 @@ final class CallableMiddleware implements MiddlewareInterface
 
             if ($return instanceof ResponseInterface) {
                 $response = $return;
-                $return   = '';
+                $return = '';
             } elseif (
                 $return === null
                 || \is_scalar($return)

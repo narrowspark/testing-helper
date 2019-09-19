@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Narrowspark\TestingHelper\Tests\Traits;
 
 use DateTime;
@@ -9,6 +11,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
+ *
+ * @small
  */
 final class AssertGetterSetterTraitTest extends TestCase
 {

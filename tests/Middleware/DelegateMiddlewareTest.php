@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Narrowspark\TestingHelper\Tests\Middleware;
 
 use GuzzleHttp\Psr7\ServerRequest;
@@ -9,6 +11,8 @@ use Psr\Http\Message\ResponseInterface;
 
 /**
  * @internal
+ *
+ * @small
  */
 final class DelegateMiddlewareTest extends MockeryTestCase
 {
@@ -18,7 +22,7 @@ final class DelegateMiddlewareTest extends MockeryTestCase
             return $this->mock(ResponseInterface::class);
         });
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResponseInterface::class,
             $middleware->handle(new ServerRequest('GET', '/'))
         );

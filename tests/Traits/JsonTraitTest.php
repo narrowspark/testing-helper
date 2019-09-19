@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Narrowspark\TestingHelper\Tests\Traits;
 
 use Narrowspark\TestingHelper\Traits\AssertJsonTrait;
@@ -8,6 +10,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
+ *
+ * @small
  */
 final class JsonTraitTest extends TestCase
 {

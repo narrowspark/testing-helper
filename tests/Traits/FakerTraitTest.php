@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Narrowspark\TestingHelper\Tests\Traits;
 
 use Narrowspark\TestingHelper\Traits\FakerTrait;
@@ -7,6 +9,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
+ *
+ * @small
  */
 final class FakerTraitTest extends TestCase
 {
@@ -16,23 +20,23 @@ final class FakerTraitTest extends TestCase
     {
         $faker = $this->getFaker();
 
-        $this->assertInstanceOf('\Faker\Generator', $faker);
+        self::assertInstanceOf('\Faker\Generator', $faker);
     }
 
     public function testGetFakerReturnsFakerWithDefaultLocale(): void
     {
         $faker = $this->getFaker('en_US');
 
-        $this->assertInstanceOf('\Faker\Generator', $faker);
-        $this->assertSame($faker, $this->getFaker());
+        self::assertInstanceOf('\Faker\Generator', $faker);
+        self::assertSame($faker, $this->getFaker());
     }
 
     public function testGetFakerReturnsDifferentFakerForDifferentLocale(): void
     {
         $faker = $this->getFaker('en_US');
 
-        $this->assertInstanceOf('Faker\Generator', $faker);
-        $this->assertNotSame($faker, $this->getFaker('de_DE'));
+        self::assertInstanceOf('Faker\Generator', $faker);
+        self::assertNotSame($faker, $this->getFaker('de_DE'));
     }
 
     /**
@@ -44,8 +48,8 @@ final class FakerTraitTest extends TestCase
     {
         $faker = $this->getFaker($locale);
 
-        $this->assertInstanceOf('Faker\Generator', $faker);
-        $this->assertSame($faker, $this->getFaker($locale));
+        self::assertInstanceOf('Faker\Generator', $faker);
+        self::assertSame($faker, $this->getFaker($locale));
     }
 
     /**

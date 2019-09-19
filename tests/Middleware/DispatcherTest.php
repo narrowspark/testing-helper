@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Narrowspark\TestingHelper\Tests\Middleware;
 
 use GuzzleHttp\Psr7\Response;
@@ -13,6 +15,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 /**
  * @internal
+ *
+ * @small
  */
 final class DispatcherTest extends TestCase
 {
@@ -29,7 +33,7 @@ final class DispatcherTest extends TestCase
     {
         parent::setUp();
 
-        $this->serverRequest   = new ServerRequest('GET', '/');
+        $this->serverRequest = new ServerRequest('GET', '/');
         $this->responseFactory = new class() implements ResponseFactoryInterface {
             /**
              * Create a new response.
@@ -82,8 +86,8 @@ final class DispatcherTest extends TestCase
 
         $response = $dispatcher->dispatch($this->serverRequest);
 
-        $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertEquals('123', (string) $response->getBody());
+        self::assertInstanceOf(ResponseInterface::class, $response);
+        self::assertEquals('123', (string) $response->getBody());
     }
 
     public function testNestedDispatcher(): void
@@ -155,17 +159,17 @@ final class DispatcherTest extends TestCase
 
         $response = $dispatcher3->dispatch($this->serverRequest);
 
-        $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertEquals('1234567', (string) $response->getBody());
+        self::assertInstanceOf(ResponseInterface::class, $response);
+        self::assertEquals('1234567', (string) $response->getBody());
 
         $response = $dispatcher2->dispatch($this->serverRequest);
 
-        $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertEquals('12345', (string) $response->getBody());
+        self::assertInstanceOf(ResponseInterface::class, $response);
+        self::assertEquals('12345', (string) $response->getBody());
 
         $response = $dispatcher1->dispatch($this->serverRequest);
 
-        $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertEquals('123', (string) $response->getBody());
+        self::assertInstanceOf(ResponseInterface::class, $response);
+        self::assertEquals('123', (string) $response->getBody());
     }
 }

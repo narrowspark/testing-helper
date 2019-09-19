@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Narrowspark\TestingHelper\Constraint;
 
 use Narrowspark\TestingHelper\Constraint\Traits\AdditionalFailureDescriptionTrait;
@@ -24,7 +26,7 @@ final class UsesTraits extends Constraint
     /**
      * Stores the result of each tested trait for internal use.
      *
-     * @var array
+     * @var bool[]
      */
     private $result = [];
 
@@ -60,7 +62,7 @@ final class UsesTraits extends Constraint
      * Returns true if and only if all traits specified in {@link $expectedTraits} are used by
      * the tested object or class.
      *
-     * @param mixed $other FQCN or an object
+     * @param mixed|object|\ReflectionClass $other FQCN or an object
      *
      * @return bool
      *
@@ -68,13 +70,15 @@ final class UsesTraits extends Constraint
      */
     protected function matches($other): bool
     {
-        $traits  = $other instanceof \ReflectionClass ? $other->getTraitNames() : \class_uses($other);
+        $traits = $other instanceof \ReflectionClass ? $other->getTraitNames() : \class_uses($other);
         $success = true;
 
         foreach ($this->expectedTraits as $expectedTrait) {
-            $check                        = \in_array($expectedTrait, $traits, true);
+            $check = \in_array($expectedTrait, $traits, true);
+
             $this->result[$expectedTrait] = $check;
-            $success                      = $success && $check;
+
+            $success = $success && $check;
         }
 
         return $success;
