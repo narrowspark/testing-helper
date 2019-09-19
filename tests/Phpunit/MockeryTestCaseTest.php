@@ -41,9 +41,11 @@ final class MockeryTestCaseTest extends MockeryTestCase
 
     public function testSpyWithClosure(): void
     {
-        $spy = $this->spy(function($n) { return $n + 1;});
+        $spy = $this->spy(static function ($n) {
+            return $n + 1;
+        });
 
-        array_map($spy, [1, 2]); // [2, 3]
+        \array_map($spy, [1, 2]); // [2, 3]
 
         $spy->shouldHaveBeenCalled();
         $spy->shouldHaveBeenCalled()->twice();
