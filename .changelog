@@ -8,6 +8,6 @@ return [
         'narrowspark',
         'testing-helper',
         'v8.0.1',
-        ['Enhancement', 'Type: Bug', 'Type: BC Break']
+        ['Added', 'Changed', 'Deprecated', 'Removed', 'Fixed', 'Security']
     )
 ];
