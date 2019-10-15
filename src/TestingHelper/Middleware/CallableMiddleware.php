@@ -2,6 +2,15 @@
 
 declare(strict_types=1);
 
+/**
+ * This file is part of Narrowspark Framework.
+ *
+ * (c) Daniel Bannert <d.bannert@anolilab.de>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Narrowspark\TestingHelper\Middleware;
 
 use Psr\Http\Message\ResponseFactoryInterface;
@@ -81,9 +90,7 @@ final class CallableMiddleware implements MiddlewareInterface
 
                 $response = $instance->createResponse();
             } else {
-                throw new UnexpectedValueException(
-                    'The value returned must be "scalar" or an object with "__toString" method.'
-                );
+                throw new UnexpectedValueException('The value returned must be "scalar" or an object with "__toString" method.');
             }
 
             while (\ob_get_level() >= $level) {

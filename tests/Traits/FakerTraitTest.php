@@ -2,6 +2,15 @@
 
 declare(strict_types=1);
 
+/**
+ * This file is part of Narrowspark Framework.
+ *
+ * (c) Daniel Bannert <d.bannert@anolilab.de>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Narrowspark\TestingHelper\Tests\Traits;
 
 use Narrowspark\TestingHelper\Traits\FakerTrait;
@@ -40,7 +49,7 @@ final class FakerTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider providerLocale
+     * @dataProvider provideGetFakerReturnsTheSameInstanceForALocaleCases
      *
      * @param string $locale
      */
@@ -55,7 +64,7 @@ final class FakerTraitTest extends TestCase
     /**
      * @return \Generator
      */
-    public function providerLocale(): \Generator
+    public function provideGetFakerReturnsTheSameInstanceForALocaleCases(): iterable
     {
         $values = [
             'de_DE',

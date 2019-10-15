@@ -2,12 +2,21 @@
 
 declare(strict_types=1);
 
+/**
+ * This file is part of Narrowspark Framework.
+ *
+ * (c) Daniel Bannert <d.bannert@anolilab.de>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Narrowspark\TestingHelper\Traits;
 
 use ArrayAccess;
 use Narrowspark\TestingHelper\Constraint\ArraySubset;
+use Narrowspark\TestingHelper\Phpunit\Util\InvalidArgumentHelper;
 use PHPUnit\Framework\Assert as PhpUnitAssert;
-use PHPUnit\Util\InvalidArgumentHelper;
 
 trait AssertArrayTrait
 {
@@ -30,17 +39,11 @@ trait AssertArrayTrait
         string $message = ''
     ): void {
         if (! (\is_array($subset) || $subset instanceof ArrayAccess)) {
-            throw InvalidArgumentHelper::factory(
-                1,
-                'array or ArrayAccess'
-            );
+            throw InvalidArgumentHelper::factory(1, 'array or ArrayAccess');
         }
 
         if (! (\is_array($array) || $array instanceof ArrayAccess)) {
-            throw InvalidArgumentHelper::factory(
-                2,
-                'array or ArrayAccess'
-            );
+            throw InvalidArgumentHelper::factory(2, 'array or ArrayAccess');
         }
 
         $constraint = new ArraySubset($subset, $checkForObjectIdentity);

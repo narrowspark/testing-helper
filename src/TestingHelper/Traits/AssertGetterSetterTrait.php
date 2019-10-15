@@ -2,6 +2,15 @@
 
 declare(strict_types=1);
 
+/**
+ * This file is part of Narrowspark Framework.
+ *
+ * (c) Daniel Bannert <d.bannert@anolilab.de>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Narrowspark\TestingHelper\Traits;
 
 use ReflectionProperty;
@@ -39,19 +48,19 @@ trait AssertGetterSetterTrait
         bool $chainable = true,
         string $return = null
     ): void {
-        //Assert getter exists
+        // Assert getter exists
         self::assertTrue(
             \method_exists($object, $getter),
             'Object does not contain the specified getter method "' . $getter . '".'
         );
 
-        //Assert getter is callable
+        // Assert getter is callable
         self::assertIsCallable(
             [$object, $getter],
             'Specified getter method "' . $getter . '" is not callable.'
         );
 
-        //Assert default values are correct
+        // Assert default values are correct
         self::assertSame(
             $default,
             $object->{$getter}(),
@@ -59,26 +68,26 @@ trait AssertGetterSetterTrait
         );
 
         if ($setter !== null) {
-            //Assert setter exists
+            // Assert setter exists
             self::assertTrue(
                 \method_exists($object, $setter),
                 'Object does not contain the specified setter method "' . $setter . '".'
             );
 
-            //Assert setter is callable
+            // Assert setter is callable
             self::assertIsCallable(
                 [$object, $setter],
                 'Specified setter method "' . $setter . '" is not callable.'
             );
 
             if ($chainable !== true) {
-                //Assert setter returns null (not chainable)
+                // Assert setter returns null (not chainable)
                 self::assertNull(
                     $object->{$setter}($value),
                     'Object setter (' . $setter . ') should not have a return.'
                 );
             } else {
-                //Assert setter is chainable
+                // Assert setter is chainable
                 self::assertSame(
                     $object,
                     $object->{$setter}($value),
@@ -88,7 +97,7 @@ trait AssertGetterSetterTrait
         }
 
         if ($default !== null) {
-            //Assert that getter returns the value or the manipulated return value
+            // Assert that getter returns the value or the manipulated return value
             self::assertSame(7 === \count(\func_get_args()) ? $return : $value, $object->{$getter}());
         }
     }

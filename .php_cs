@@ -1,9 +1,18 @@
 <?php
-declare(strict_types=1);
 
 use Narrowspark\CS\Config\Config;
 
-$config = new Config();
+$header = <<<'EOF'
+This file is part of Narrowspark Framework.
+
+(c) Daniel Bannert <d.bannert@anolilab.de>
+
+This source file is subject to the MIT license that is bundled
+with this source code in the file LICENSE.
+EOF;
+
+
+$config = new Config($header);
 $config->getFinder()
     ->files()
     ->in(__DIR__)
