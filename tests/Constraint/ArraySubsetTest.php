@@ -2,6 +2,15 @@
 
 declare(strict_types=1);
 
+/**
+ * This file is part of Narrowspark Framework.
+ *
+ * (c) Daniel Bannert <d.bannert@anolilab.de>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Narrowspark\TestingHelper\Tests\Unit\Constraint;
 
 use ArrayAccessible;
@@ -25,7 +34,7 @@ final class ArraySubsetTest extends TestCase
     /**
      * @return mixed[]
      */
-    public static function evaluateDataProvider(): array
+    public static function provideEvaluateCases(): iterable
     {
         return [
             'loose array subset and array other' => [
@@ -63,7 +72,7 @@ final class ArraySubsetTest extends TestCase
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
-     * @dataProvider evaluateDataProvider
+     * @dataProvider provideEvaluateCases
      */
     public function testEvaluate(bool $expected, $subset, $other, $strict): void
     {
