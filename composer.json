@@ -35,7 +35,8 @@
         "fzaninotto/faker": "^1.8.0",
         "guzzlehttp/psr7": "^1.6.1",
         "mockery/mockery": "^1.2.3",
-        "narrowspark/coding-standard": "^3.1.0"
+        "narrowspark/coding-standard": "^3.1.0",
+        "slam/phpstan-extensions": "^3.6"
     },
     "suggest": {
         "fzaninotto/faker": "Required to use the FakerTrait (^1.6)",
