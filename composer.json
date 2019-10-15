@@ -59,9 +59,9 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-        "changelog": "changelog-generator generate --config=\".changelog\" --file --append",
+        "changelog": "changelog-generator generate --config=\".changelog\" --file --prepend",
         "coverage": "phpunit --coverage-html=\"build/logs\"",
-        "cs": "php-cs-fixer fix",
+        "cs": "php-cs-fixer fix -v",
         "cs-check": "php-cs-fixer fix -v --dry-run --stop-on-violation",
         "phpstan": "phpstan analyse -c phpstan.neon src --memory-limit=-1",
         "test": "phpunit"
