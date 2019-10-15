@@ -21,9 +21,9 @@ use PHPUnit\Framework\Exception;
 final class InvalidArgumentHelper
 {
     /**
-     * @param int $argument
+     * @param int    $argument
      * @param string $type
-     * @param mixed $value
+     * @param mixed  $value
      *
      * @return Exception
      */
